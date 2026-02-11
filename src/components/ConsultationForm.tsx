@@ -6,12 +6,26 @@ import { Check, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { getEnv } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Nama wajib diisi").max(100),
@@ -26,7 +40,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const serviceOptions = ["Landing Page", "Web Application", "Maintenance"];
-const budgetOptions = ["< 5 Juta", "5 - 15 Juta", "15 - 30 Juta", "> 30 Juta"];
+const budgetOptions = ["< Rp 500.000", "500.000 - 1.500.000", "1.500.000 - 3.000.000", "> 3.000.000"];
 
 const benefits = [
   "Respons dalam 2 jam kerja",
@@ -43,7 +57,7 @@ const ConsultationForm = () => {
     defaultValues: {
       name: "",
       email: "",
-      whatsapp: "+62",
+      whatsapp: getEnv("VITE_CONTACT_WHATSAPP_NUMBER", "62"),
       businessType: "",
       services: [],
       budget: "",
@@ -68,10 +82,12 @@ const ConsultationForm = () => {
               <Check size={40} className="text-accent" />
             </div>
             <h2 className="text-3xl font-bold mb-4">Terima Kasih!</h2>
-            <p className="text-muted-foreground mb-8">Tim kami akan menghubungi Anda dalam 2 jam kerja.</p>
+            <p className="text-muted-foreground mb-8">
+              Tim kami akan menghubungi Anda dalam 2 jam kerja.
+            </p>
             <Button size="lg" asChild>
               <a
-                href="https://wa.me/6281234567890?text=Halo%20SSH%2C%20saya%20baru%20mengisi%20form%20konsultasi"
+                href={`https://wa.me/${getEnv("VITE_CONTACT_WHATSAPP_NUMBER", "6281234567890")}?text=Halo%20${getEnv("VITE_APP_NAME", "SSH")}%2C%20saya%20baru%20mengisi%20form%20konsultasi`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -88,109 +104,194 @@ const ConsultationForm = () => {
     <section id="contact" className="section-spacing bg-muted/30">
       <div className="container-section">
         <div className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.15em] text-primary font-mono mb-3">Konsultasi</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Mulai Project Anda Sekarang</h2>
+          <p className="text-sm uppercase tracking-[0.15em] text-primary font-mono mb-3">
+            Konsultasi
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Mulai Project Anda Sekarang
+          </h2>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Form */}
           <div className="lg:col-span-2">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField control={form.control} name="name" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nama Lengkap *</FormLabel>
-                      <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="email" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email *</FormLabel>
-                      <FormControl><Input type="email" placeholder="john@example.com" {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField control={form.control} name="whatsapp" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>WhatsApp *</FormLabel>
-                      <FormControl><Input type="tel" placeholder="+62 812 3456 7890" {...field} /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="businessType" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Jenis Bisnis *</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nama Lengkap *</FormLabel>
                         <FormControl>
-                          <SelectTrigger><SelectValue placeholder="Pilih jenis bisnis" /></SelectTrigger>
+                          <Input placeholder="John Doe" {...field} />
                         </FormControl>
-                        <SelectContent>
-                          {["UMKM", "Organisasi", "Corporate", "Personal"].map((v) => (
-                            <SelectItem key={v} value={v}>{v}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email *</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="john@example.com"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
-                <FormField control={form.control} name="services" render={() => (
-                  <FormItem>
-                    <FormLabel>Layanan yang Dibutuhkan *</FormLabel>
-                    <div className="flex flex-wrap gap-4">
-                      {serviceOptions.map((svc) => (
-                        <FormField key={svc} control={form.control} name="services" render={({ field }) => (
-                          <FormItem className="flex items-center gap-2">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value?.includes(svc)}
-                                onCheckedChange={(checked) => {
-                                  const updated = checked
-                                    ? [...field.value, svc]
-                                    : field.value.filter((v: string) => v !== svc);
-                                  field.onChange(updated);
-                                }}
-                              />
-                            </FormControl>
-                            <Label className="text-sm font-normal cursor-pointer">{svc}</Label>
-                          </FormItem>
-                        )} />
-                      ))}
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="whatsapp"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>WhatsApp *</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            placeholder="+62 812 3456 7890"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="businessType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Jenis Bisnis *</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Pilih jenis bisnis" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {[
+                              "UMKM",
+                              "Organisasi",
+                              "Corporate",
+                              "Personal",
+                            ].map((v) => (
+                              <SelectItem key={v} value={v}>
+                                {v}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-                <FormField control={form.control} name="budget" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Budget Range *</FormLabel>
-                    <FormControl>
-                      <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-wrap gap-4">
-                        {budgetOptions.map((b) => (
-                          <div key={b} className="flex items-center gap-2">
-                            <RadioGroupItem value={b} id={b} />
-                            <Label htmlFor={b} className="text-sm font-normal cursor-pointer">{b}</Label>
-                          </div>
+                <FormField
+                  control={form.control}
+                  name="services"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Layanan yang Dibutuhkan *</FormLabel>
+                      <div className="flex flex-wrap gap-4">
+                        {serviceOptions.map((svc) => (
+                          <FormField
+                            key={svc}
+                            control={form.control}
+                            name="services"
+                            render={({ field }) => (
+                              <FormItem className="flex items-center gap-2">
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(svc)}
+                                    onCheckedChange={(checked) => {
+                                      const updated = checked
+                                        ? [...field.value, svc]
+                                        : field.value.filter(
+                                            (v: string) => v !== svc,
+                                          );
+                                      field.onChange(updated);
+                                    }}
+                                  />
+                                </FormControl>
+                                <Label className="text-sm font-normal cursor-pointer">
+                                  {svc}
+                                </Label>
+                              </FormItem>
+                            )}
+                          />
                         ))}
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                <FormField control={form.control} name="message" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Ceritakan Kebutuhan Anda</FormLabel>
-                    <FormControl><Textarea placeholder="Deskripsikan project impian Anda..." rows={4} {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="budget"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Budget Range *</FormLabel>
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="flex flex-wrap gap-4"
+                        >
+                          {budgetOptions.map((b) => (
+                            <div key={b} className="flex items-center gap-2">
+                              <RadioGroupItem value={b} id={b} />
+                              <Label
+                                htmlFor={b}
+                                className="text-sm font-normal cursor-pointer"
+                              >
+                                {b}
+                              </Label>
+                            </div>
+                          ))}
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Ceritakan Kebutuhan Anda</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Deskripsikan project impian Anda..."
+                          rows={4}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <Button type="submit" size="lg" className="gap-2">
                   <Send size={18} /> Kirim Konsultasi

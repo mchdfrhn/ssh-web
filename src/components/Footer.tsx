@@ -1,5 +1,6 @@
 import { Github, Linkedin, Instagram, Mail, MessageCircle } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
+import { getEnv } from "@/lib/utils";
 
 const Footer = () => {
   return (
@@ -9,10 +10,18 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="SSH" className="h-8 w-8 rounded-lg object-cover" />
-              <span className="font-bold text-foreground">SSH</span>
+              <img
+                src={logo}
+                alt={getEnv("VITE_APP_NAME", "SSH")}
+                className="h-8 w-8 rounded-lg object-cover"
+              />
+              <span className="font-bold text-foreground">
+                {getEnv("VITE_APP_NAME", "SSH")}
+              </span>
             </div>
-            <p className="text-sm text-muted-foreground">Digitalisasi Tanpa Drama</p>
+            <p className="text-sm text-muted-foreground">
+              Digitalisasi Tanpa Drama
+            </p>
           </div>
 
           {/* Links */}
@@ -26,7 +35,12 @@ const Footer = () => {
                 { label: "Kontak", href: "#contact" },
               ].map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="hover:text-foreground transition-colors">{l.label}</a>
+                  <a
+                    href={l.href}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {l.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -37,10 +51,12 @@ const Footer = () => {
             <h4 className="text-sm font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <Mail size={14} /> hello@surupan.dev
+                <Mail size={14} />{" "}
+                {getEnv("VITE_CONTACT_EMAIL", "hello@surupan.dev")}
               </li>
               <li className="flex items-center gap-2">
-                <MessageCircle size={14} /> +62 812 3456 7890
+                <MessageCircle size={14} />{" "}
+                {getEnv("VITE_CONTACT_WHATSAPP_DISPLAY", "+62 812 3456 7890")}
               </li>
             </ul>
           </div>
@@ -50,9 +66,15 @@ const Footer = () => {
             <h4 className="text-sm font-semibold mb-4">Social</h4>
             <div className="flex gap-3">
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Instagram, href: "#" },
+                { icon: Github, href: getEnv("VITE_SOCIAL_GITHUB_URL", "#") },
+                {
+                  icon: Linkedin,
+                  href: getEnv("VITE_SOCIAL_LINKEDIN_URL", "#"),
+                },
+                {
+                  icon: Instagram,
+                  href: getEnv("VITE_SOCIAL_INSTAGRAM_URL", "#"),
+                },
               ].map(({ icon: Icon, href }, i) => (
                 <a
                   key={i}
@@ -72,7 +94,9 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="container-section py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span>© 2024 Surupan Software House. Built with ❤️ using React + Tailwind</span>
+          <span>
+            © 2024 Surupan Software House. Built with ❤️ using React + Tailwind
+          </span>
           <div className="flex gap-4">
             <span>🔒 SSL Secure</span>
             <span>⚡ Uptime 99.9%</span>

@@ -1,25 +1,46 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { getEnv } from "@/lib/utils";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let gsapModule: any;
-    const init = async () => {
+    async function init() {
       const { gsap } = await import("gsap");
       gsapModule = gsap;
       const el = sectionRef.current;
       if (!el) return;
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(el.querySelector(".hero-eyebrow"), { y: 30, opacity: 0, duration: 0.6 })
-        .from(el.querySelector(".hero-headline"), { y: 40, opacity: 0, duration: 0.7 }, "-=0.3")
-        .from(el.querySelector(".hero-sub"), { y: 30, opacity: 0, duration: 0.6 }, "-=0.3")
-        .from(el.querySelector(".hero-ctas"), { y: 20, opacity: 0, duration: 0.5 }, "-=0.2")
-        .from(el.querySelector(".hero-trust"), { y: 20, opacity: 0, duration: 0.5 }, "-=0.1");
-    };
+      tl.from(el.querySelector(".hero-eyebrow"), {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+      })
+        .from(
+          el.querySelector(".hero-headline"),
+          { y: 40, opacity: 0, duration: 0.7 },
+          "-=0.3"
+        )
+        .from(
+          el.querySelector(".hero-sub"),
+          { y: 30, opacity: 0, duration: 0.6 },
+          "-=0.3"
+        )
+        .from(
+          el.querySelector(".hero-ctas"),
+          { y: 20, opacity: 0, duration: 0.5 },
+          "-=0.2"
+        )
+        .from(
+          el.querySelector(".hero-trust"),
+          { y: 20, opacity: 0, duration: 0.5 },
+          "-=0.1"
+        );
+    }
     init();
   }, []);
 
@@ -31,7 +52,10 @@ const HeroSection = () => {
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl animate-pulse_glow" />
-        <div className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-accent/10 blur-3xl animate-pulse_glow" style={{ animationDelay: "1.5s" }} />
+        <div
+          className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full bg-accent/10 blur-3xl animate-pulse_glow"
+          style={{ animationDelay: "1.5s" }}
+        />
         <div className="absolute top-20 right-1/4 w-16 h-16 border border-primary/20 rounded-xl animate-spin-slow" />
         <div className="absolute bottom-32 left-1/4 w-12 h-12 border border-accent/20 rounded-full animate-float" />
         <div className="absolute top-1/2 right-1/3 w-8 h-8 bg-primary/5 rounded-lg animate-float-slow" />
@@ -48,7 +72,8 @@ const HeroSection = () => {
         </h1>
 
         <p className="hero-sub text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-          Solusi Website & Web App untuk UMKM dan Organisasi — Tanpa Kompleksitas, Tanpa Biaya Tersembunyi
+          Solusi Website & Web App untuk UMKM dan Organisasi — Tanpa
+          Kompleksitas, Tanpa Biaya Tersembunyi
         </p>
 
         <div className="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -57,9 +82,14 @@ const HeroSection = () => {
               Lihat Portofolio <ArrowRight size={18} />
             </a>
           </Button>
-          <Button size="lg" variant="outline" className="gap-2 text-base px-8 border-primary/50 hover:bg-primary/10" asChild>
+          <Button
+            size="lg"
+            variant="outline"
+            className="gap-2 text-base px-8 border-primary/50 hover:bg-primary/10"
+            asChild
+          >
             <a
-              href="https://wa.me/6281234567890?text=Halo%20SSH%2C%20saya%20ingin%20konsultasi%20gratis"
+              href={`https://wa.me/${getEnv("VITE_CONTACT_WHATSAPP_NUMBER", "6281234567890")}?text=Halo%20${getEnv("VITE_APP_NAME", "SSH")}%2C%20saya%20ingin%20konsultasi%20gratis`}
               target="_blank"
               rel="noopener noreferrer"
             >

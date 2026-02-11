@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# SSH Web Project
 
-## Project info
+Project website untuk Surupan Software House (SSH).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Project Info
 
-## How can I edit this code?
+Built with:
 
-There are several ways of editing your application.
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### 1. Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+Ensure you have Node.js installed on your machine.
+Recommended: [Install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use your preferred IDE**
+### 2. Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Clone the repository and install dependencies:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
 git clone <YOUR_GIT_URL>
+cd ssh-web
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 3. Configuration
 
-# Step 3: Install the necessary dependencies.
-npm i
+Duplicate the example environment file and rename it to `.env`:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+cp .env.example .env
+```
+
+Open `.env` and update the values as needed.
+
+**Available Environment Variables:**
+
+| Variable                        | Description                      | Default               |
+| ------------------------------- | -------------------------------- | --------------------- |
+| `VITE_APP_NAME`                 | Project Name / Brand             | SSH                   |
+| `VITE_CONTACT_WHATSAPP_NUMBER`  | WhatsApp Number (format: 628...) | 6281234567890         |
+| `VITE_CONTACT_WHATSAPP_DISPLAY` | Display formatted number         | +62 812 3456 7890     |
+| `VITE_CONTACT_EMAIL`            | Contact Email                    | hello@surupan.dev     |
+| `VITE_SOCIAL_GITHUB_URL`        | GitHub URL                       | https://github.com    |
+| `VITE_SOCIAL_LINKEDIN_URL`      | LinkedIn URL                     | https://linkedin.com  |
+| `VITE_SOCIAL_INSTAGRAM_URL`     | Instagram URL                    | https://instagram.com |
+
+### 4. Running Development Server
+
+Start the development server with auto-reloading:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 5. Deployment
 
-**Use GitHub Codespaces**
+To build the application for production:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+Preview the production build:
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```bash
+npm run preview
+```

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.jpeg";
+import { getEnv } from "@/lib/utils";
 
 const navLinks = [
   { label: "Layanan", href: "#services" },
@@ -28,8 +29,14 @@ const Navbar = () => {
     >
       <div className="container-section flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center gap-2">
-          <img src={logo} alt="SSH Logo" className="h-10 w-10 rounded-lg object-cover" />
-          <span className="font-bold text-lg tracking-tight text-foreground">SSH</span>
+          <img
+            src={logo}
+            alt={`${getEnv("VITE_APP_NAME", "SSH")} Logo`}
+            className="h-10 w-10 rounded-lg object-cover"
+          />
+          <span className="font-bold text-lg tracking-tight text-foreground">
+            {getEnv("VITE_APP_NAME", "SSH")}
+          </span>
         </a>
 
         {/* Desktop */}
@@ -73,7 +80,9 @@ const Navbar = () => {
               </a>
             ))}
             <Button size="sm" asChild className="w-fit">
-              <a href="#contact" onClick={() => setMobileOpen(false)}>Mulai Project</a>
+              <a href="#contact" onClick={() => setMobileOpen(false)}>
+                Mulai Project
+              </a>
             </Button>
           </div>
         </div>
