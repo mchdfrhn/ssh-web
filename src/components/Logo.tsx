@@ -21,7 +21,7 @@ export const Logo = ({
       </div>
       <div className={`flex flex-col leading-none ${textClassName}`}>
         <span className="font-bold text-lg tracking-tight text-foreground">
-          SSH<span className="text-primary">.WEB</span>
+          SSH<span className="text-primary">.dev</span>
         </span>
         <span className="text-[0.6rem] text-muted-foreground uppercase tracking-wider font-mono">
           Software House

@@ -40,7 +40,12 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const serviceOptions = ["Landing Page", "Web Application", "Maintenance"];
-const budgetOptions = ["< Rp 500.000", "500.000 - 1.500.000", "1.500.000 - 3.000.000", "> 3.000.000"];
+const budgetOptions = [
+  "< Rp 500.000",
+  "500.000 - 1.500.000",
+  "1.500.000 - 3.000.000",
+  "> 3.000.000",
+];
 
 const benefits = [
   "Respons dalam 2 jam kerja",
@@ -112,9 +117,9 @@ const ConsultationForm = () => {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-start">
           {/* Form */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 glass-card p-6 md:p-8 rounded-2xl">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -302,7 +307,7 @@ const ConsultationForm = () => {
 
           {/* Sidebar */}
           <div className="space-y-4">
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="glass-card p-6 rounded-2xl">
               <h3 className="text-lg font-semibold mb-4">Yang Anda Dapatkan</h3>
               <div className="space-y-3">
                 {benefits.map((b, i) => (
@@ -312,6 +317,13 @@ const ConsultationForm = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl bg-primary/5 border-primary/10">
+              <p className="text-sm text-muted-foreground">
+                "Kami memastikan setiap project dikerjakan dengan standar
+                industri tertinggi."
+              </p>
             </div>
           </div>
         </div>

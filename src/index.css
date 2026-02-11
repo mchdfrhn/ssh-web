@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -72,19 +72,23 @@
   }
 
   .glass {
-    @apply bg-[hsl(var(--glass)/0.8)] backdrop-blur-xl border border-border;
+    @apply bg-white/5 backdrop-blur-[10px] border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply bg-card/30 backdrop-blur-md border border-white/5 transition-all duration-300 hover:bg-card/40 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5;
   }
 
   .glass-strong {
-    @apply bg-[hsl(var(--glass)/0.95)] backdrop-blur-2xl border border-border;
+    @apply bg-background/80 backdrop-blur-xl border-b border-white/10;
   }
 
   .section-spacing {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-24 md:py-32 lg:py-40;
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10;
+    @apply transition-transform duration-500 hover:-translate-y-2;
   }
 
   .glow {
@@ -93,6 +97,61 @@
 
   .glow-strong {
     box-shadow: 0 0 60px -10px hsl(199 89% 48% / 0.5);
+  }
+
+  /* Custom Animations */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  .animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
   }
 }
 

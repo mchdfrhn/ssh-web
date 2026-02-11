@@ -111,7 +111,7 @@ const ServicesSection = () => {
             return (
               <Card
                 key={i}
-                className={`svc-card flex flex-col h-full hover:shadow-lg transition-all duration-300 border-border bg-card/50 backdrop-blur-sm ${svc.popular ? "border-primary/50 relative" : ""}`}
+                className={`svc-card flex flex-col h-full glass-card border-border/50 ${svc.popular ? "border-primary/50 relative shadow-primary/10" : ""}`}
               >
                 {svc.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full shadow-md">

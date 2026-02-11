@@ -124,10 +124,10 @@ const PricingSection = () => {
           {plans.map((plan, i) => (
             <Card
               key={i}
-              className={`price-card flex flex-col h-full bg-card transition-all duration-300 ${
+              className={`price-card flex flex-col h-full glass-card transition-all duration-300 ${
                 plan.highlight
-                  ? "border-primary shadow-xl scale-105 z-10 ring-1 ring-primary/20"
-                  : "border-border hover:shadow-lg hover:-translate-y-1"
+                  ? "border-primary shadow-2xl shadow-primary/10 scale-105 z-10 ring-1 ring-primary/20 bg-card/40"
+                  : "border-border/50 hover:-translate-y-1"
               }`}
             >
               {plan.highlight && (

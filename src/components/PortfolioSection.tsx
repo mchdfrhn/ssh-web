@@ -12,17 +12,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const projects = [
   {
     id: 1,
-    img: sipekadImg,
-    name: "SIPEKAD STTPU",
-    category: "System",
-    type: "Academic System",
-    tech: ["Laravel", "MySQL", "Bootstrap"],
-    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform terpusat.",
-    impact: "Reduced admin workload by 60%",
-    link: "https://www.sipekad.web.id/",
-  },
-  {
-    id: 2,
     img: sipegImg,
     name: "SIPEG Pusdatin",
     category: "System",
@@ -31,6 +20,17 @@ const projects = [
     desc: "Sentralisasi data HR untuk 200+ karyawan. Fitur mencakup manajemen cuti, absensi, dan penilaian kinerja.",
     impact: "Centralized HR data for 200+ staff",
     link: "https://sipeg-pusdatin.vercel.app/",
+  },
+  {
+    id: 2,
+    img: sanareaImg,
+    name: "SANARÉA",
+    category: "Website",
+    type: "E-commerce",
+    tech: ["Next.js", "Stripe", "Sanity CMS"],
+    desc: "Premium hijab e-commerce dengan conversion rate 3x lipat. Desain minimalis dan performa tinggi.",
+    impact: "3x conversion rate vs previous site",
+    link: "#",
   },
   {
     id: 3,
@@ -45,14 +45,14 @@ const projects = [
   },
   {
     id: 4,
-    img: sanareaImg,
-    name: "SANARÉA",
-    category: "Website",
-    type: "E-commerce",
-    tech: ["Next.js", "Stripe", "Sanity CMS"],
-    desc: "Premium hijab e-commerce dengan conversion rate 3x lipat. Desain minimalis dan performa tinggi.",
-    impact: "3x conversion rate vs previous site",
-    link: "#",
+    img: sipekadImg,
+    name: "SIPEKAD STTPU",
+    category: "System",
+    type: "Academic System",
+    tech: ["Laravel", "MySQL", "Bootstrap"],
+    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform terpusat.",
+    impact: "Reduced admin workload by 60%",
+    link: "https://www.sipekad.web.id/",
   },
 ];
 
