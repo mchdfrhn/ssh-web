@@ -1,5 +1,5 @@
 import { Github, Linkedin, Instagram, Mail, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import { Logo } from "@/components/Logo";
 import { getEnv } from "@/lib/utils";
 
 const Footer = () => {
@@ -10,14 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img
-                src={logo}
-                alt={getEnv("VITE_APP_NAME", "SSH")}
-                className="h-8 w-8 rounded-lg object-cover"
-              />
-              <span className="font-bold text-foreground">
-                {getEnv("VITE_APP_NAME", "SSH")}
-              </span>
+              <Logo />
             </div>
             <p className="text-sm text-muted-foreground">
               Digitalisasi Tanpa Drama

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.jpeg";
-import { getEnv } from "@/lib/utils";
+import { Logo } from "@/components/Logo";
 
 const navLinks = [
   { label: "Layanan", href: "#services" },
@@ -28,15 +27,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container-section flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2">
-          <img
-            src={logo}
-            alt={`${getEnv("VITE_APP_NAME", "SSH")} Logo`}
-            className="h-10 w-10 rounded-lg object-cover"
-          />
-          <span className="font-bold text-lg tracking-tight text-foreground">
-            {getEnv("VITE_APP_NAME", "SSH")}
-          </span>
+        <a href="#" className="flex items-center gap-2 group">
+          <Logo />
         </a>
 
         {/* Desktop */}
