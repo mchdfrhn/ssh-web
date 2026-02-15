@@ -12,6 +12,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const projects = [
   {
     id: 1,
+    img: sipekadImg,
+    name: "SIPEKAD STTPU",
+    category: "System",
+    type: "Academic System",
+    tech: ["Laravel", "MySQL", "Bootstrap"],
+    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform terpusat.",
+    impact: "Reduced admin workload by 60%",
+    link: "https://sipekad-frontend-staging-e459.up.railway.app/",
+  },
+  {
+    id: 2,
     img: sipegImg,
     name: "SIPEG Pusdatin",
     category: "System",
@@ -22,7 +33,7 @@ const projects = [
     link: "https://sipeg-pusdatin.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     img: sanareaImg,
     name: "SANARÉA",
     category: "Website",
@@ -33,7 +44,7 @@ const projects = [
     link: "#",
   },
   {
-    id: 3,
+    id: 4,
     img: inventoryImg,
     name: "Inventory STTPU",
     category: "System",
@@ -42,17 +53,6 @@ const projects = [
     desc: "Sistem pelacakan aset real-time yang mengeliminasi selisih stok. Dashboard interaktif untuk monitoring keluar-masuk barang.",
     impact: "Real-time tracking, 0 discrepancies",
     link: "https://inventory-fe-production.up.railway.app/dashboard",
-  },
-  {
-    id: 4,
-    img: sipekadImg,
-    name: "SIPEKAD STTPU",
-    category: "System",
-    type: "Academic System",
-    tech: ["Laravel", "MySQL", "Bootstrap"],
-    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform terpusat.",
-    impact: "Reduced admin workload by 60%",
-    link: "https://www.sipekad.web.id/",
   },
 ];
 
