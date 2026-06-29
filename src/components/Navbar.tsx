@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SSHLogo from "./SSHLogo";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { scrollTo } from "../utils/scroll-utils";
+import { haptic } from "../utils/haptic";
 
 const navLinks = [
   { label: "Layanan", href: "#services" },
@@ -17,10 +19,17 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
 
+  // Smooth scroll to section via Lenis
+  const handleNavClick = useCallback((href: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setOpen(false);
+    haptic("light");
+    scrollTo(href, { offset: -64 });
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
-      // Active section detection
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.getBoundingClientRect().top <= 120) {
@@ -34,14 +43,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setOpen(false); };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -58,7 +65,7 @@ const Navbar = () => {
       >
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="shrink-0">
+          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo(0, { offset: 0 }); }} className="shrink-0">
             <SSHLogo size={28} showText={true} />
           </a>
 
@@ -70,6 +77,7 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleNavClick(link.href, e)}
                   className={`relative px-3 py-1.5 text-[13px] font-medium transition-colors ${
                     isActive
                       ? "text-[var(--text-primary)]"
@@ -93,6 +101,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
+              onClick={(e) => handleNavClick("#contact", e)}
               className="hidden md:inline-flex items-center gap-1.5 h-8 px-4 text-[12px] font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all"
             >
               Mulai Project <ArrowRight size={12} />
@@ -124,7 +133,7 @@ const Navbar = () => {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(link.href, e)}
                   className="text-[24px] font-bold text-[var(--text-primary)] tracking-[-0.03em]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -135,7 +144,7 @@ const Navbar = () => {
               ))}
               <motion.a
                 href="#contact"
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick("#contact", e)}
                 className="mt-4 inline-flex items-center gap-2 h-11 px-8 text-[14px] font-semibold bg-[var(--accent)] text-white rounded-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { setLenis } from "../utils/scroll-utils";
 
 // ─────────────────────────────────────────────────────────────
 // Single-ticker Lenis ↔ GSAP ScrollTrigger sync
@@ -9,15 +10,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function useScrollEngine(scrollProgress: React.MutableRefObject<number>) {
   useEffect(() => {
-    // SSR/headless guard
     if (typeof window === "undefined") return;
 
-    // Register GSAP plugin inside effect (not at module scope)
     gsap.registerPlugin(ScrollTrigger);
 
-    let lenis: InstanceType<typeof import("lenis").default>;
+    let lenis: any;
 
-    // Dynamic import Lenis to avoid SSR crash
     import("lenis").then(({ default: Lenis }) => {
       lenis = new Lenis({
         duration: 1.2,
@@ -25,6 +23,9 @@ export function useScrollEngine(scrollProgress: React.MutableRefObject<number>) 
         smoothWheel: true,
         touchMultiplier: 1.5,
       });
+
+      // Expose instance globally for scrollTo()
+      setLenis(lenis);
 
       // Sync Lenis → ScrollTrigger
       lenis.on("scroll", ScrollTrigger.update);
@@ -40,7 +41,6 @@ export function useScrollEngine(scrollProgress: React.MutableRefObject<number>) 
         scrollProgress.current = progress;
       });
     }).catch(() => {
-      // Lenis failed to load — graceful fallback, page still works
       console.warn("Lenis failed to load, using native scroll");
     });
 

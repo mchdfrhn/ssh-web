@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { scrollTo } from "../utils/scroll-utils";
+import { haptic } from "../utils/haptic";
 
 const stagger = {
   hidden: {},
@@ -7,7 +9,7 @@ const stagger = {
 };
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as any } },
 };
 
 const HeroSection = () => {
@@ -81,6 +83,7 @@ const HeroSection = () => {
         >
           <a
             href="#contact"
+            onClick={(e) => { e.preventDefault(); haptic("medium"); scrollTo("#contact"); }}
             className="group relative inline-flex items-center gap-2 h-12 px-8 text-[14px] font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl transition-all shadow-lg shadow-[var(--accent)]/25"
           >
             Konsultasi Gratis
@@ -88,6 +91,7 @@ const HeroSection = () => {
           </a>
           <a
             href="#portfolio"
+            onClick={(e) => { e.preventDefault(); haptic("light"); scrollTo("#portfolio"); }}
             className="inline-flex items-center gap-2 h-12 px-8 text-[14px] font-medium bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.12] text-[var(--text-primary)] rounded-xl transition-all"
           >
             Lihat Portofolio

@@ -14,6 +14,8 @@ import ConsultationForm from "./components/ConsultationForm";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import SkipToContent from "./components/SkipToContent";
+import ExitIntentPopup from "./components/ExitIntentPopup";
+import StickyCTA from "./components/StickyCTA";
 import { useScrollEngine } from "./hooks/useScrollEngine";
 
 // Dynamic import for 3D scene — avoids SSR crash on window/WebGL
@@ -114,6 +116,8 @@ export default function App() {
       <CustomCursor />
       <SkipToContent />
       <BackToTop />
+      <StickyCTA />
+      <ExitIntentPopup />
 
       {/* 3D Background — fixed behind everything, lazy-loaded */}
       <Suspense fallback={null}>
