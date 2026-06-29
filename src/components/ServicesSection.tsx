@@ -1,176 +1,167 @@
-import { useEffect, useRef } from "react";
-import { Zap, Code, Shield, Check, ArrowRight } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { Zap, Code, Shield, Check, ArrowRight, Globe, Smartphone, Database, Cloud, Lock, BarChart3 } from "lucide-react";
 
 const services = [
   {
     icon: Zap,
     name: "Landing Page Package",
-    desc: "Website profesional siap pakai dalam 5-7 hari. Pilihan tepat untuk campaign marketing dan personal branding.",
-    features: [
-      "Custom Design (Figma)",
-      "SEO-optimized (Lighthouse 95+)",
-      "Mobile-first & Responsif",
-      "Free Hosting 1 Tahun",
-      "Integrasi WhatsApp/Form",
-    ],
-    price: "Mulai Rp 300.000",
+    desc: "Website profesional siap pakai dalam 5-7 hari. SEO-optimized, mobile-first, free hosting 1 tahun.",
+    features: ["Custom Design", "Lighthouse 95+", "WhatsApp Integration"],
+    price: "Mulai Rp 300rb",
     popular: false,
+    span: "md:col-span-1",
   },
   {
     icon: Code,
     name: "Custom Web Application",
-    desc: "Sistem kompleks sesuai kebutuhan bisnis Anda. Dari manajemen data, dashboard, hingga integrasi API pihak ketiga.",
-    features: [
-      "Requirement Analysis mendalam",
-      "Scalable Database Architecture",
-      "Admin Dashboard + User Portal",
-      "Secure Auth & Role Management",
-      "API Integration (Payment, Shipping)",
-    ],
-    price: "Mulai Rp 3.000.000",
+    desc: "Sistem kompleks: dashboard, manajemen data, integrasi API. Full-stack dari database sampai frontend.",
+    features: ["Scalable Architecture", "Admin Dashboard", "API Integration"],
+    price: "Mulai Rp 3 Juta",
     popular: true,
+    span: "md:col-span-2",
   },
   {
     icon: Shield,
     name: "Maintenance & DevOps",
-    desc: "Fokus pada bisnis, biarkan kami menjaga sistem Anda tetap aman, cepat, dan selalu online 24/7.",
-    features: [
-      "Server Management (VPS/Cloud)",
-      "Automated Backups",
-      "Security Patching & Updates",
-      "Performance Monitoring",
-      "Priority Technical Support",
-    ],
-    price: "Mulai Rp 300.000/bln",
+    desc: "Sistem Anda tetap aman, cepat, dan online 24/7. Biarkan Anda fokus jualan.",
+    features: ["24/7 Monitoring", "Security Updates", "Auto Backups"],
+    price: "Mulai Rp 300rb/bln",
     popular: false,
+    span: "md:col-span-1",
   },
 ];
 
-const ServicesSection = () => {
-  const ref = useRef<HTMLElement>(null);
+const capabilities = [
+  { icon: Globe, label: "Web Development" },
+  { icon: Smartphone, label: "Mobile Apps" },
+  { icon: Database, label: "Database Design" },
+  { icon: Cloud, label: "Cloud Infrastructure" },
+  { icon: Lock, label: "Security Audit" },
+  { icon: BarChart3, label: "Analytics & SEO" },
+];
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const el = ref.current;
-    if (!el) return;
-
-    gsap.fromTo(
-      el.querySelectorAll(".svc-card"),
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%",
-        },
-      },
-    );
-  }, []);
-
-  return (
-    <section
-      ref={ref}
-      id="services"
-      className="section-spacing relative overflow-hidden"
-    >
-      {/* Background blobs */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl -z-10 pointer-events-none" />
-
-      <div className="container-section">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <p className="text-sm uppercase tracking-[0.15em] text-primary font-mono mb-3">
-            Layanan Kami
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Solusi Digital End-to-End
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Kami tidak sekadar menulis kode. Kami membangun solusi yang
-            memecahkan masalah bisnis Anda dengan teknologi tepat guna.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((svc, i) => {
-            const Icon = svc.icon;
-            return (
-              <Card
-                key={i}
-                className={`svc-card flex flex-col h-full glass-card border-border/50 ${svc.popular ? "border-primary/50 relative shadow-primary/10" : ""}`}
-              >
-                {svc.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                    MOST POPULAR
-                  </div>
-                )}
-
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Icon size={28} className="text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{svc.name}</CardTitle>
-                  <CardDescription className="text-base mt-2">
-                    {svc.desc}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex-grow">
-                  <ul className="space-y-3">
-                    {svc.features.map((f, j) => (
-                      <li
-                        key={j}
-                        className="flex items-start gap-3 text-sm text-muted-foreground"
-                      >
-                        <Check
-                          size={16}
-                          className="text-accent mt-0.5 shrink-0"
-                        />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-
-                <CardFooter className="flex flex-col items-start gap-4 pt-4 border-t border-border/50">
-                  <div className="text-lg font-bold text-foreground">
-                    {svc.price}
-                  </div>
-                  <Button
-                    variant={svc.popular ? "default" : "outline"}
-                    className="w-full gap-2 group"
-                    asChild
-                  >
-                    <a href="#contact">
-                      Konsultasi Sekarang{" "}
-                      <ArrowRight
-                        size={16}
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
 };
+
+const ServicesSection = () => (
+  <section id="services" className="relative py-24 md:py-32">
+    <div className="floating-orb w-[500px] h-[500px] bg-[var(--accent)]/[0.04] top-1/2 left-0 -translate-y-1/2" aria-hidden="true" />
+
+    <div className="max-w-[1200px] mx-auto px-6">
+      {/* Header — LEFT aligned, not centered */}
+      <motion.div
+        className="mb-14 max-w-xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-ghost)] font-medium mb-3">
+          Layanan
+        </p>
+        <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] mb-4">
+          Solusi Digital End-to-End
+        </h2>
+        <p className="text-[15px] text-[var(--text-muted)] leading-relaxed font-light">
+          Kami tidak sekadar menulis kode. Kami membangun solusi yang
+          memecahkan masalah bisnis Anda.
+        </p>
+      </motion.div>
+
+      {/* Bento grid */}
+      <div className="grid md:grid-cols-3 gap-4">
+        {services.map((svc, i) => {
+          const Icon = svc.icon;
+          return (
+            <motion.div
+              key={i}
+              className={`glow-card group relative flex flex-col rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.10] transition-all ${svc.span}`}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              custom={i}
+            >
+              {svc.popular && (
+                <>
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)]/[0.03] to-transparent pointer-events-none" />
+                </>
+              )}
+
+              <div className="relative z-10 p-6 md:p-7 flex-1 flex flex-col">
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--accent)]/[0.06] border border-[var(--accent)]/[0.10] flex items-center justify-center">
+                    <Icon size={18} className="text-[var(--accent-bright)]" />
+                  </div>
+                  {svc.popular && (
+                    <span className="text-[10px] font-semibold text-[var(--accent-bright)] bg-[var(--accent)]/[0.10] px-2 py-0.5 rounded-md uppercase tracking-wider">
+                      Popular
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="text-[16px] font-semibold tracking-[-0.02em] mb-2">{svc.name}</h3>
+                <p className="text-[13px] text-[var(--text-muted)] mb-5 leading-relaxed flex-1">
+                  {svc.desc}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {svc.features.map((f) => (
+                    <span
+                      key={f}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[var(--text-secondary)] bg-white/[0.03] border border-white/[0.04] rounded-md"
+                    >
+                      <Check size={10} className="text-[var(--accent-bright)]" />
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-white/[0.04]">
+                  <span className="text-[14px] font-semibold text-[var(--text-primary)]">{svc.price}</span>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--accent-bright)] hover:text-[var(--accent-hover)] transition-colors"
+                  >
+                    Konsultasi <ArrowRight size={12} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Capability tags */}
+      <motion.div
+        className="mt-10 flex flex-wrap justify-center gap-3"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        {capabilities.map((cap) => {
+          const Icon = cap.icon;
+          return (
+            <div
+              key={cap.label}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.02] border border-white/[0.04] text-[11px] font-medium text-[var(--text-ghost)] hover:text-[var(--text-muted)] hover:border-white/[0.08] transition-all cursor-default"
+            >
+              <Icon size={12} className="text-[var(--text-ghost)]" />
+              {cap.label}
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default ServicesSection;

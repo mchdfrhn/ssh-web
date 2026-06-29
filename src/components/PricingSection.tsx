@@ -1,227 +1,169 @@
-import { useEffect, useRef } from "react";
-import { Check, HelpCircle } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { Check, ArrowRight, Star } from "lucide-react";
 
 const plans = [
   {
+    label: "SEKALI BAYAR",
     name: "Project Based",
-    subtitle: "Sekali Bayar",
-    desc: "Cocok untuk website profil, landing page, atau sistem yang kebutuhan fiturnya sudah jelas (fixed scope).",
+    desc: "Website profil, landing page, atau sistem dengan scope jelas.",
     price: "Custom",
+    priceDesc: "Tergantung scope",
     features: [
-      { name: "Hak Milik Penuh (Source Code)", included: true },
-      { name: "Gratis Domain & Hosting 1 Thn", included: true },
-      { name: "Garansi Bug Fixing 30 Hari", included: true },
-      { name: "Dokumentasi Lengkap", included: true },
-      { name: "Prioritas Support", included: false },
-      { name: "Update Fitur Berkala", included: false },
+      "Requirement gathering mendalam",
+      "Custom UI/UX design",
+      "Full-source code ownership",
+      "Free revisi 2x",
+      "Garansi bug 30 hari",
     ],
-    highlight: false,
     cta: "Diskusikan Project",
+    popular: false,
   },
   {
+    label: "BULANAN",
     name: "Dedicated Team",
-    subtitle: "Bulanan / Retainer",
-    desc: "Solusi terbaik untuk startup atau perusahaan yang butuh tim IT jangka panjang tanpa repot rekrutmen.",
-    price: "Mulai Rp 5 Juta",
-    period: "/bulan",
+    desc: "Tim IT jangka panjang untuk startup atau perusahaan yang butuh velocity.",
+    price: "Rp 5 Juta",
+    priceDesc: "/bulan",
     features: [
-      { name: "Dedicated Developer (Full/Part time)", included: true },
-      { name: "Project Manager Included", included: true },
-      { name: "Laporan Progress Mingguan", included: true },
-      {
-        name: "Unlimited Feature Requests",
-        included: true,
-        info: "Sesuai kapasitas jam kerja",
-      },
-      { name: "Server & Infrastructure Setup", included: true },
-      { name: "Cancel Anytime", included: true },
+      "Dedicated developer",
+      "Unlimited task (prioritas)",
+      "Weekly progress report",
+      "Code review & mentoring",
+      "Slack/WA direct access",
     ],
-    highlight: true,
     cta: "Hire Team Kami",
+    popular: true,
   },
   {
+    label: "SUPPORT",
     name: "Maintenance",
-    subtitle: "Support & Care",
-    desc: "Kami menjaga website/aplikasi Anda tetap aman, cepat, dan up-to-date sehingga Anda bisa fokus jualan.",
-    price: "Mulai Rp 750 Ribu",
-    period: "/bulan",
+    desc: "Website/aplikasi tetap aman, cepat, dan up-to-date.",
+    price: "Rp 750rb",
+    priceDesc: "/bulan",
     features: [
-      { name: "Monitoring Uptime 24/7", included: true },
-      { name: "Backup Harian Otomatis", included: true },
-      { name: "Update Security Patch", included: true },
-      {
-        name: "Minor Content Update",
-        included: true,
-        info: "Maksimal 3 request/bulan",
-      },
-      { name: "Monthly Performance Report", included: true },
-      { name: "Technical Consultation", included: true },
+      "Uptime monitoring 24/7",
+      "Security updates & patches",
+      "Monthly performance report",
+      "Database backups",
+      "Bug fixes & minor updates",
     ],
-    highlight: false,
     cta: "Amankan Website",
+    popular: false,
   },
 ];
 
-const PricingSection = () => {
-  const ref = useRef<HTMLElement>(null);
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const el = ref.current;
-    if (!el) return;
+const PricingSection = () => (
+  <section id="pricing" className="relative py-24 md:py-32">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
-    gsap.fromTo(
-      el.querySelectorAll(".price-card"),
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 75%",
-        },
-      },
-    );
-  }, []);
+    <div className="max-w-[1100px] mx-auto px-6">
+      {/* Header — centered */}
+      <motion.div
+        className="text-center mb-14 max-w-xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-ghost)] font-medium mb-3">
+          Investment
+        </p>
+        <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] mb-4">
+          Harga Transparan, Hasil Maksimal
+        </h2>
+      </motion.div>
 
-  return (
-    <section ref={ref} id="pricing" className="section-spacing bg-muted/30">
-      <div className="container-section">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <p className="text-sm uppercase tracking-[0.15em] text-primary font-mono mb-3">
-            Investment
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Harga Transparan, Hasil Maksimal
-          </h2>
-          <p className="text-muted-foreground">
-            Pilih model kerjasama yang paling sesuai dengan fase bisnis Anda
-            saat ini.
-          </p>
-        </div>
+      {/* Pricing cards */}
+      <div className="grid md:grid-cols-3 gap-4 items-start">
+        {plans.map((plan, i) => (
+          <motion.div
+            key={i}
+            className={`relative flex flex-col rounded-xl overflow-hidden transition-all ${
+              plan.popular
+                ? "gradient-border bg-white/[0.04] shadow-lg shadow-[var(--accent)]/[0.08]"
+                : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10]"
+            }`}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            custom={i}
+          >
+            {plan.popular && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent)]/[0.04] to-transparent pointer-events-none" />
+            )}
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start">
-          {plans.map((plan, i) => (
-            <Card
-              key={i}
-              className={`price-card flex flex-col h-full glass-card transition-all duration-300 ${
-                plan.highlight
-                  ? "border-primary shadow-2xl shadow-primary/10 scale-105 z-10 ring-1 ring-primary/20 bg-card/40"
-                  : "border-border/50 hover:-translate-y-1"
-              }`}
-            >
-              {plan.highlight && (
-                <div className="bg-primary text-primary-foreground text-center py-1.5 text-xs font-bold uppercase tracking-wider">
-                  Most Popular Choice
-                </div>
-              )}
-
-              <CardHeader className="pb-4">
-                <div className="mb-2">
-                  <Badge
-                    variant={plan.highlight ? "default" : "secondary"}
-                    className="mb-2"
-                  >
-                    {plan.subtitle}
-                  </Badge>
-                </div>
-                <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                <CardDescription className="mt-2 min-h-[60px]">
-                  {plan.desc}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="pb-4 flex-grow">
-                <div className="mb-6">
-                  <span className="text-3xl font-bold">{plan.price}</span>
-                  {plan.period && (
-                    <span className="text-muted-foreground text-sm font-normal">
-                      {plan.period}
+            <div className="relative z-10 p-6 md:p-7 flex-1 flex flex-col">
+              {/* Header */}
+              <div className="mb-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <p className="text-[10px] font-medium text-[var(--text-ghost)] tracking-[0.15em] uppercase">
+                    {plan.label}
+                  </p>
+                  {plan.popular && (
+                    <span className="inline-flex items-center gap-1 text-[9px] font-semibold text-[var(--accent-bright)] bg-[var(--accent)]/[0.12] px-1.5 py-0.5 rounded-md uppercase tracking-wider">
+                      <Star size={8} className="fill-current" />
+                      Best Value
                     </span>
                   )}
                 </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[28px] font-bold tracking-[-0.03em]">{plan.price}</span>
+                  <span className="text-[13px] text-[var(--text-muted)]">{plan.priceDesc}</span>
+                </div>
+              </div>
 
-                <ul className="space-y-3">
-                  {plan.features.map((f, j) => (
-                    <li
-                      key={j}
-                      className={`flex items-start gap-3 text-sm ${f.included ? "text-foreground" : "text-muted-foreground/50"}`}
-                    >
-                      <Check
-                        size={16}
-                        className={`shrink-0 mt-0.5 ${f.included ? "text-accent" : "text-muted-foreground/30"}`}
-                      />
-                      <span className="flex-grow flex items-center justify-between gap-2">
-                        {f.name}
-                        {f.info && (
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <HelpCircle
-                                  size={14}
-                                  className="text-muted-foreground/70 hover:text-foreground transition-colors"
-                                />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p className="w-[200px] text-xs">{f.info}</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        )}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
+              <h3 className="text-[16px] font-semibold tracking-[-0.02em] mb-2">{plan.name}</h3>
+              <p className="text-[13px] text-[var(--text-muted)] mb-5 leading-relaxed">{plan.desc}</p>
 
-              <CardFooter className="pt-4">
-                <Button
-                  className="w-full"
-                  size="lg"
-                  variant={plan.highlight ? "default" : "outline"}
-                  asChild
-                >
-                  <a href="#contact">{plan.cta}</a>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+              <ul className="space-y-2.5 mb-6 flex-1">
+                {plan.features.map((f, j) => (
+                  <li key={j} className="flex items-start gap-2.5 text-[13px] text-[var(--text-secondary)]">
+                    <Check size={14} className="text-[var(--accent-bright)] mt-0.5 shrink-0" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
 
-        <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground">
-            Butuh penawaran khusus atau custom enterprise solution?{" "}
-            <a
-              href="#contact"
-              className="text-primary hover:underline font-medium"
-            >
-              Hubungi kami
-            </a>
-          </p>
-        </div>
+              <a
+                href="#contact"
+                className={`inline-flex items-center justify-center gap-2 h-10 text-[13px] font-medium rounded-lg transition-all ${
+                  plan.popular
+                    ? "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-lg shadow-[var(--accent)]/20"
+                    : "bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.12] text-[var(--text-primary)]"
+                }`}
+              >
+                {plan.cta}
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
-  );
-};
+
+      <motion.p
+        className="text-center mt-8 text-[13px] text-[var(--text-muted)]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+      >
+        Butuh penawaran khusus?{" "}
+        <a href="#contact" className="text-[var(--accent-bright)] hover:text-[var(--accent-hover)] underline underline-offset-2 transition-colors">
+          Hubungi kami
+        </a>
+      </motion.p>
+    </div>
+  </section>
+);
 
 export default PricingSection;

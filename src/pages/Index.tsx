@@ -6,18 +6,22 @@ import PortfolioSection from "@/components/PortfolioSection";
 import PricingSection from "@/components/PricingSection";
 import ConsultationForm from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
+import ParticleBackground from "@/components/three/ParticleBackground";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <HeroSection />
-      <ValidationSection />
-      <ServicesSection />
-      <PortfolioSection />
-      <PricingSection />
-      <ConsultationForm />
-      <Footer />
+      <ParticleBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <HeroSection />
+        <ValidationSection />
+        <ServicesSection />
+        <PortfolioSection />
+        <PricingSection />
+        <ConsultationForm />
+        <Footer />
+      </div>
     </div>
   );
 };

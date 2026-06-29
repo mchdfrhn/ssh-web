@@ -1,0 +1,9 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#08090a"/>
+  <rect x="40" y="40" width="1120" height="550" rx="20" fill="#0f1011" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="540" y="160" width="120" height="120" rx="28" fill="#5e6ad2"/>
+  <path d="M572 200C572 193.37 577.37 188 584 188H616C622.63 188 628 193.37 628 200C628 205 624.8 209.4 620 211.6V211.6C616.8 213.1 615 216.3 615 219.8V219.8C615 223.3 616.8 226.5 620 228V228C624.8 230.2 628 234.6 628 239.6C628 246.23 622.63 251.6 616 251.6H584C577.37 251.6 572 246.23 572 239.6" stroke="white" stroke-width="4.4" stroke-linecap="round"/>
+  <text x="600" y="340" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="42" font-weight="900" fill="#f7f8f8" letter-spacing="-1.5">SSH Software House</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" fill="#62666d">Build Digital Products That Actually Ship</text>
+  <text x="600" y="440" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" fill="#3a3d43">Custom Web Apps · Landing Pages · Maintenance</text>
+</svg>

@@ -1,217 +1,191 @@
-import { useEffect, useRef, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
-import sipekadImg from "@/assets/sipekad.jpeg";
-import sanareaImg from "@/assets/sanarea.jpeg";
-import sipegImg from "@/assets/sipeg.jpeg";
-import inventoryImg from "@/assets/inventory.jpeg";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
+
+const categories = ["All", "System", "Website"] as const;
 
 const projects = [
   {
-    id: 1,
-    img: sipekadImg,
-    name: "SIPEKAD STTPU",
+    id: "sipekad",
+    title: "SIPEKAD STTPU",
     category: "System",
     type: "Academic System",
-    tech: ["Laravel", "MySQL", "Bootstrap"],
-    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform terpusat.",
-    impact: "Reduced admin workload by 60%",
-    link: "https://sipekad-frontend-staging-e459.up.railway.app/",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&h=600&fit=crop",
+    desc: "Sistem informasi akademik yang mengurangi beban admin hingga 60%. Integrasi data mahasiswa, dosen, dan nilai dalam satu platform.",
+    metric: "60% less admin work",
+    tech: ["React", "Node.js", "MySQL"],
+    year: "2024",
   },
   {
-    id: 2,
-    img: sipegImg,
-    name: "SIPEG Pusdatin",
+    id: "sipeg",
+    title: "SIPEG Pusdatin",
     category: "System",
-    type: "Employee Management",
-    tech: ["React", "Node.js", "MongoDB"],
-    desc: "Sentralisasi data HR untuk 200+ karyawan. Fitur mencakup manajemen cuti, absensi, dan penilaian kinerja.",
-    impact: "Centralized HR data for 200+ staff",
-    link: "https://sipeg-pusdatin.vercel.app/",
+    type: "HR Management",
+    image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=900&h=600&fit=crop",
+    desc: "Sentralisasi data HR untuk 200+ karyawan. Cuti, absensi, dan penilaian kinerja dalam satu dashboard.",
+    metric: "200+ employees managed",
+    tech: ["Laravel", "PostgreSQL", "Redis"],
+    year: "2024",
   },
   {
-    id: 3,
-    img: sanareaImg,
-    name: "SANARÉA",
+    id: "sanarea",
+    title: "SANARÉA",
     category: "Website",
     type: "E-commerce",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&h=600&fit=crop",
+    desc: "Premium hijab e-commerce. Desain minimalis, checkout flow yang conversion-optimized.",
+    metric: "3x conversion rate",
     tech: ["Next.js", "Stripe", "Sanity CMS"],
-    desc: "Premium hijab e-commerce dengan conversion rate 3x lipat. Desain minimalis dan performa tinggi.",
-    impact: "3x conversion rate vs previous site",
-    link: "#",
+    year: "2025",
   },
   {
-    id: 4,
-    img: inventoryImg,
-    name: "Inventory STTPU",
+    id: "inventory",
+    title: "Inventory STTPU",
     category: "System",
-    type: "Inventory System",
-    tech: ["Astro", "Supabase", "TailwindCSS"],
-    desc: "Sistem pelacakan aset real-time yang mengeliminasi selisih stok. Dashboard interaktif untuk monitoring keluar-masuk barang.",
-    impact: "Real-time tracking, 0 discrepancies",
-    link: "https://inventory-fe-production.up.railway.app/dashboard",
+    type: "Asset Tracking",
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&h=600&fit=crop",
+    desc: "Pelacakan aset real-time. Dashboard interaktif untuk monitoring keluar-masuk barang.",
+    metric: "Zero discrepancies",
+    tech: ["React", "Express", "MongoDB"],
+    year: "2024",
   },
 ];
 
-const PortfolioSection = () => {
-  const ref = useRef<HTMLElement>(null);
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-  const [isAnimating, setIsAnimating] = useState(false);
+function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+  const cardRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [3, -3]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-3, 3]);
 
-  const categories = ["All", "System", "Website"];
+  const onMove = (e: React.MouseEvent) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
-  useEffect(() => {
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-      const el = ref.current;
-      if (!el) return;
-
-      // Animate title
-      gsap.fromTo(
-        el.querySelector(".section-title"),
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          scrollTrigger: { trigger: el, start: "top 80%" },
-        },
-      );
-    };
-    init();
-  }, []);
-
-  useEffect(() => {
-    const handleFilter = async () => {
-      setIsAnimating(true);
-
-      // Wait for exit animation
-      await new Promise((r) => setTimeout(r, 300));
-
-      const filtered =
-        activeCategory === "All"
-          ? projects
-          : projects.filter((p) => p.category === activeCategory);
-      setFilteredProjects(filtered);
-      setIsAnimating(false);
-
-      // Re-trigger entrance animation
-      const { gsap } = await import("gsap");
-      const el = ref.current;
-      if (el) {
-        gsap.fromTo(
-          el.querySelectorAll(".port-card"),
-          { y: 20, opacity: 0, scale: 0.95 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.4,
-            stagger: 0.1,
-            clearProps: "all",
-          },
-        );
-      }
-    };
-
-    handleFilter();
-  }, [activeCategory]);
+  const onLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
-    <section
-      ref={ref}
-      id="portfolio"
-      className="section-spacing bg-muted/30 min-h-screen"
+    <motion.article
+      ref={cardRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ rotateX, rotateY, perspective: 1000 }}
+      className="group relative rounded-xl overflow-hidden bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-colors"
     >
-      <div className="container-section">
-        <div className="section-title text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.15em] text-primary font-mono mb-3">
-            Portofolio
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Karya Nyata, Dampak Nyata
-          </h2>
+      {/* Image with hover zoom */}
+      <div className="relative h-56 md:h-64 overflow-hidden">
+        <motion.img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-root)] via-[var(--bg-root)]/20 to-transparent" />
 
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+        {/* Metric badge */}
+        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-root)]/70 backdrop-blur-sm border border-white/[0.06]">
+          <TrendingUp size={11} className="text-[var(--success)]" />
+          <span className="text-[10px] font-semibold text-[var(--success)]">{project.metric}</span>
+        </div>
+
+        <span className="absolute top-4 left-4 text-[10px] font-medium text-[var(--text-ghost)] bg-[var(--bg-root)]/50 backdrop-blur-sm px-2 py-0.5 rounded-md">
+          {project.year}
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="p-5 md:p-6">
+        <div className="flex items-center gap-2 mb-1.5">
+          <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[var(--text-primary)]">
+            {project.title}
+          </h3>
+          <ArrowUpRight
+            size={14}
+            className="text-[var(--text-ghost)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          />
+        </div>
+        <span className="inline-block text-[10px] font-medium text-[var(--accent-bright)] bg-[var(--accent)]/[0.08] px-2 py-0.5 rounded-md mb-3 uppercase tracking-wider">
+          {project.type}
+        </span>
+        <p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-4">
+          {project.desc}
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {project.tech.map((t) => (
+            <span key={t} className="px-2 py-0.5 text-[10px] font-medium text-[var(--text-ghost)] bg-white/[0.03] border border-white/[0.04] rounded-md uppercase tracking-wider">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+const PortfolioSection = () => {
+  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
+  const filtered =
+    activeCategory === "All" ? projects : projects.filter((p) => p.category === activeCategory);
+
+  return (
+    <section id="portfolio" className="relative py-24 md:py-32">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <motion.div
+            className="max-w-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-ghost)] font-medium mb-3">
+              Portofolio
+            </p>
+            <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em]">
+              Karya Nyata, Dampak Nyata
+            </h2>
+          </motion.div>
+
+          <div className="flex gap-2">
             {categories.map((cat) => (
-              <Button
+              <button
                 key={cat}
-                variant={activeCategory === cat ? "default" : "outline"}
+                type="button"
                 onClick={() => setActiveCategory(cat)}
-                className="rounded-full px-6 transition-all duration-300"
-                size="sm"
+                className={`px-3.5 py-1.5 text-[12px] font-medium rounded-full transition-all duration-200 ${
+                  activeCategory === cat
+                    ? "bg-white/[0.08] text-[var(--text-primary)] border border-white/[0.12]"
+                    : "bg-transparent text-[var(--text-muted)] border border-white/[0.04] hover:border-white/[0.08] hover:text-[var(--text-secondary)]"
+                }`}
               >
                 {cat}
-              </Button>
+              </button>
             ))}
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 min-h-[400px]">
-          {filteredProjects.map((p) => (
-            <div
-              key={p.id}
-              className={`port-card group rounded-xl border border-border bg-card overflow-hidden hover-lift flex flex-col transition-all duration-300 ${isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}
-            >
-              <div className="overflow-hidden aspect-video relative">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    asChild
-                    className="rounded-full"
-                  >
-                    <a href={p.link} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={16} className="mr-2" /> Live Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-bold">{p.name}</h3>
-                  <Badge
-                    variant="outline"
-                    className="text-xs bg-primary/5 border-primary/20 text-primary"
-                  >
-                    {p.type}
-                  </Badge>
-                </div>
-                <p className="text-sm text-muted-foreground mb-6 line-clamp-3 flex-grow">
-                  {p.desc}
-                </p>
-
-                <div className="space-y-4 pt-4 border-t border-border/50">
-                  <div className="flex flex-wrap gap-2">
-                    {p.tech.map((t) => (
-                      <Badge
-                        key={t}
-                        variant="secondary"
-                        className="text-[10px] px-2 h-5"
-                      >
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 px-3 py-2 rounded-lg border border-emerald-100 dark:border-emerald-900/50">
-                    <span>📈</span> {p.impact}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-2 gap-4">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>

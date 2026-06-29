@@ -1,103 +1,119 @@
-import { Github, Linkedin, Instagram, Mail, MessageCircle } from "lucide-react";
-import { Logo } from "@/components/Logo";
-import { getEnv } from "@/lib/utils";
+import { Instagram, Linkedin } from "lucide-react";
 
-const Footer = () => {
-  return (
-    <footer className="border-t border-border bg-card/50">
-      <div className="container-section py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Logo />
+const links = {
+  nav: [
+    { label: "Layanan", href: "#services" },
+    { label: "Portofolio", href: "#portfolio" },
+    { label: "Harga", href: "#pricing" },
+    { label: "Kontak", href: "#contact" },
+  ],
+};
+
+const Footer = () => (
+  <footer className="relative border-t border-white/[0.06]">
+    <div className="max-w-[1200px] mx-auto px-6 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+        {/* Brand */}
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-md bg-[var(--accent)] flex items-center justify-center">
+              <span className="text-white font-bold text-xs">S</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Digitalisasi Tanpa Drama
-            </p>
+            <span className="text-[14px] font-semibold tracking-[-0.03em] text-[var(--text-primary)]">
+              SSH.dev
+            </span>
           </div>
+          <p className="text-[13px] text-[var(--text-muted)] max-w-sm leading-relaxed">
+            Digitalisasi Tanpa Drama. Solusi digital end-to-end untuk UMKM,
+            startup, dan korporat — dengan harga transparan dan hasil nyata.
+          </p>
+        </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-sm font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {[
-                { label: "Layanan", href: "#services" },
-                { label: "Portofolio", href: "#portfolio" },
-                { label: "Harga", href: "#pricing" },
-                { label: "Kontak", href: "#contact" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-sm font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail size={14} />{" "}
-                {getEnv("VITE_CONTACT_EMAIL", "hello@surupan.dev")}
-              </li>
-              <li className="flex items-center gap-2">
-                <MessageCircle size={14} />{" "}
-                {getEnv("VITE_CONTACT_WHATSAPP_DISPLAY", "+62 812 3456 7890")}
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="text-sm font-semibold mb-4">Social</h4>
-            <div className="flex gap-3">
-              {[
-                { icon: Github, href: getEnv("VITE_SOCIAL_GITHUB_URL", "#") },
-                {
-                  icon: Linkedin,
-                  href: getEnv("VITE_SOCIAL_LINKEDIN_URL", "#"),
-                },
-                {
-                  icon: Instagram,
-                  href: getEnv("VITE_SOCIAL_INSTAGRAM_URL", "#"),
-                },
-              ].map(({ icon: Icon, href }, i) => (
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-[11px] font-medium text-[var(--text-ghost)] uppercase tracking-[0.15em] mb-4">
+            Quick Links
+          </h4>
+          <ul className="space-y-2.5">
+            {links.nav.map((link) => (
+              <li key={link.href}>
                 <a
-                  key={i}
-                  href={href}
-                  className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={link.href}
+                  className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
                 >
-                  <Icon size={16} />
+                  {link.label}
                 </a>
-              ))}
-            </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-[11px] font-medium text-[var(--text-ghost)] uppercase tracking-[0.15em] mb-4">
+            Contact
+          </h4>
+          <ul className="space-y-2.5">
+            <li>
+              <a
+                href="mailto:hello@sshdev.id"
+                className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                hello@sshdev.id
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/6288971084208"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                +62 889 7108 4208
+              </a>
+            </li>
+          </ul>
+
+          <div className="flex gap-2 mt-4">
+            <a
+              href="https://www.linkedin.com/company/sshdev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={14} className="text-[var(--text-muted)]" />
+            </a>
+            <a
+              href="https://www.instagram.com/ssh.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={14} className="text-[var(--text-muted)]" />
+            </a>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border">
-        <div className="container-section py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span>
-            © 2024 Surupan Software House. Built with ❤️ using React + Tailwind
+      <div className="mt-12 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="text-[12px] text-[var(--text-ghost)]">
+          &copy; {new Date().getFullYear()} Surupan Software House. All rights reserved.
+        </p>
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1.5 text-[11px] text-[var(--text-ghost)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
+            SSL Secure
           </span>
-          <div className="flex gap-4">
-            <span>🔒 SSL Secure</span>
-            <span>⚡ Uptime 99.9%</span>
-          </div>
+          <span className="text-[11px] text-[var(--text-ghost)]">
+            Uptime 99.9%
+          </span>
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;

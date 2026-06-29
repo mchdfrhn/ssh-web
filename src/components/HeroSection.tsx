@@ -1,167 +1,121 @@
-import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageCircle } from "lucide-react";
-import { getEnv } from "@/lib/utils";
-import gsap from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-gsap.registerPlugin(TextPlugin);
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.4 } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+};
 
 const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Register plugin inside context if needed, or globally outside
-      // But standard is global registry. We'll assume registry is fine or do strictly what's needed.
-
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      // Initial state - scoped automatically by gsap.context to sectionRef
-      gsap.set(".hero-char", { y: 100, opacity: 0 });
-      gsap.set(".hero-gradient-text", { y: 50, opacity: 0 });
-      gsap.set(".hero-element", { y: 30, opacity: 0 });
-
-      tl.to(".hero-char", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.03,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      })
-        .to(
-          ".hero-gradient-text",
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.4",
-        )
-        .to(
-          ".hero-element",
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.1,
-            duration: 0.8,
-          },
-          "-=0.4",
-        )
-        .fromTo(
-          ".hero-glow",
-          { scale: 0.8, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 1.5, ease: "sine.inOut" },
-          "-=1",
-        );
-    }, sectionRef); // Scope to sectionRef
-
-    return () => ctx.revert(); // Cleanup
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="hero-glow absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-screen animate-pulse-glow" />
-        <div className="hero-glow absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/20 rounded-full blur-[100px] mix-blend-screen animate-float-slow" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Gradient mesh */}
+      <div className="mesh-gradient" aria-hidden="true" />
+      {/* Grid */}
+      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
 
-        {/* Floating Glass Elements */}
-        <div className="absolute top-32 left-[10%] glass p-4 rounded-2xl animate-float hidden lg:block border-primary/20 rotate-[-6deg]">
-          <span className="text-4xl">🚀</span>
-        </div>
-        <div className="absolute bottom-32 right-[10%] glass p-4 rounded-2xl animate-float-slow hidden lg:block border-accent/20 rotate-[12deg]">
-          <span className="text-4xl">💻</span>
-        </div>
-      </div>
+      {/* Floating decorative orbs */}
+      <motion.div
+        className="floating-orb w-[400px] h-[400px] bg-[var(--accent)]/[0.07] top-[10%] left-[-5%]"
+        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="floating-orb w-[300px] h-[300px] bg-purple-500/[0.05] bottom-[10%] right-[-3%]"
+        animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden="true"
+      />
 
-      <div className="container-section text-center relative z-10 px-4">
-        <div className="hero-element inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border-primary/30">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs font-mono tracking-wider text-primary">
-            OPEN FOR NEW PROJECTS
+      {/* Radial vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, var(--bg-root) 100%)" }}
+        aria-hidden="true"
+      />
+
+      <motion.div
+        className="relative z-10 max-w-[1200px] mx-auto px-6 pt-32 pb-24 text-center"
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Overline badge */}
+        <motion.div variants={fadeUp} className="mb-8">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.06] text-[12px] font-medium text-[var(--text-muted)] tracking-wide">
+            <Sparkles size={13} className="text-[var(--accent-bright)]" />
+            Trusted by 50+ businesses across Indonesia
           </span>
-        </div>
+        </motion.div>
 
-        <h1
-          ref={headlineRef}
-          className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-8"
+        {/* MASSIVE headline */}
+        <motion.h1
+          variants={fadeUp}
+          className="text-[clamp(2.8rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.045em] text-[var(--text-primary)] mb-8"
         >
-          <div className="overflow-hidden mb-2">
-            {"Digitalisasi Bisnis Anda".split("").map((char, i) => (
-              <span key={i} className="hero-char inline-block origin-bottom">
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
-          </div>
-          <div className="overflow-hidden pb-2">
-            <span className="text-gradient inline-block hero-gradient-text">
-              Lebih Cepat & Terjangkau
-            </span>
-          </div>
-        </h1>
+          Build Digital
+          <br />
+          Products That
+          <br />
+          <span className="gradient-text-animated">Actually Ship</span>
+        </motion.h1>
 
-        <p className="hero-element text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          Transformasi digital tanpa kompromi. Kami membangun web app & website
-          high-performance dengan teknologi modern untuk pertumbuhan bisnis
-          Anda.
-        </p>
+        {/* Subtitle */}
+        <motion.p
+          variants={fadeUp}
+          className="max-w-lg mx-auto text-[17px] leading-relaxed text-[var(--text-muted)] mb-10 font-light"
+        >
+          Kami bantu UMKM & startup membangun website, aplikasi, dan sistem
+          digital — dari ide sampai deploy. Tanpa drama, tanpa harga agency.
+        </motion.p>
 
-        <div className="hero-element flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <Button
-            size="lg"
-            className="h-14 px-8 rounded-full text-base gap-2 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105"
-            asChild
+        {/* CTAs */}
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 h-12 px-8 text-[14px] font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl transition-all shadow-lg shadow-[var(--accent)]/25"
           >
-            <a href="#portfolio">
-              Lihat Portofolio <ArrowRight size={18} />
-            </a>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-14 px-8 rounded-full text-base gap-2 bg-transparent border-primary/20 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
-            asChild
+            Konsultasi Gratis
+            <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+          </a>
+          <a
+            href="#portfolio"
+            className="inline-flex items-center gap-2 h-12 px-8 text-[14px] font-medium bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.12] text-[var(--text-primary)] rounded-xl transition-all"
           >
-            <a
-              href={`https://wa.me/${getEnv("VITE_CONTACT_WHATSAPP_NUMBER", "6281234567890")}?text=Halo%20${getEnv("VITE_APP_NAME", "SSH")}%2C%20saya%20ingin%20konsultasi%20gratis`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle size={18} /> Konsultasi Gratis
-            </a>
-          </Button>
-        </div>
+            Lihat Portofolio
+          </a>
+        </motion.div>
 
-        {/* Tech Stack Marquee (Static for now but styled) */}
-        <div className="hero-element glass-card rounded-2xl p-6 md:p-8 max-w-4xl mx-auto">
-          <p className="text-xs font-mono text-muted-foreground mb-4 uppercase tracking-widest">
-            Powered by Modern Tech Stack
-          </p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            {[
-              "Next.js",
-              "React",
-              "TypeScript",
-              "Tailwind",
-              "Supabase",
-              "Astro",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="text-sm font-semibold text-foreground/80"
-              >
-                {tech}
-              </span>
-            ))}
+        {/* Trust badges */}
+        <motion.div
+          variants={fadeUp}
+          className="mt-16 flex items-center justify-center gap-6 flex-wrap"
+        >
+          <div className="flex items-center gap-2 text-[12px] text-[var(--text-ghost)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
+            Response &lt; 2 jam
           </div>
-        </div>
-      </div>
+          <div className="w-px h-3 bg-white/[0.06]" />
+          <div className="text-[12px] text-[var(--text-ghost)]">Free estimasi</div>
+          <div className="w-px h-3 bg-white/[0.06]" />
+          <div className="text-[12px] text-[var(--text-ghost)]">Garansi 30 hari</div>
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom fade */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+        style={{ background: "linear-gradient(to top, var(--bg-root), transparent)" }}
+        aria-hidden="true"
+      />
     </section>
   );
 };
