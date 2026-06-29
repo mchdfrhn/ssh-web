@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Clock, FileText, MessageSquare, ArrowRight } from "lucide-react";
+import { Send, Clock, FileText, MessageSquare, ArrowRight, ChevronDown } from "lucide-react";
+import { haptic } from "../utils/haptic";
 
 const businessTypes = ["UMKM / Toko Online", "Startup", "Korporat", "Instansi Pemerintah", "Personal Brand", "Lainnya"];
 const serviceOptions = ["Landing Page", "Web Application", "Maintenance"];
@@ -17,6 +18,7 @@ const ConsultationForm = () => {
     name: "", email: "", whatsapp: "", businessType: "",
     services: [] as string[], budget: "", description: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const toggleService = (svc: string) =>
     setForm((p) => ({
@@ -26,17 +28,41 @@ const ConsultationForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Halo SSH.dev! 👋
+    haptic("heavy");
 
-Saya ${form.name || "Ingin konsultasi"}.
-📧 ${form.email || "-"} | 📱 ${form.whatsapp || "-"}
-🏢 ${form.businessType || "-"} | 💻 ${form.services.join(", ") || "-"} | 💰 ${form.budget || "-"}
-${form.description ? `
-${form.description}` : ""}`;
+    // Build structured WhatsApp message with ALL form fields
+    const lines = [
+      `Halo SSH.dev! 👋`,
+      ``,
+      `Saya ingin konsultasi tentang project.`,
+      ``,
+      `━━━━━━━━━━━━━━━━`,
+      `👤 Nama: ${form.name || "-"}`,
+      `📧 Email: ${form.email || "-"}`,
+      `📱 WhatsApp: ${form.whatsapp || "-"}`,
+      `🏢 Jenis Bisnis: ${form.businessType || "-"}`,
+      `━━━━━━━━━━━━━━━━`,
+      `💻 Layanan: ${form.services.length > 0 ? form.services.join(", ") : "-"}`,
+      `💰 Budget: ${form.budget || "-"}`,
+      `━━━━━━━━━━━━━━━━`,
+    ];
+
+    if (form.description) {
+      lines.push(`📝 Deskripsi Project:`, form.description, ``);
+    }
+
+    lines.push(`Mohon info lebih lanjut. Terima kasih! 🙏`);
+
+    const msg = lines.join("\n");
     window.open(`https://wa.me/6288971084208?text=${encodeURIComponent(msg)}`, "_blank");
+    setSubmitted(true);
   };
 
+  // ── Input base — dark glass style ──
   const inputCls = "w-full h-10 px-3 bg-white/[0.03] border border-white/[0.06] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] placeholder:text-[var(--text-ghost)] rounded-lg text-[13px] outline-none transition-all";
+
+  // ── Select base — dark glass + custom chevron ──
+  const selectCls = "w-full h-10 pl-3 pr-9 bg-white/[0.03] border border-white/[0.06] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] rounded-lg text-[13px] outline-none transition-all appearance-none cursor-pointer";
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
@@ -93,10 +119,19 @@ ${form.description}` : ""}`;
               </div>
               <div>
                 <label className="block text-[11px] font-medium text-[var(--text-ghost)] uppercase tracking-wider mb-1.5">Jenis Bisnis *</label>
-                <select value={form.businessType} onChange={(e) => setForm({ ...form, businessType: e.target.value })} className={inputCls + " cursor-pointer"}>
-                  <option value="" disabled>Pilih jenis bisnis</option>
-                  {businessTypes.map((bt) => <option key={bt} value={bt}>{bt}</option>)}
-                </select>
+                <div className="relative">
+                  <select
+                    value={form.businessType}
+                    onChange={(e) => setForm({ ...form, businessType: e.target.value })}
+                    className={selectCls}
+                  >
+                    <option value="" disabled className="bg-[#0f1011] text-[var(--text-ghost)]">Pilih jenis bisnis</option>
+                    {businessTypes.map((bt) => (
+                      <option key={bt} value={bt} className="bg-[#0f1011] text-[var(--text-primary)]">{bt}</option>
+                    ))}
+                  </select>
+                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-ghost)] pointer-events-none" />
+                </div>
               </div>
             </div>
 
@@ -147,10 +182,21 @@ ${form.description}` : ""}`;
 
             <button
               type="submit"
-              className="w-full h-11 inline-flex items-center justify-center gap-2 text-[14px] font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg shadow-lg shadow-[var(--accent)]/20 transition-all"
+              disabled={submitted}
+              className={`w-full h-11 inline-flex items-center justify-center gap-2 text-[14px] font-semibold rounded-lg shadow-lg transition-all ${
+                submitted
+                  ? "bg-[var(--success)]/20 text-[var(--success)] border border-[var(--success)]/30 cursor-default"
+                  : "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-[var(--accent)]/20"
+              }`}
             >
-              <Send size={15} />
-              Kirim via WhatsApp
+              {submitted ? (
+                <>✓ Pesan Terkirim</>
+              ) : (
+                <>
+                  <Send size={15} />
+                  Kirim via WhatsApp
+                </>
+              )}
             </button>
           </motion.form>
 
