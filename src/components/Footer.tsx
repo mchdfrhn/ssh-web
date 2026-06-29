@@ -1,4 +1,5 @@
 import { Instagram, Linkedin } from "lucide-react";
+import SSHLogo from "./SSHLogo";
 
 const links = {
   nav: [
@@ -15,13 +16,8 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
         {/* Brand */}
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-md bg-[var(--accent)] flex items-center justify-center">
-              <span className="text-white font-bold text-xs">S</span>
-            </div>
-            <span className="text-[14px] font-semibold tracking-[-0.03em] text-[var(--text-primary)]">
-              SSH.dev
-            </span>
+          <div className="mb-3">
+            <SSHLogo size={24} showText={true} />
           </div>
           <p className="text-[13px] text-[var(--text-muted)] max-w-sm leading-relaxed">
             Digitalisasi Tanpa Drama. Solusi digital end-to-end untuk UMKM,
