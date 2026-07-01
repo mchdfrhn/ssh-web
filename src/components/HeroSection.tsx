@@ -42,7 +42,7 @@ const HeroSection = () => {
       />
 
       <motion.div
-        className="relative z-10 max-w-[1200px] mx-auto px-6 pt-32 pb-24 text-center"
+        className="relative z-10 max-w-[1200px] mx-auto px-5 pt-28 md:pt-32 pb-20 md:pb-24 text-center"
         variants={stagger}
         initial="hidden"
         animate="visible"
@@ -58,7 +58,7 @@ const HeroSection = () => {
         {/* MASSIVE headline */}
         <motion.h1
           variants={fadeUp}
-          className="text-[clamp(2.8rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.045em] text-[var(--text-primary)] mb-8"
+          className="text-[2.5rem] md:text-[clamp(2.8rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.045em] text-[var(--text-primary)] mb-8"
         >
           Build Digital
           <br />
@@ -70,7 +70,7 @@ const HeroSection = () => {
         {/* Subtitle */}
         <motion.p
           variants={fadeUp}
-          className="max-w-lg mx-auto text-[17px] leading-relaxed text-[var(--text-muted)] mb-10 font-light"
+          className="max-w-lg mx-auto text-[15px] md:text-[17px] leading-relaxed text-[var(--text-muted)] mb-10 font-light px-2"
         >
           Kami bantu UMKM & startup membangun website, aplikasi, dan sistem
           digital — dari ide sampai deploy. Tanpa drama, tanpa harga agency.

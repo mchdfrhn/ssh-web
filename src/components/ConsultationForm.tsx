@@ -32,7 +32,7 @@ const ConsultationForm = () => {
 
     // Build structured WhatsApp message with ALL form fields
     const lines = [
-      `Halo SSH.dev! 👋`,
+      `Halo Surupan! 👋`,
       ``,
       `Saya ingin konsultasi tentang project.`,
       ``,
@@ -228,7 +228,7 @@ const ConsultationForm = () => {
 
               <div className="rounded-xl bg-[var(--accent)]/[0.03] border border-[var(--accent)]/[0.08] p-5">
                 <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed italic">
-                  &ldquo;SSH.dev membantu kami membangun sistem akademik yang
+                  &ldquo;SSH membantu kami membangun sistem akademik yang
                   mengurangi beban admin hingga 60%. Prosesnya transparan dan
                   hasilnya melebihi ekspektasi.&rdquo;
                 </p>

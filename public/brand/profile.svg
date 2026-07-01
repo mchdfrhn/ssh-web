@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- SSH Software House — Square Profile Logo -->
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="#5e6ad2"/>
+  
+  <!-- Monogram S -->
+  <path
+    d="M176 200C176 175.7 195.7 156 220 156H292C316.3 156 336 175.7 336 200C336 218.3 324.6 234.1 308.2 241.8V241.8C296.8 247.2 289 258.8 289 271.5V271.5C289 284.2 296.8 295.8 308.2 301.2V301.2C324.6 308.9 336 324.7 336 343C336 367.3 316.3 387 292 387H220C195.7 387 176 367.3 176 343"
+    stroke="white"
+    stroke-width="28"
+    stroke-linecap="round"
+  />
+  <circle cx="220" cy="271.5" r="14" fill="white" opacity="0.7"/>
+</svg>

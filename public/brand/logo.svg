@@ -1,0 +1,21 @@
+<svg width="280" height="48" viewBox="0 0 280 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- SSH Software House Logo — Branding -->
+  
+  <!-- Icon Monogram -->
+  <rect width="40" height="40" x="4" y="4" rx="10" fill="#5e6ad2"/>
+  <path
+    d="M16.125 17.25C16.125 15.425 17.6 14 19.5 14H27.5C29.4 14 30.875 15.425 30.875 17.25C30.875 18.5 30.075 19.575 28.938 20.125V20.125C28.125 20.512 27.625 21.35 27.625 22.25V22.25C27.625 23.15 28.125 23.988 28.938 24.375V24.375C30.075 24.925 30.875 26 30.875 27.25C30.875 29.075 29.4 30.5 27.5 30.5H19.5C17.6 30.5 16.125 29.075 16.125 27.25"
+    stroke="white"
+    stroke-width="2.75"
+    stroke-linecap="round"
+  />
+  <circle cx="19.5" cy="22.25" r="1.25" fill="white" opacity="0.7"/>
+
+  <!-- Text -->
+  <text x="56" y="29" font-family="'Inter', 'SF Pro Display', -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.02em" fill="#1a1a2e">
+    SSH
+  </text>
+  <text x="108" y="29" font-family="'Inter', 'SF Pro Display', -apple-system, sans-serif" font-size="12.5" font-weight="500" letter-spacing="0.08em" fill="#8888a0">
+    SOFTWARE HOUSE
+  </text>
+</svg>

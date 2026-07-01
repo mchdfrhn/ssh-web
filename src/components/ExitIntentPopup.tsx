@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Gift } from "lucide-react";
 import { scrollTo } from "../utils/scroll-utils";
@@ -45,6 +46,14 @@ const ExitIntentPopup = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Lock body scroll when popup is visible
+  useEffect(() => {
+    if (show && !dismissed) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [show, dismissed]);
+
   const handleCTA = () => {
     haptic("medium");
     setShow(false);
@@ -56,7 +65,7 @@ const ExitIntentPopup = () => {
     setShow(false);
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {show && !dismissed && (
         <>
@@ -69,14 +78,15 @@ const ExitIntentPopup = () => {
             onClick={handleDismiss}
           />
 
-          {/* Popup */}
-          <motion.div
-            className="fixed z-[9991] top-1/2 left-1/2 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          >
+          {/* Popup — centering wrapper (no FM, no transform conflict) */}
+          <div className="fixed inset-0 z-[9991] flex items-center justify-center pointer-events-none">
+            <motion.div
+              className="pointer-events-auto w-[90vw] max-w-md"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            >
             <div className="relative rounded-2xl border border-white/[0.08] bg-[var(--bg-surface)] p-8 shadow-2xl shadow-black/50">
               {/* Close button */}
               <button
@@ -120,9 +130,11 @@ const ExitIntentPopup = () => {
               </div>
             </div>
           </motion.div>
+          </div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
