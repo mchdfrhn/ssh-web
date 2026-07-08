@@ -16,32 +16,34 @@ const techs = [
   { name: "Prisma", slug: "prisma", color: "2d3748" },
 ];
 
-// Duplicate for seamless loop
-const doubled = [...techs, ...techs];
+const TechItem = ({ tech, isDup }: { tech: typeof techs[number]; isDup?: boolean }) => (
+  <div className="marquee-item flex items-center px-5 md:px-7 shrink-0">
+    <img
+      src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`}
+      alt={isDup ? undefined : `${tech.name} logo`}
+      aria-hidden={isDup}
+      width={40}
+      height={40}
+      className="tech-icon w-8 h-8 md:w-10 md:h-10 grayscale opacity-30 hover:grayscale-0 hover:opacity-90 transition-all duration-300"
+      loading="lazy"
+    />
+  </div>
+);
 
 const TechMarquee = () => (
-  <section className="relative py-6 border-y border-white/[0.04] overflow-hidden">
+  <section className="relative py-5 border-y border-white/[0.04] overflow-hidden">
     <div className="marquee-track">
-      {doubled.map((tech, i) => (
-        <div
-          key={`${tech.slug}-${i}`}
-          className="flex items-center px-4 shrink-0"
-        >
-          <img
-            src={`https://cdn.simpleicons.org/${tech.slug}/${tech.color}`}
-            alt={`${tech.name} logo`}
-            width={28}
-            height={28}
-            className="opacity-50 hover:opacity-80 transition-opacity"
-            loading="lazy"
-          />
-        </div>
+      {techs.map((tech) => (
+        <TechItem key={tech.slug} tech={tech} />
+      ))}
+      {techs.map((tech) => (
+        <TechItem key={`${tech.slug}__dup`} tech={tech} isDup />
       ))}
     </div>
 
     {/* Fade edges */}
-    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[var(--bg-root)] to-transparent z-10 pointer-events-none" />
-    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[var(--bg-root)] to-transparent z-10 pointer-events-none" />
+    <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--bg-root)] to-transparent z-10 pointer-events-none" />
+    <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--bg-root)] to-transparent z-10 pointer-events-none" />
   </section>
 );
 

@@ -6,7 +6,7 @@ const clients = [
     src: "/logos/sttpu.webp",
     fallback: "/logos/sttpu.png",
     alt: "Logo STT Pekerjaan Umum Jakarta",
-    h: "h-10 md:h-12",
+    h: "h-14 md:h-16",
   },
   {
     name: "Pusdatin Kementerian PU",

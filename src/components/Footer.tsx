@@ -6,7 +6,14 @@ const links = {
     { label: "Layanan", href: "#services" },
     { label: "Portofolio", href: "#portfolio" },
     { label: "Harga", href: "#pricing" },
+    { label: "Blog", href: "#blog" },
     { label: "Kontak", href: "#contact" },
+  ],
+  industri: [
+    { label: "F&B & Kuliner", href: "/industri/fnb" },
+    { label: "Klinik & Kesehatan", href: "/industri/klinik" },
+    { label: "Distributor & Grosir", href: "/industri/distributor" },
+    { label: "Template Library", href: "/templates" },
   ],
 };
 
@@ -32,6 +39,25 @@ const Footer = () => (
           </h4>
           <ul className="space-y-2.5">
             {links.nav.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Industri Links */}
+        <div>
+          <h4 className="text-[11px] font-medium text-[var(--text-ghost)] uppercase tracking-[0.15em] mb-4">
+            Untuk Industri
+          </h4>
+          <ul className="space-y-2.5">
+            {links.industri.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -72,7 +98,7 @@ const Footer = () => (
 
           <div className="flex gap-2 mt-4">
             <a
-              href="https://www.linkedin.com/company/sshdev"
+              href="https://www.linkedin.com/company/surupan-software-house"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"
@@ -81,7 +107,7 @@ const Footer = () => (
               <Linkedin size={14} className="text-[var(--text-muted)]" />
             </a>
             <a
-              href="https://www.instagram.com/ssh.dev"
+              href="https://www.instagram.com/surupansh"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"

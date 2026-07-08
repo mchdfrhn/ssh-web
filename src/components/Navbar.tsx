@@ -1,7 +1,8 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import SSHLogo from "./SSHLogo";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { scrollTo } from "../utils/scroll-utils";
 import { haptic } from "../utils/haptic";
 
@@ -9,23 +10,49 @@ const navLinks = [
   { label: "Layanan", href: "#services" },
   { label: "Portofolio", href: "#portfolio" },
   { label: "Harga", href: "#pricing" },
+  { label: "Blog", href: "#blog" },
   { label: "Kontak", href: "#contact" },
 ];
 
-const sections = ["services", "portfolio", "pricing", "contact"];
+const industryLinks = [
+  { label: "F&B & Kuliner", to: "/industri/fnb" },
+  { label: "Klinik & Kesehatan", to: "/industri/klinik" },
+  { label: "Distributor & Grosir", to: "/industri/distributor" },
+];
+
+const sections = ["services", "portfolio", "pricing", "blog", "contact"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
-  // Smooth scroll to section via Lenis
   const handleNavClick = useCallback((href: string, e: React.MouseEvent) => {
     e.preventDefault();
     setOpen(false);
     haptic("light");
-    scrollTo(href, { offset: -64 });
-  }, []);
+
+    const sectionId = href.replace("#", "");
+    const el = document.getElementById(sectionId);
+
+    if (el) {
+      // Section exists on current page — scroll to it
+      scrollTo(href, { offset: -64 });
+    } else {
+      // Section doesn't exist (sub-page) — navigate home then scroll
+      navigate("/");
+      // Wait for route change + render, then scroll
+      setTimeout(() => {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -54,6 +81,18 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Click outside closes dropdown
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [dropdownOpen]);
+
   return (
     <>
       <nav
@@ -65,9 +104,13 @@ const Navbar = () => {
       >
         <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" onClick={(e) => { e.preventDefault(); scrollTo(0, { offset: 0 }); }} className="shrink-0">
+          <Link
+            to="/"
+            className="shrink-0"
+            onClick={() => { if (window.location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          >
             <SSHLogo size={28} showText={true} />
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
@@ -95,6 +138,58 @@ const Navbar = () => {
                 </a>
               );
             })}
+
+            {/* Industri dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                type="button"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onMouseEnter={() => setDropdownOpen(true)}
+                className={`flex items-center gap-1 px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                  dropdownOpen
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                }`}
+              >
+                Industri
+                <ChevronDown
+                  size={12}
+                  className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {dropdownOpen && (
+                  <motion.div
+                    className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-[var(--bg-root)]/95 backdrop-blur-xl border border-white/[0.08] shadow-xl shadow-black/30 overflow-hidden z-[9999]"
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.15 }}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    {industryLinks.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={() => setDropdownOpen(false)}
+                        className="block px-4 py-2.5 text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/[0.04] transition-all"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                    <div className="h-px bg-white/[0.06]" />
+                    <Link
+                      to="/templates"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-[13px] text-[var(--accent-bright)] hover:bg-white/[0.04] transition-all"
+                    >
+                      📦 Template Library
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* CTA + Mobile toggle */}
@@ -142,13 +237,43 @@ const Navbar = () => {
                   {link.label}
                 </motion.a>
               ))}
+
+              {/* Industri links in mobile */}
+              <motion.div
+                className="flex flex-col items-center gap-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08 }}
+              >
+                <span className="text-[11px] uppercase tracking-[0.15em] text-[var(--text-ghost)]">
+                  Industri
+                </span>
+                {industryLinks.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className="text-[18px] font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/templates"
+                  onClick={() => setOpen(false)}
+                  className="text-[16px] font-medium text-[var(--accent-bright)] hover:text-[var(--accent-hover)] transition-colors"
+                >
+                  📦 Template Library
+                </Link>
+              </motion.div>
+
               <motion.a
                 href="#contact"
                 onClick={(e) => handleNavClick("#contact", e)}
                 className="mt-4 inline-flex items-center gap-2 h-11 px-8 text-[14px] font-semibold bg-[var(--accent)] text-white rounded-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
+                transition={{ delay: 0.5 }}
               >
                 Mulai Project <ArrowRight size={16} />
               </motion.a>

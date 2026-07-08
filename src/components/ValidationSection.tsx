@@ -34,8 +34,8 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
 }
 
 const stats = [
-  { icon: Users, value: 50, suffix: "+", label: "Klien Puas", desc: "Dari UMKM hingga korporat" },
-  { icon: Award, value: 100, suffix: "+", label: "Project Selesai", desc: "Tepat waktu & sesuai brief" },
+  { icon: Users, value: 3, suffix: "+", label: "Klien Puas", desc: "Instansi pemerintah & institusi" },
+  { icon: Award, value: 3, suffix: "+", label: "Project Selesai", desc: "Tepat waktu & sesuai brief" },
   { icon: Clock, value: 2, suffix: " Jam", label: "Response Time", desc: "Konsultasi cepat & responsif" },
   { icon: Shield, value: 99, suffix: ".9%", label: "Uptime Guarantee", desc: "Sistem Anda selalu online" },
 ];

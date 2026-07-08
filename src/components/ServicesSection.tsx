@@ -5,9 +5,9 @@ const services = [
   {
     icon: Zap,
     name: "Landing Page Package",
-    desc: "Website profesional siap pakai dalam 5-7 hari. SEO-optimized, mobile-first, free hosting 1 tahun.",
+    desc: "Website profesional siap pakai dalam 5-7 hari. SEO-optimized, mobile-first. Cocok untuk UMKM yang baru go digital.",
     features: ["Custom Design", "Lighthouse 95+", "WhatsApp Integration"],
-    price: "Mulai Rp 300rb",
+    price: "Mulai Rp 750rb",
     popular: false,
     span: "md:col-span-1",
   },
@@ -23,9 +23,9 @@ const services = [
   {
     icon: Shield,
     name: "Maintenance & DevOps",
-    desc: "Sistem Anda tetap aman, cepat, dan online 24/7. Biarkan Anda fokus jualan.",
+    desc: "Website Anda tetap aman, cepat, dan up-to-date. Biarkan Anda fokus jualan — kami yang urus teknisnya.",
     features: ["24/7 Monitoring", "Security Updates", "Auto Backups"],
-    price: "Mulai Rp 300rb/bln",
+    price: "Mulai Rp 500rb/bln",
     popular: false,
     span: "md:col-span-1",
   },

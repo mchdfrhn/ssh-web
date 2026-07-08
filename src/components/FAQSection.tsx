@@ -4,12 +4,20 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "Berapa lama pengerjaan website?",
-    a: "Landing page: 5-7 hari kerja. Web application: 2-6 minggu tergantung kompleksitas. Kami selalu memberikan timeline di awal dan update progress mingguan.",
+    q: "Saya UMKM, belum punya website sama sekali. Bisa dibantu?",
+    a: "Bisa banget. 80% klien kami adalah UMKM yang baru pertama kali go digital. Kami bantu dari nol: beli domain, setup hosting, desain, sampai website live. Anda tinggal kirim foto produk dan info bisnis.",
   },
   {
-    q: "Apakah ada garansi?",
-    a: "Ya, garansi bug 30 hari setelah launch. Jika ada bug atau masalah teknis yang bukan dari perubahan pihak ketiga, kami fix tanpa biaya tambahan.",
+    q: "Berapa lama pengerjaan website?",
+    a: "Landing page: 5-7 hari kerja. Web application: 2-6 minggu tergantung kompleksitas. Kami selalu memberikan timeline di awal dan update progress mingguan via WhatsApp.",
+  },
+  {
+    q: "Harga segitu sudah termasuk apa saja?",
+    a: "Sudah termasuk: desain custom, development, testing, deployment, domain .com 1 tahun, hosting 1 tahun, dan WhatsApp integration. Tidak ada biaya tersembunyi.",
+  },
+  {
+    q: "Saya gaptek, bisa maintain sendiri?",
+    a: "Bisa. Kami setup CMS yang mudah diedit (ganti foto, tulis artikel). Kalau butuh bantuan teknis, paket maintenance kami mulai Rp 500rb/bulan — kami yang urus semua.",
   },
   {
     q: "Bagaimana sistem pembayaran?",
@@ -17,15 +25,19 @@ const faqs = [
   },
   {
     q: "Apakah source code menjadi milik saya?",
-    a: "Ya, 100%. Setelah project selesai dan pelunasan, semua source code, aset desain, dan dokumentasi menjadi milik penuh Anda.",
+    a: "Ya, 100%. Setelah project selesai dan pelunasan, semua source code, aset desain, dan dokumentasi menjadi milik penuh Anda. Tidak ada vendor lock-in.",
+  },
+  {
+    q: "Portfolio kalian kan cuma 3 project, kenapa harus pilih kalian?",
+    a: "Karena project kami real — dipakai oleh STTPU (kampus) dan Pusdatin Kementerian PUPR. Bukan template. Bukan clone. Kami lebih baik handle 3 project berkualitas daripada 50 project asal jadi.",
   },
   {
     q: "Bisa minta revisi setelah selesai?",
-    a: "Free revisi 2x selama masa garansi. Revisi di luar garansi dikenakan biaya per-jam yang sangat terjangkau (Rp 150rb/jam).",
+    a: "Free revisi 2x selama masa garansi 30 hari. Revisi di luar garansi dikenakan biaya per-jam yang terjangkau (Rp 150rb/jam).",
   },
   {
     q: "Teknologi apa yang digunakan?",
-    a: "Kami pilih tech stack sesuai kebutuhan: Next.js/React untuk frontend, Node.js/Laravel untuk backend, PostgreSQL/MongoDB untuk database. Semua modern, scalable, dan banyak developernya di Indonesia.",
+    a: "Kami pilih tech stack sesuai kebutuhan: Next.js/React untuk frontend, Node.js/Laravel untuk backend, PostgreSQL/MongoDB untuk database. Semua modern, scalable, dan banyak developernya di Indonesia — jadi Anda tidak terkait ke kami selamanya.",
   },
 ];
 

@@ -51,7 +51,7 @@ const HeroSection = () => {
         <motion.div variants={fadeUp} className="mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.06] text-[12px] font-medium text-[var(--text-muted)] tracking-wide">
             <Sparkles size={13} className="text-[var(--accent-bright)]" />
-            Trusted by 50+ businesses across Indonesia
+            Dipercaya STTPU & Pusdatin Kementerian PUPR
           </span>
         </motion.div>
 
@@ -60,11 +60,11 @@ const HeroSection = () => {
           variants={fadeUp}
           className="text-[2.5rem] md:text-[clamp(2.8rem,9vw,6rem)] font-black leading-[0.92] tracking-[-0.045em] text-[var(--text-primary)] mb-8"
         >
-          Build Digital
+          Bisnis Anda
           <br />
-          Products That
+          Butuh Sistem
           <br />
-          <span className="gradient-text-animated">Actually Ship</span>
+          <span className="gradient-text-animated">Yang Jalan?</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -72,8 +72,8 @@ const HeroSection = () => {
           variants={fadeUp}
           className="max-w-lg mx-auto text-[15px] md:text-[17px] leading-relaxed text-[var(--text-muted)] mb-10 font-light px-2"
         >
-          Kami bantu UMKM & startup membangun website, aplikasi, dan sistem
-          digital — dari ide sampai deploy. Tanpa drama, tanpa harga agency.
+          Kami bantu UMKM, klinik, dan bisnis lokal membangun website &amp; sistem
+          digital yang menghasilkan. Dari ide sampai deploy — tanpa drama, tanpa harga agency.
         </motion.p>
 
         {/* CTAs */}
