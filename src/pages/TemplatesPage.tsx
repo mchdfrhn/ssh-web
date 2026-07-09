@@ -155,6 +155,7 @@ const templates = [
     bg: "#1a1210",
     layout: "hero-grid" as const,
     accentColor: "text-orange-400",
+    thumbnail: "/templates/fnb-modern.webp",
   },
   {
     id: "fnb-elegant",
@@ -357,7 +358,11 @@ const TemplatesPage = () => (
               >
                 {/* Website mockup preview */}
                 <div className="relative h-36 overflow-hidden">
-                  <TemplateMockup accent={tpl.accent} bg={tpl.bg} layout={tpl.layout} />
+                  {'thumbnail' in tpl && tpl.thumbnail ? (
+                    <img src={tpl.thumbnail} alt={tpl.name} className="w-full h-full object-cover object-top" loading="lazy" />
+                  ) : (
+                    <TemplateMockup accent={tpl.accent} bg={tpl.bg} layout={tpl.layout} />
+                  )}
                   <div className="absolute top-3 right-3">
                     <span className="px-2 py-0.5 rounded-md bg-black/30 backdrop-blur-sm text-[10px] font-medium text-white/70">
                       {tpl.category}
@@ -399,7 +404,7 @@ const TemplatesPage = () => (
                       </span>
                     </div>
                     <a
-                      href={`https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20tertarik%20template%20${encodeURIComponent(tpl.name)}`}
+                      href={`https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20tertarik%20template%20${encodeURIComponent(tpl.name)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 h-8 px-4 text-[11px] font-medium bg-[var(--accent)]/[0.08] border border-[var(--accent)]/[0.15] text-[var(--accent-bright)] rounded-md hover:bg-[var(--accent)]/[0.15] transition-all"
@@ -432,7 +437,7 @@ const TemplatesPage = () => (
               Anda.
             </p>
             <a
-              href="https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20butuh%20custom%20design%20website"
+              href="https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20butuh%20custom%20design%20website"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all shadow-lg shadow-[var(--accent)]/20"

@@ -115,7 +115,7 @@ function IndustryHero({ config }: { config: IndustryConfig }) {
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <a
-            href={`https://wa.me/6288971084208?text=${config.waMessage}`}
+            href={`https://wa.me/6285771826637?text=${config.waMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all shadow-lg shadow-[var(--accent)]/20"
@@ -366,7 +366,7 @@ function IndustryCTA({ config }: { config: IndustryConfig }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={`https://wa.me/6288971084208?text=${config.waMessage}`}
+              href={`https://wa.me/6285771826637?text=${config.waMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all shadow-lg shadow-[var(--accent)]/20"

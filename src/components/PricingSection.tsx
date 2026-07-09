@@ -75,7 +75,7 @@ const PricingSection = () => (
         transition={{ duration: 0.6 }}
       >
         <p className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-ghost)] font-medium mb-3">
-          Investment
+          Investasi
         </p>
         <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] mb-4">
           Harga Transparan, Hasil Maksimal

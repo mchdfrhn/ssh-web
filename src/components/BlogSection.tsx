@@ -56,7 +56,7 @@ Dulu bikin website bisa habis Rp 10-50 juta. Sekarang? Mulai dari Rp 750rb sudah
 
 **Kesimpulan:** Website bukan pengeluaran — ini investasi yang terbayar. Yang mahal bukan bikin website, tapi **tidak punya website** di era digital ini.
 
-💬 **Mau konsultasi gratis?** [Chat kami di WhatsApp](https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20tertarik%20bikin%20website%20untuk%20bisnis%20saya)
+💬 **Mau konsultasi gratis?** [Chat kami di WhatsApp](https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20tertarik%20bikin%20website%20untuk%20bisnis%20saya)
     `,
   },
   {
@@ -93,7 +93,7 @@ Seberapa sering update progress? Bisa chat langsung atau harus lewat ticket? Kom
 
 ---
 
-💬 **Butuh second opinion?** [Konsultasi gratis dengan kami](https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20mau%20tanya%20soal%20pembuatan%20website)
+💬 **Butuh second opinion?** [Konsultasi gratis dengan kami](https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20mau%20tanya%20soal%20pembuatan%20website)
     `,
   },
   {
@@ -135,7 +135,7 @@ Tergantung kompleksitas:
 
 ---
 
-💬 **Mau WhatsApp otomatis untuk bisnis Anda?** [Chat kami](https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20mau%20tanya%20soal%20WhatsApp%20otomatis)
+💬 **Mau WhatsApp otomatis untuk bisnis Anda?** [Chat kami](https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20mau%20tanya%20soal%20WhatsApp%20otomatis)
     `,
   },
 ];
@@ -241,7 +241,7 @@ function ArticleModal({
             Butuh bantuan untuk bisnis Anda?
           </p>
           <a
-            href="https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20baca%20artikel%20Anda%20dan%20tertarik%20konsultasi"
+            href="https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20baca%20artikel%20Anda%20dan%20tertarik%20konsultasi"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-10 px-6 text-[13px] font-medium bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all"

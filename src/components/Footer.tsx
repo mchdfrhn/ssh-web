@@ -78,20 +78,20 @@ const Footer = () => (
           <ul className="space-y-2.5">
             <li>
               <a
-                href="mailto:info@surupan.tech"
+                href="mailto:halo@surupan.tech"
                 className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
               >
-                info@surupan.tech
+                halo@surupan.tech
               </a>
             </li>
             <li>
               <a
-                href="https://wa.me/6288971084208"
+                href="https://wa.me/6285771826637"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[13px] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
               >
-                +62 889 7108 4208
+                +62 857 7182 6637
               </a>
             </li>
           </ul>

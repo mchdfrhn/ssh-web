@@ -75,7 +75,7 @@ const ReferralSection = () => (
             </div>
 
             <a
-              href="https://wa.me/6288971084208?text=Halo%20SSH%2C%20saya%20mau%20referensikan%20teman%20untuk%20bikin%20website"
+              href="https://wa.me/6285771826637?text=Halo%20SSH%2C%20saya%20mau%20referensikan%20teman%20untuk%20bikin%20website"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-10 px-6 text-[13px] font-medium bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-lg transition-all shadow-lg shadow-[var(--accent)]/20"

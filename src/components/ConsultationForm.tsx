@@ -54,7 +54,7 @@ const ConsultationForm = () => {
     lines.push(`Mohon info lebih lanjut. Terima kasih! 🙏`);
 
     const msg = lines.join("\n");
-    window.open(`https://wa.me/6288971084208?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/6285771826637?text=${encodeURIComponent(msg)}`, "_blank");
     setSubmitted(true);
   };
 
@@ -238,7 +238,7 @@ const ConsultationForm = () => {
               </div>
 
               <a
-                href="https://wa.me/6288971084208"
+                href="https://wa.me/6285771826637"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all group"
@@ -248,7 +248,7 @@ const ConsultationForm = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-[12px] font-medium text-[var(--text-primary)]">Chat Langsung</p>
-                  <p className="text-[11px] text-[var(--text-ghost)]">+62 889 7108 4208</p>
+                  <p className="text-[11px] text-[var(--text-ghost)]">+62 857 7182 6637</p>
                 </div>
                 <ArrowRight size={14} className="text-[var(--text-ghost)] group-hover:text-[var(--text-muted)] group-hover:translate-x-0.5 transition-all" />
               </a>

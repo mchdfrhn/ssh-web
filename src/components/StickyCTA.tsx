@@ -22,7 +22,7 @@ const StickyCTA = () => {
   const handleClick = () => {
     haptic("medium");
     // Open WhatsApp with pre-filled message
-    const waUrl = "https://wa.me/6288971084208?text=Halo%20Surupan%2C%20saya%20tertarik%20dengan%20layanan%20Anda";
+    const waUrl = "https://wa.me/6285771826637?text=Halo%20Surupan%2C%20saya%20tertarik%20dengan%20layanan%20Anda";
     window.open(waUrl, "_blank", "noopener,noreferrer");
   };
 
