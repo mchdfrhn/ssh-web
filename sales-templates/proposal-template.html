@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal SSH — {{client_name}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* === BRAND TOKENS === */
+        :root {
+            --ssh-primary: #0A2463;
+            --ssh-accent: #1E96FC;
+            --ssh-light: #EEF4FF;
+            --ssh-dark: #061537;
+            --ssh-text: #1a1a2e;
+            --ssh-muted: #6b7280;
+            --ssh-border: #e5e7eb;
+            --ssh-success: #10b981;
+            --ssh-white: #ffffff;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* === RESET & BASE === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font);
+            color: var(--ssh-text);
+            line-height: 1.6;
+            font-size: 10pt;
+            background: #f5f5f5;
+        }
+
+        /* === A4 PAGE === */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: var(--ssh-white);
+            padding: 20mm 25mm;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        @media print {
+            body { background: white; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 15mm 20mm;
+                page-break-after: always;
+            }
+            .no-print { display: none !important; }
+        }
+
+        /* === COVER PAGE === */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 260mm;
+            text-align: center;
+            background: linear-gradient(135deg, var(--ssh-primary) 0%, var(--ssh-accent) 100%);
+            color: white;
+            border-radius: 4px;
+            padding: 40mm 30mm;
+        }
+
+        .cover-logo {
+            font-size: 28pt;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .cover-sub {
+            font-size: 12pt;
+            font-weight: 300;
+            opacity: 0.85;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .cover-divider {
+            width: 80px;
+            height: 3px;
+            background: rgba(255,255,255,0.5);
+            margin: 0 auto 40px;
+            border-radius: 2px;
+        }
+
+        .cover-title {
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .cover-client {
+            font-size: 14pt;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .cover-meta {
+            font-size: 9pt;
+            opacity: 0.7;
+            margin-top: auto;
+        }
+
+        /* === TYPOGRAPHY === */
+        h1 {
+            font-size: 18pt;
+            font-weight: 800;
+            color: var(--ssh-primary);
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 3px solid var(--ssh-accent);
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--ssh-primary);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--ssh-accent);
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        p { margin-bottom: 10px; }
+
+        .section { margin-bottom: 28px; }
+        .section-number {
+            display: inline-block;
+            background: var(--ssh-primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 12pt;
+            font-weight: 700;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* === LETTER HEADER === */
+        .letter-header {
+            background: var(--ssh-light);
+            border-left: 4px solid var(--ssh-accent);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .letter-header p { margin-bottom: 4px; font-size: 10pt; }
+
+        /* === TABLES === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 9.5pt;
+        }
+
+        thead th {
+            background: var(--ssh-primary);
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        thead th:first-child { border-radius: 4px 0 0 0; }
+        thead th:last-child { border-radius: 0 4px 0 0; }
+
+        td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--ssh-border);
+        }
+
+        tbody tr:nth-child(even) { background: var(--ssh-light); }
+        tbody tr:hover { background: #dde9ff; }
+
+        /* === GAP ANALYSIS TABLE === */
+        .gap-table .current { color: #dc2626; font-weight: 500; }
+        .gap-table .future { color: var(--ssh-success); font-weight: 500; }
+
+        /* === PRICING CARDS === */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .pricing-card {
+            border: 2px solid var(--ssh-border);
+            border-radius: 8px;
+            padding: 20px 16px;
+            text-align: center;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .pricing-card:hover { border-color: var(--ssh-accent); }
+
+        .pricing-card.featured {
+            border-color: var(--ssh-accent);
+            background: var(--ssh-light);
+            transform: scale(1.02);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULER';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--ssh-accent);
+            color: white;
+            font-size: 8pt;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 10px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-tier {
+            font-size: 10pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card:nth-child(1) .pricing-tier { color: var(--ssh-success); }
+        .pricing-card:nth-child(2) .pricing-tier { color: var(--ssh-accent); }
+        .pricing-card:nth-child(3) .pricing-tier { color: #8b5cf6; }
+
+        .pricing-price {
+            font-size: 18pt;
+            font-weight: 800;
+            color: var(--ssh-primary);
+            margin: 8px 0;
+        }
+
+        .pricing-price small {
+            font-size: 9pt;
+            font-weight: 400;
+            color: var(--ssh-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            font-size: 9pt;
+            margin-top: 12px;
+        }
+
+        .pricing-features li {
+            padding: 4px 0;
+            border-bottom: 1px solid var(--ssh-border);
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--ssh-success);
+            font-weight: 700;
+        }
+
+        .pricing-features li.disabled {
+            color: var(--ssh-muted);
+            text-decoration: line-through;
+        }
+
+        .pricing-features li.disabled::before {
+            content: '— ';
+            color: var(--ssh-muted);
+        }
+
+        /* === TIMELINE === */
+        .timeline {
+            display: flex;
+            gap: 0;
+            margin: 16px 0;
+        }
+
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-step::after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ssh-accent);
+        }
+
+        .timeline-step:last-child::after { display: none; }
+
+        .timeline-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--ssh-accent);
+            color: white;
+            font-size: 10pt;
+            font-weight: 700;
+            line-height: 28px;
+            margin: 0 auto 8px;
+        }
+
+        .timeline-label {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: var(--ssh-primary);
+        }
+
+        .timeline-duration {
+            font-size: 8pt;
+            color: var(--ssh-muted);
+        }
+
+        /* === CALLOUT BOX === */
+        .callout {
+            background: var(--ssh-light);
+            border-left: 4px solid var(--ssh-accent);
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin: 14px 0;
+            font-size: 9.5pt;
+        }
+
+        .callout.warning {
+            background: #fef3c7;
+            border-left-color: #f59e0b;
+        }
+
+        /* === WHY SSH GRID === */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+            background: var(--ssh-light);
+            border-radius: 6px;
+            font-size: 9.5pt;
+        }
+
+        .benefit-icon {
+            font-size: 14pt;
+            flex-shrink: 0;
+        }
+
+        /* === CTA === */
+        .cta-box {
+            background: linear-gradient(135deg, var(--ssh-primary) 0%, var(--ssh-accent) 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .cta-box h2 { color: white; margin-top: 0; }
+
+        .cta-steps {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .cta-step {
+            text-align: center;
+        }
+
+        .cta-step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 6px;
+        }
+
+        .cta-step-text { font-size: 9pt; opacity: 0.9; }
+
+        .cta-contact {
+            margin-top: 16px;
+            font-size: 10pt;
+        }
+
+        .cta-contact a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* === FOOTER === */
+        .page-footer {
+            margin-top: 30px;
+            padding-top: 12px;
+            border-top: 1px solid var(--ssh-border);
+            font-size: 8pt;
+            color: var(--ssh-muted);
+            text-align: center;
+        }
+
+        /* === DIVIDER === */
+        hr {
+            border: none;
+            border-top: 1px solid var(--ssh-border);
+            margin: 20px 0;
+        }
+
+        /* === UTILITY === */
+        .text-accent { color: var(--ssh-accent); font-weight: 600; }
+        .text-muted { color: var(--ssh-muted); }
+        .text-small { font-size: 8.5pt; }
+        .text-center { text-align: center; }
+        .mb-0 { margin-bottom: 0; }
+        .placeholder {
+            background: #fff3cd;
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-family: monospace;
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- COVER PAGE -->
+<!-- ============================================ -->
+<div class="page cover">
+    <div class="cover-logo">Surupan Software House</div>
+    <div class="cover-sub">Web Development & Digital Solutions</div>
+    <div class="cover-divider"></div>
+    <div class="cover-title">Proposal Penawaran<br><span class="placeholder">{{proposal_title}}</span></div>
+    <div class="cover-client">Disiapkan untuk:<br><strong><span class="placeholder">{{client_name}}</span> — <span class="placeholder">{{business_name}}</span></strong></div>
+    <div class="cover-meta">
+        No. Proposal: SSH-PROP-<span class="placeholder">{{proposal_number}}</span> &nbsp;|&nbsp;
+        Tanggal: <span class="placeholder">{{date}}</span> &nbsp;|&nbsp;
+        Berlaku hingga: <span class="placeholder">{{validity_date}}</span>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 2: COVER LETTER + PROFILE -->
+<!-- ============================================ -->
+<div class="page">
+
+    <!-- Section 1: Cover Letter -->
+    <div class="section">
+        <h1>Surat Pengantar</h1>
+
+        <div class="letter-header">
+            <p><strong>Kepada Yth.</strong></p>
+            <p><span class="placeholder">{{client_name}}</span></p>
+            <p><span class="placeholder">{{business_name}}</span></p>
+            <p><span class="placeholder">{{client_address}}</span></p>
+        </div>
+
+        <p>Dengan hormat,</p>
+        <p>Terima kasih atas kesempatan untuk mengajukan proposal ini. <strong>Surupan Software House</strong> memahami bahwa <span class="placeholder">{{business_name}}</span> membutuhkan kehadiran digital yang kuat untuk menjangkau lebih banyak pelanggan dan meningkatkan penjualan.</p>
+        <p>Kami hadir sebagai mitra teknologi yang memahami kebutuhan UMKM Indonesia — solusi praktis, harga terjangkau, dampak nyata.</p>
+    </div>
+
+    <hr>
+
+    <!-- Section 2: Company Profile -->
+    <div class="section">
+        <h1>Profil Perusahaan</h1>
+        <h2>Surupan Software House (SSH)</h2>
+
+        <table>
+            <tbody>
+                <tr><td style="width:140px; font-weight:600;">Bidang</td><td>Pengembangan Website & Solusi Digital</td></tr>
+                <tr><td style="font-weight:600;">Spesialisasi</td><td>Website UMKM, AI Chatbot, Automasi Workflow</td></tr>
+                <tr><td style="font-weight:600;">Lokasi</td><td><span class="placeholder">{{ssh_location}}</span></td></tr>
+                <tr><td style="font-weight:600;">Kontak</td><td><span class="placeholder">{{ssh_email}}</span> / <span class="placeholder">{{ssh_phone}}</span></td></tr>
+                <tr><td style="font-weight:600;">Website</td><td><span class="placeholder">{{ssh_website}}</span></td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Visi:</strong> Membantu jutaan UMKM Indonesia go-digital dengan solusi yang terjangkau dan profesional.</p>
+
+        <h3>Keahlian Kami</h3>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🌐</span>
+                <span>Pengembangan website modern & responsif</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🤖</span>
+                <span>Integrasi asisten AI (WhatsApp chatbot)</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">⚡</span>
+                <span>Automasi workflow (n8n, Google Sheets)</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔍</span>
+                <span>Optimasi SEO untuk mesin pencari</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🎨</span>
+                <span>Identitas brand (logo, brand guide)</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">📊</span>
+                <span>Analytics & tracking performa</span>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 3: Digital Gap Analysis -->
+    <div class="section">
+        <h1>Analisis Kesenjangan Digital</h1>
+        <h2>Kondisi Saat Ini vs Potensi Bisnis <span class="placeholder">{{business_name}}</span></h2>
+
+        <table class="gap-table">
+            <thead>
+                <tr>
+                    <th style="width:120px;">Aspek</th>
+                    <th>Saat Ini</th>
+                    <th>Setelah Kolaborasi SSH</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:600;">Kehadiran Online</td>
+                    <td class="current"><span class="placeholder">{{current_presence}}</span></td>
+                    <td class="future">Website profesional dengan domain sendiri</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Katalog Produk</td>
+                    <td class="current"><span class="placeholder">{{current_catalog}}</span></td>
+                    <td class="future">Katalog digital interaktif, mudah diupdate</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Komunikasi</td>
+                    <td class="current"><span class="placeholder">{{current_comm}}</span></td>
+                    <td class="future">Chatbot WhatsApp 24/7 + formulir kontak</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Google Search</td>
+                    <td class="current"><span class="placeholder">{{current_seo}}</span></td>
+                    <td class="future">SEO-optimized, muncul di halaman 1</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Branding</td>
+                    <td class="current"><span class="placeholder">{{current_brand}}</span></td>
+                    <td class="future">Identitas visual konsisten & profesional</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:600;">Manajemen Order</td>
+                    <td class="current"><span class="placeholder">{{current_order}}</span></td>
+                    <td class="future">Sistem otomatis terintegrasi Google Sheets</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout warning">
+            <strong>⚠️ Dampak yang Hilang Tanpa Website:</strong><br>
+            <span class="placeholder">{{lost_customers}}</span> calon pelanggan tidak menemukan bisnis Anda setiap bulan. Kompetitor sudah online — Anda kehilangan pangsa pasar. Tanpa website profesional, kredibilitas bisnis diragukan.
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 3: SOLUTION + SCOPE -->
+<!-- ============================================ -->
+<div class="page">
+
+    <!-- Section 4: Proposed Solution -->
+    <div class="section">
+        <h1>Solusi yang Ditawarkan</h1>
+        <h2>Ringkasan Kebutuhan</h2>
+        <p>Berdasarkan diskusi dengan <span class="placeholder">{{client_name}}</span>, kami memahami kebutuhan utama:</p>
+        <ol style="margin-left:20px; margin-bottom:14px;">
+            <li><span class="placeholder">{{need_1}}</span></li>
+            <li><span class="placeholder">{{need_2}}</span></li>
+            <li><span class="placeholder">{{need_3}}</span></li>
+        </ol>
+
+        <h2>Pendekatan Kami</h2>
+        <p>Kami tidak menjual template murahan. Setiap website dibuat khusus sesuai karakter bisnis Anda, dengan fokus pada:</p>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">⚡</span>
+                <div><strong>Kecepatan</strong><br><span class="text-small text-muted">Website loading &lt; 3 detik</span></div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">📱</span>
+                <div><strong>Mobile-first</strong><br><span class="text-small text-muted">80%+ pelanggan browsing dari HP</span></div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔍</span>
+                <div><strong>SEO-ready</strong><br><span class="text-small text-muted">Langsung ditemukan di Google</span></div>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✏️</span>
+                <div><strong>Mudah dikelola</strong><br><span class="text-small text-muted">Update konten sendiri tanpa programmer</span></div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 5: Scope of Work -->
+    <div class="section">
+        <h1>Lingkup Pekerjaan</h1>
+
+        <!-- BASIC -->
+        <h3 style="color: var(--ssh-success);">🟢 Paket BASIC — Landing Page</h3>
+        <table>
+            <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+            <tbody>
+                <tr><td>Landing page responsif</td><td>1 halaman, desain custom</td></tr>
+                <tr><td>Domain & hosting</td><td>Setup awal (biaya tahunan terpisah)</td></tr>
+                <tr><td>Integrasi WhatsApp</td><td>Tombol langsung ke WA bisnis</td></tr>
+                <tr><td>Form kontak</td><td>Formulir inquiry terintegrasi email</td></tr>
+                <tr><td>Revisi</td><td>2x revisi desain</td></tr>
+                <tr><td>Estimasi</td><td>7–10 hari kerja</td></tr>
+            </tbody>
+        </table>
+
+        <!-- PRO -->
+        <h3 style="color: var(--ssh-accent);">🔵 Paket PRO — Website + AI Assistant</h3>
+        <table>
+            <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+            <tbody>
+                <tr><td>Website multi-halaman</td><td>Hingga 5 halaman</td></tr>
+                <tr><td>AI Chatbot WhatsApp</td><td>Asisten otomatis jawab pertanyaan pelanggan</td></tr>
+                <tr><td>Katalog produk/layanan</td><td>Halaman katalog dengan foto & deskripsi</td></tr>
+                <tr><td>SEO on-page</td><td>Optimasi judul, meta, struktur URL</td></tr>
+                <tr><td>Google Analytics</td><td>Setup tracking pengunjung</td></tr>
+                <tr><td>Revisi</td><td>3x revisi desain</td></tr>
+                <tr><td>Training</td><td>Pelatihan kelola website (1 sesi)</td></tr>
+                <tr><td>Estimasi</td><td>14–21 hari kerja</td></tr>
+            </tbody>
+        </table>
+
+        <!-- ENTERPRISE -->
+        <h3 style="color: #8b5cf6;">🟣 Paket ENTERPRISE — Full Stack Digital</h3>
+        <table>
+            <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+            <tbody>
+                <tr><td>Website premium</td><td>Hingga 10 halaman, fitur custom</td></tr>
+                <tr><td>E-commerce integration</td><td>Keranjang belanja + payment gateway</td></tr>
+                <tr><td>AI Chatbot WhatsApp</td><td>Advanced — multi-intent, integrasi database</td></tr>
+                <tr><td>Workflow automasi</td><td>n8n + Google Sheets manajemen order</td></tr>
+                <tr><td>SEO komprehensif</td><td>On-page + technical + Search Console</td></tr>
+                <tr><td>Brand identity</td><td>Logo + brand guide (warna, font, tone)</td></tr>
+                <tr><td>Social media kit</td><td>Template konten Instagram/social media</td></tr>
+                <tr><td>Revisi</td><td>5x revisi desain</td></tr>
+                <tr><td>Support</td><td>3 bulan support pasca-launch</td></tr>
+                <tr><td>Estimasi</td><td>30–45 hari kerja</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 4: TIMELINE + PRICING -->
+<!-- ============================================ -->
+<div class="page">
+
+    <!-- Section 6: Timeline -->
+    <div class="section">
+        <h1>Timeline Pengerjaan</h1>
+
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-label">Discovery</div>
+                <div class="timeline-duration"><span class="placeholder">{{phase1_days}}</span> hari</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-label">Design</div>
+                <div class="timeline-duration"><span class="placeholder">{{phase2_days}}</span> hari</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-label">Development</div>
+                <div class="timeline-duration"><span class="placeholder">{{phase3_days}}</span> hari</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">4</div>
+                <div class="timeline-label">Testing</div>
+                <div class="timeline-duration"><span class="placeholder">{{phase4_days}}</span> hari</div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-dot">5</div>
+                <div class="timeline-label">Launch</div>
+                <div class="timeline-duration"><span class="placeholder">{{phase5_days}}</span> hari</div>
+            </div>
+        </div>
+
+        <div class="callout">
+            <strong>Total estimasi:</strong> <span class="placeholder">{{total_timeline}}</span><br>
+            <span class="text-small text-muted">Timeline dapat berubah tergantung kelengkapan konten dari klien.</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 7: Pricing -->
+    <div class="section">
+        <h1>Investasi</h1>
+
+        <div class="pricing-grid">
+            <!-- Basic -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Basic</div>
+                <div class="pricing-price">Rp <span class="placeholder">{{price_basic}}</span></div>
+                <div class="text-small text-muted">Landing Page</div>
+                <ul class="pricing-features">
+                    <li>Landing page custom</li>
+                    <li>Responsive design</li>
+                    <li>Tombol WhatsApp</li>
+                    <li>Form kontak</li>
+                    <li>2x revisi</li>
+                    <li>1 bulan support</li>
+                    <li class="disabled">AI Chatbot</li>
+                    <li class="disabled">Multi-halaman</li>
+                </ul>
+            </div>
+
+            <!-- Pro -->
+            <div class="pricing-card featured">
+                <div class="pricing-tier">Pro</div>
+                <div class="pricing-price">Rp <span class="placeholder">{{price_pro}}</span></div>
+                <div class="text-small text-muted">Website + AI Assistant</div>
+                <ul class="pricing-features">
+                    <li>5 halaman custom</li>
+                    <li>Responsive design</li>
+                    <li>AI Chatbot WhatsApp</li>
+                    <li>Katalog produk</li>
+                    <li>SEO on-page</li>
+                    <li>Google Analytics</li>
+                    <li>3x revisi + training</li>
+                    <li>2 bulan support</li>
+                </ul>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Enterprise</div>
+                <div class="pricing-price">Rp <span class="placeholder">{{price_enterprise}}</span></div>
+                <div class="text-small text-muted">Full Stack Digital</div>
+                <ul class="pricing-features">
+                    <li>10 halaman + e-commerce</li>
+                    <li>AI Chatbot advanced</li>
+                    <li>Workflow automasi</li>
+                    <li>SEO komprehensif</li>
+                    <li>Brand identity + logo</li>
+                    <li>Social media kit</li>
+                    <li>5x revisi</li>
+                    <li>3 bulan support</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Biaya Tambahan (Opsional)</h2>
+        <table>
+            <thead>
+                <tr><th>Item</th><th>Harga</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Domain (.com)</td><td>Rp <span class="placeholder">{{domain_price}}</span>/tahun</td></tr>
+                <tr><td>Hosting</td><td>Rp <span class="placeholder">{{hosting_price}}</span>/tahun</td></tr>
+                <tr><td>Maintenance bulanan</td><td>Rp <span class="placeholder">{{maintenance_price}}</span>/bulan</td></tr>
+                <tr><td>Tambahan halaman</td><td>Rp <span class="placeholder">{{extra_page_price}}</span>/halaman</td></tr>
+                <tr><td>Foto produk profesional</td><td>Rp <span class="placeholder">{{photo_price}}</span>/sesi</td></tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>Ketentuan Pembayaran:</strong><br>
+            • <strong>DP 50%</strong> di awal project (sebelum pengerjaan dimulai)<br>
+            • <strong>Pelunasan 50%</strong> saat website siap launch<br>
+            • Pembayaran via transfer bank ke rekening SSH
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 5: T&C + CTA -->
+<!-- ============================================ -->
+<div class="page">
+
+    <!-- Section 8: Terms & Conditions -->
+    <div class="section">
+        <h1>Syarat & Ketentuan</h1>
+
+        <table>
+            <thead><tr><th style="width:40px;">No</th><th>Ketentuan</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td><strong>Konten dari Klien</strong> — Teks, foto, dan data bisnis disediakan oleh klien. SSH bisa bantu menyusun dengan biaya tambahan.</td></tr>
+                <tr><td>2</td><td><strong>Revisi</strong> — Revisi di luar batas paket dikenakan biaya Rp <span class="placeholder">{{revision_price}}</span>/revisi.</td></tr>
+                <tr><td>3</td><td><strong>Hak Cipta</strong> — Setelah pelunasan, website sepenuhnya menjadi milik klien.</td></tr>
+                <tr><td>4</td><td><strong>Hosting & Domain</strong> — Biaya tahunan, diperpanjang otomatis kecuali dibatalkan.</td></tr>
+                <tr><td>5</td><td><strong>Force Majeure</strong> — Keterlambatan akibat force majeure tidak termasuk tanggung jawab SSH.</td></tr>
+                <tr><td>6</td><td><strong>Pembatalan</strong> — DP tidak dapat dikembalikan jika pembatalan dilakukan setelah fase design dimulai.</td></tr>
+                <tr><td>7</td><td><strong>Garansi</strong> — SSH menjamin website bebas bug fungsional selama periode support. Bug akibat modifikasi pihak ketiga tidak termasuk.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- Section 9: Why SSH -->
+    <div class="section">
+        <h1>Mengapa Memilih SSH?</h1>
+
+        <div class="benefits-grid">
+            <div class="benefit-item"><span class="benefit-icon">🎯</span><div><strong>Spesialis UMKM</strong><br><span class="text-small text-muted">Kami paham kebutuhan bisnis kecil-menengah</span></div></div>
+            <div class="benefit-item"><span class="benefit-icon">💰</span><div><strong>Harga Transparan</strong><br><span class="text-small text-muted">Tidak ada biaya tersembunyi</span></div></div>
+            <div class="benefit-item"><span class="benefit-icon">🎨</span><div><strong>Desain Modern</strong><br><span class="text-small text-muted">Website profesional yang buat bisnis terlihat kredibel</span></div></div>
+            <div class="benefit-item"><span class="benefit-icon">🤖</span><div><strong>Teknologi Terkini</strong><br><span class="text-small text-muted">AI, automasi, SEO terintegrasi</span></div></div>
+            <div class="benefit-item"><span class="benefit-icon">🤝</span><div><strong>Support Responsif</strong><br><span class="text-small text-muted">Kami bantu Anda bahkan setelah website live</span></div></div>
+            <div class="benefit-item"><span class="benefit-icon">🏠</span><div><strong>Satu Atap</strong><br><span class="text-small text-muted">Dari website sampai brand identity</span></div></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 10: CTA -->
+    <div class="cta-box">
+        <h2 style="color:white; border:none; margin-bottom:8px;">Siap Go-Digital?</h2>
+        <p style="opacity:0.9; margin-bottom:20px;">Mari wujudkan kehadiran online yang profesional untuk <span class="placeholder">{{business_name}}</span></p>
+
+        <div class="cta-steps">
+            <div class="cta-step">
+                <div class="cta-step-num">1</div>
+                <div class="cta-step-text">Konfirmasi<br>paket</div>
+            </div>
+            <div class="cta-step">
+                <div class="cta-step-num">2</div>
+                <div class="cta-step-text">Tanda tangan<br>SPK</div>
+            </div>
+            <div class="cta-step">
+                <div class="cta-step-num">3</div>
+                <div class="cta-step-text">Pembayaran<br>DP 50%</div>
+            </div>
+            <div class="cta-step">
+                <div class="cta-step-num">4</div>
+                <div class="cta-step-text">Discovery<br>session</div>
+            </div>
+        </div>
+
+        <div class="cta-contact">
+            📞 <strong>Hubungi Kami:</strong><br>
+            WhatsApp: <span class="placeholder">{{ssh_whatsapp}}</span> &nbsp;|&nbsp;
+            Email: <span class="placeholder">{{ssh_email}}</span> &nbsp;|&nbsp;
+            Instagram: <span class="placeholder">{{ssh_instagram}}</span>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <p>Proposal ini disiapkan khusus untuk <strong><span class="placeholder">{{client_name}}</span></strong> oleh <strong>Surupan Software House</strong>.</p>
+        <p>Kami berharap bisa menjadi mitra digital pertumbuhan <span class="placeholder">{{business_name}}</span>.</p>
+        <p style="margin-top:8px;">© 2026 Surupan Software House. All rights reserved.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

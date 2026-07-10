@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surupan Software House — Brosur</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #0A2463;
+    --blue-mid: #1E96FC;
+    --blue-light: #EEF4FF;
+    --blue-lighter: #F6F9FF;
+    --dark: #0f172a;
+    --text: #1e293b;
+    --text-secondary: #475569;
+    --text-light: #94a3b8;
+    --bg: #FFFFFF;
+    --bg-section: #f8fafc;
+    --border: #e2e8f0;
+    --green: #10b981;
+    --green-soft: #ecfdf5;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  @page { size: A4 portrait; margin: 0; }
+  html { background: #d1d5db; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm; height: 297mm; margin: 12px auto;
+    background: var(--bg); position: relative; overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+  }
+
+  @media print {
+    html { background: white; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  /* ── Section Label ── */
+  .section-label {
+    font-size: 9px; font-weight: 700; color: var(--blue-mid);
+    letter-spacing: 1.8px; text-transform: uppercase;
+    margin-bottom: 4mm;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── SVG Icon base ── */
+  .icon { display: inline-flex; align-items: center; justify-content: center; }
+  .icon svg { display: block; }
+
+  /* ══════════════════════════════════════
+     PAGE 1 — COVER + SERVICES
+     ══════════════════════════════════════ */
+
+  /* ── Hero ── */
+  .p1-hero {
+    background: linear-gradient(160deg, #0A2463 0%, #0f172a 60%, #1a1a3e 100%);
+    color: white; padding: 18mm 16mm 14mm;
+    position: relative; overflow: hidden;
+  }
+
+  /* Subtle geometric accent */
+  .p1-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .p1-hero::after {
+    content: '';
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+
+  /* Grid pattern overlay */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+
+  .p1-logo {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10mm; position: relative; z-index: 1;
+  }
+  .p1-logo-icon {
+    width: 36px; height: 36px; background: white; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: var(--blue);
+  }
+  .p1-logo-text { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; }
+  .p1-logo-sub { font-size: 7px; font-weight: 500; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; display: block; }
+
+  .p1-hero-content { position: relative; z-index: 1; }
+
+  .p1-hero h1 {
+    font-size: 28px; font-weight: 900; line-height: 1.1; letter-spacing: -1.2px;
+    margin-bottom: 5mm; max-width: 88%;
+    color: #ffffff;
+  }
+  .p1-hero h1 .accent {
+    color: #60a5fa;
+  }
+
+  .p1-hero-desc {
+    font-size: 10.5px; line-height: 1.65; color: rgba(255,255,255,0.7);
+    max-width: 78%; margin-bottom: 5mm;
+  }
+
+  .p1-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .p1-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 6px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.85);
+    letter-spacing: 0.2px;
+  }
+  .p1-badge svg { opacity: 0.7; }
+
+  /* ── Services ── */
+  .p1-services { padding: 7mm 16mm 5mm; }
+
+  .p1-services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-bottom: 5mm;
+  }
+
+  .svc {
+    border-radius: 10px; padding: 14px 14px 12px;
+    background: var(--bg-section);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .svc.featured {
+    background: var(--blue-light);
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(30,150,252,0.1);
+  }
+
+  .svc-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+  }
+  .svc-icon.blue { background: var(--blue-light); color: var(--blue); }
+  .svc-icon.accent { background: #dbeafe; color: var(--blue-mid); }
+  .svc-icon.dark { background: #f1f5f9; color: var(--dark); }
+
+  .svc.featured .svc-icon { background: white; color: var(--blue-mid); }
+
+  .svc-label {
+    font-size: 7px; font-weight: 700; color: var(--text-light);
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px;
+  }
+  .svc.featured .svc-label { color: var(--blue-mid); }
+
+  .svc-name { font-size: 12px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px; color: var(--text); }
+  .svc-desc { font-size: 8px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px; }
+
+  .svc-price { font-size: 15px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
+  .svc-price-sub { font-size: 7px; color: var(--text-light); margin-bottom: 4px; }
+
+  .svc-features { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+  .svc-features li {
+    font-size: 7.5px; color: var(--text-secondary); list-style: none;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .svc-features li svg { flex-shrink: 0; color: var(--green); }
+
+  /* ── Process ── */
+  .p1-process { padding: 0 16mm 5mm; }
+
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+
+  .step {
+    text-align: center; padding: 10px 6px;
+    border-radius: 8px; background: var(--bg-section);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--blue); color: white;
+    font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 5px;
+  }
+  .step-title { font-size: 8.5px; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+  .step-desc { font-size: 7px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── Why Us ── */
+  .p1-why { padding: 0 16mm 5mm; }
+
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
+  .why-item {
+    padding: 10px 8px; border-radius: 8px;
+    background: var(--bg-section); box-shadow: var(--shadow-sm);
+    text-align: center;
+  }
+
+  .why-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--blue-light); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 5px;
+  }
+
+  .why-title { font-size: 9px; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+  .why-desc { font-size: 7px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* ── Clients ── */
+  .p1-clients { padding: 0 16mm 4mm; }
+
+  .clients-row {
+    display: flex; align-items: stretch; justify-content: center; gap: 10px;
+    padding: 6px 0;
+  }
+
+  .client-logo-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px; border-radius: 8px;
+    background: var(--bg-section); box-shadow: var(--shadow-sm);
+    color: var(--blue);
+  }
+  .client-logo-item svg { flex-shrink: 0; opacity: 0.7; }
+  .cl-name { display: block; font-size: 9px; font-weight: 800; color: var(--text); letter-spacing: -0.1px; }
+  .cl-sub { display: block; font-size: 6.5px; font-weight: 500; color: var(--text-light); }
+
+  /* ── Page 1 Footer ── */
+  .p1-footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 4mm 16mm;
+    background: var(--bg-section); border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .p1-footer-left { font-size: 7.5px; color: var(--text-light); }
+  .p1-footer-right { font-size: 8px; font-weight: 700; color: var(--blue); }
+
+
+  /* ══════════════════════════════════════
+     PAGE 2 — PORTFOLIO + CONTACT
+     ══════════════════════════════════════ */
+
+  .p2 { padding: 14mm 16mm 12mm; display: flex; flex-direction: column; height: 297mm; }
+
+  .p2-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 5mm;
+  }
+  .p2-header-left .p2-logo-text { font-size: 13px; font-weight: 800; color: var(--blue); letter-spacing: -0.3px; }
+  .p2-header-left .p2-logo-sub { font-size: 7px; color: var(--text-light); letter-spacing: 1.5px; text-transform: uppercase; }
+  .p2-header-right { font-size: 8px; color: var(--text-light); font-weight: 500; }
+
+  /* ── Portfolio ── */
+  .p2-portfolio { margin-bottom: 5mm; }
+
+  .portfolio-cards { display: flex; flex-direction: column; gap: 7px; }
+
+  .pf-card {
+    display: grid; grid-template-columns: 190px 1fr; gap: 0;
+    border-radius: 10px; overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--bg);
+  }
+
+  .pf-img-wrap {
+    position: relative; overflow: hidden;
+    background: var(--bg-section);
+    border-right: 1px solid var(--border);
+  }
+
+  /* Bottom edge shadow for mockup depth */
+  .pf-img-wrap::after {
+    content: '';
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    width: 30px; height: 5px;
+    background: #cbd5e1; border-radius: 0 0 3px 3px; z-index: 3;
+  }
+
+
+  /* Laptop mockup frame - top bar */
+  .pf-img-wrap::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 14px;
+    background: linear-gradient(180deg, #dde3ea 0%, #eef1f5 100%);
+    z-index: 2;
+    border-bottom: 1px solid #cbd5e1;
+  }
+
+  .pf-img {
+    width: 100%; height: 100%; min-height: 95px;
+    object-fit: cover; display: block;
+    padding-top: 16px;
+  }
+
+  .pf-body { padding: 10px 14px; display: flex; flex-direction: column; justify-content: center; }
+
+  .pf-type {
+    display: inline-block; font-size: 6.5px; font-weight: 700;
+    color: var(--blue-mid); background: var(--blue-light);
+    padding: 2px 7px; border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+    margin-bottom: 3px; width: fit-content;
+  }
+
+  .pf-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px; color: var(--text); }
+
+  .pf-problem { font-size: 8px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 3px; }
+  .pf-problem strong { color: var(--text); font-weight: 600; }
+
+  .pf-result {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 9px; font-weight: 700; color: var(--green);
+    margin-top: 2px;
+  }
+
+  .pf-tech { display: flex; gap: 3px; margin-top: 4px; }
+  .pf-tech span {
+    font-size: 6.5px; font-weight: 600; color: white;
+    background: var(--blue); box-shadow: var(--shadow-sm);
+    padding: 2px 6px; border-radius: 3px; letter-spacing: 0.4px; text-transform: uppercase;
+  }
+
+  /* ── Testimonial ── */
+  .p2-testimonial {
+    background: var(--blue-lighter); border-radius: 10px;
+    padding: 12px 16px; margin-bottom: 5mm;
+    position: relative; box-shadow: var(--shadow-sm);
+  }
+
+  .p2-testimonial::before {
+    content: '\201C';
+    position: absolute; top: 6px; left: 12px;
+    font-size: 48px; font-weight: 900; color: var(--blue-mid); opacity: 0.12;
+    line-height: 1; font-family: Georgia, serif;
+  }
+
+  .p2-quote {
+    font-size: 10px; line-height: 1.65; color: var(--blue);
+    font-style: italic; font-weight: 500; margin-bottom: 5px;
+    position: relative; z-index: 1;
+  }
+
+  .p2-quote-author { font-size: 8.5px; font-weight: 700; color: var(--text); }
+  .p2-quote-role { font-size: 7.5px; color: var(--text-secondary); }
+
+  /* ── Tech Stack ── */
+  .p2-tech { margin-bottom: 5mm; }
+
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .tech-tag {
+    font-size: 8px; font-weight: 600; color: white;
+    background: var(--blue); box-shadow: var(--shadow-sm);
+    padding: 4px 10px; border-radius: 5px; letter-spacing: 0.2px;
+  }
+
+  /* ── Pricing Table ── */
+  .p2-packages { margin-bottom: 5mm; }
+
+  .pkg-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 8px; }
+
+  .pkg-table th {
+    background: var(--blue); color: white;
+    padding: 7px 12px; text-align: left; font-weight: 700;
+    font-size: 7.5px; letter-spacing: 0.5px;
+  }
+  .pkg-table th:first-child { border-radius: 8px 0 0 0; }
+  .pkg-table th:last-child { border-radius: 0 8px 0 0; }
+
+  .pkg-table td {
+    padding: 7px 12px; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .pkg-table tr:last-child td { border-bottom: none; }
+
+  .pkg-table .pkg-name { font-weight: 700; color: var(--text); }
+  .pkg-table .pkg-price { font-weight: 800; color: var(--blue); font-size: 10px; }
+  .pkg-table .pkg-detail { color: var(--text-secondary); font-size: 7.5px; line-height: 1.4; }
+
+  .pkg-highlight { background: var(--blue-light); }
+  .pkg-highlight td:first-child { position: relative; }
+  .pkg-highlight td:first-child::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--blue-mid); border-radius: 0 2px 2px 0;
+  }
+
+  .pkg-badge {
+    display: inline-block; font-size: 6.5px; font-weight: 700;
+    color: var(--blue-mid); background: rgba(30,150,252,0.1);
+    padding: 1px 5px; border-radius: 3px; letter-spacing: 0.5px;
+    text-transform: uppercase; margin-left: 4px;
+  }
+
+  /* ── Contact CTA ── */
+  .p2-contact {
+    background: linear-gradient(160deg, var(--blue), #0f172a);
+    border-radius: 12px; padding: 12mm 14mm;
+    color: white; display: grid; grid-template-columns: 1fr auto; gap: 28px;
+    align-items: center; margin-top: auto;
+    position: relative; overflow: hidden;
+  }
+
+  .p2-contact::before {
+    content: '';
+    position: absolute; bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+
+  .p2-contact h3 { font-size: 18px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .p2-contact p { font-size: 10px; opacity: 0.65; line-height: 1.55; margin-bottom: 5mm; }
+
+  .p2-contact-info { display: flex; flex-direction: column; gap: 5px; }
+  .p2-contact-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 9px; font-weight: 500; opacity: 0.9;
+  }
+  .p2-contact-row svg { opacity: 0.6; flex-shrink: 0; }
+
+  .p2-contact-right { text-align: center; }
+
+  .qr-box {
+    width: 72px; height: 72px; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 6px; padding: 10px;
+  }
+  .qr-box svg { width: 48px; height: 48px; }
+  .qr-box svg rect[fill="#0A2463"] { fill: rgba(255,255,255,0.85); }
+  .qr-box svg { stroke: rgba(255,255,255,0.85); }
+
+  .p2-contact-right-text { font-size: 7.5px; opacity: 0.5; color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PAGE 1 ═══════════════ -->
+<div class="page">
+
+  <div class="p1-hero">
+    <div class="hero-grid"></div>
+
+    <div class="p1-logo">
+      <div class="p1-logo-icon">S</div>
+      <div>
+        <span class="p1-logo-text">Surupan Software House</span>
+        <span class="p1-logo-sub">Digital Solutions Partner</span>
+      </div>
+    </div>
+
+    <div class="p1-hero-content">
+      <h1>Bisnis Anda Butuh<br>Sistem Yang <span class="accent">Jalan?</span></h1>
+      <p class="p1-hero-desc">
+        Kami bantu UMKM, klinik, dan bisnis lokal membangun website &amp; sistem digital
+        yang menghasilkan. Dari ide sampai deploy — tanpa drama, tanpa harga agency.
+      </p>
+      <div class="p1-badges">
+        <span class="p1-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Response &lt; 2 Jam
+        </span>
+        <span class="p1-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Garansi 30 Hari
+        </span>
+        <span class="p1-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Free Estimasi
+        </span>
+        <span class="p1-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          WhatsApp-First
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="p1-services">
+    <div class="section-label">Layanan Kami</div>
+    <div class="p1-services-grid">
+      <div class="svc">
+        <div class="svc-icon blue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <div class="svc-label">Sekali Bayar</div>
+        <div class="svc-name">Landing Page</div>
+        <div class="svc-desc">Website profesional siap 5–7 hari. SEO-optimized, mobile-first. Cocok untuk UMKM.</div>
+        <div class="svc-price">Rp 750rb</div>
+        <div class="svc-price-sub">mulai dari</div>
+        <ul class="svc-features">
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Custom design sesuai brand</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Lighthouse 95+ score</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp button aktif</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Domain .com + hosting 1 thn</li>
+        </ul>
+      </div>
+
+      <div class="svc featured">
+        <div class="svc-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="svc-label">Best Value — Bundle</div>
+        <div class="svc-name">Paket Go Digital</div>
+        <div class="svc-desc">Landing page + maintenance 6 bulan + WhatsApp bot + Google Business setup.</div>
+        <div class="svc-price">Rp 2.5 Jt</div>
+        <div class="svc-price-sub">sekali bayar — hemat 40%</div>
+        <ul class="svc-features">
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Semua fitur Landing Page</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Maintenance 6 bulan</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp auto-reply bot</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Full source code ownership</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="svc-icon dark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="svc-label">Custom Project</div>
+        <div class="svc-name">Web Application</div>
+        <div class="svc-desc">Dashboard, manajemen data, integrasi API. Full-stack dari database sampai frontend.</div>
+        <div class="svc-price">Rp 3 Jt+</div>
+        <div class="svc-price-sub">tergantung scope</div>
+        <ul class="svc-features">
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Scalable architecture</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Admin dashboard</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> API integration</li>
+          <li><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cloud deployment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process -->
+  <div class="p1-process">
+    <div class="section-label">Cara Kerja Kami</div>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Konsultasi</div>
+        <div class="step-desc">Ceritakan kebutuhan via WhatsApp</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Estimasi</div>
+        <div class="step-desc">Penawaran &amp; timeline 24 jam</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Development</div>
+        <div class="step-desc">Bangun sistem + update progress</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Review</div>
+        <div class="step-desc">Anda review, kami revisi</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-title">Deploy</div>
+        <div class="step-desc">Go live + garansi 30 hari</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Us -->
+  <div class="p1-why">
+    <div class="section-label">Mengapa Surupan?</div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/></svg>
+        </div>
+        <div class="why-title">Dipercaya Instansi</div>
+        <div class="why-desc">STTPU &amp; Pusdatin Kementerian PUPR</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="why-title">Cepat &amp; Tepat</div>
+        <div class="why-desc">Landing page jadi dalam 5–7 hari</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="why-title">Harga Transparan</div>
+        <div class="why-desc">Tidak ada biaya tersembunyi</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="why-title">Garansi 30 Hari</div>
+        <div class="why-desc">Bug fix gratis setelah selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clients -->
+  <div class="p1-clients">
+    <div class="section-label">Klien &amp; Partner</div>
+    <div class="clients-row">
+      <div class="client-logo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/></svg>
+        <div><span class="cl-name">STTPU</span><span class="cl-sub">Sekolah Tinggi Teknologi PLN</span></div>
+      </div>
+      <div class="client-logo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div><span class="cl-name">Pusdatin</span><span class="cl-sub">Kementerian PUPR</span></div>
+      </div>
+      <div class="client-logo-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+        <div><span class="cl-name">UMKM Lokal</span><span class="cl-sub">Klinik & Bisnis</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="p1-footer">
+    <div class="p1-footer-left">surupan.tech · WA: 0857-7182-6637</div>
+    <div class="p1-footer-right">Digitalisasi Tanpa Drama ✦</div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════ PAGE 2 ═══════════════ -->
+<div class="page">
+
+  <div class="p2">
+
+    <!-- Header -->
+    <div class="p2-header">
+      <div class="p2-header-left">
+        <div class="p2-logo-text">Surupan Software House</div>
+        <div class="p2-logo-sub">Portofolio &amp; Keahlian Teknis</div>
+      </div>
+      <div class="p2-header-right">surupan.tech</div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="p2-portfolio">
+      <div class="section-label">Portofolio — Karya Nyata, Dampak Nyata</div>
+      <div class="portfolio-cards">
+
+        <div class="pf-card">
+          <div class="pf-img-wrap">
+            <img class="pf-img" src="/home/mchdfrhn/Project/ssh-web/public/portfolio/dashboard-kepegawaian/cover.jpeg" alt="Dashboard PUSDATIN">
+          </div>
+          <div class="pf-body">
+            <div class="pf-type">HR &amp; Career Management</div>
+            <div class="pf-title">Dashboard Kepegawaian PUSDATIN</div>
+            <div class="pf-problem"><strong>Masalah:</strong> Data 140+ pegawai tersebar di Excel manual. Monitoring lambat, rawan error.</div>
+            <div class="pf-problem"><strong>Solusi:</strong> Dashboard terpusat — statistik PNS/CPNS/PPPK real-time, riwayat diklat EHRM.</div>
+            <div class="pf-result">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Laporan dari 2 hari → 1 klik
+            </div>
+            <div class="pf-tech"><span>React</span><span>Laravel</span><span>PostgreSQL</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card">
+          <div class="pf-img-wrap">
+            <img class="pf-img" src="/home/mchdfrhn/Project/ssh-web/public/portfolio/sipekad/cover.jpeg" alt="SIPEKAD">
+          </div>
+          <div class="pf-body">
+            <div class="pf-type">Academic Workflow System</div>
+            <div class="pf-title">SIPEKAD — Sistem Pengajuan Akademik</div>
+            <div class="pf-problem"><strong>Masalah:</strong> Pengajuan surat kampus manual, mahasiswa antre, status tidak terlacak.</div>
+            <div class="pf-problem"><strong>Solusi:</strong> 227 pengajuan terkelola digital, WhatsApp Bot kirim notifikasi otomatis.</div>
+            <div class="pf-result">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Proses surat dari 3 hari → beberapa jam
+            </div>
+            <div class="pf-tech"><span>React</span><span>Node.js</span><span>WhatsApp API</span></div>
+          </div>
+        </div>
+
+        <div class="pf-card">
+          <div class="pf-img-wrap">
+            <img class="pf-img" src="/home/mchdfrhn/Project/ssh-web/public/portfolio/sttpu-website/cover.jpeg" alt="Website STTPU">
+          </div>
+          <div class="pf-body">
+            <div class="pf-type">Institutional Website</div>
+            <div class="pf-title">Website Resmi STTPU</div>
+            <div class="pf-problem"><strong>Masalah:</strong> Website lama outdated, tidak mobile-friendly, calon mahasiswa sulit info.</div>
+            <div class="pf-problem"><strong>Solusi:</strong> Website modern — carousel berita, filter kategori, 3 program studi.</div>
+            <div class="pf-result">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Pengalaman browsing profesional
+            </div>
+            <div class="pf-tech"><span>Next.js</span><span>Tailwind CSS</span><span>CMS</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="p2-testimonial">
+      <div class="p2-quote">
+        "Sistem yang dibangun Surupan SH benar-benar mengubah cara tim kami bekerja.
+        Dari proses manual 2 hari, sekarang selesai dalam hitungan menit. Sangat recommended."
+      </div>
+      <div class="p2-quote-author">— Klien Instansi Pemerintah</div>
+      <div class="p2-quote-role">Pusdatin, Kementerian PUPR</div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="p2-tech">
+      <div class="section-label">Teknologi Yang Kami Gunakan</div>
+      <div class="tech-grid">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Tailwind CSS</span>
+        <span class="tech-tag">Laravel</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Supabase</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">WhatsApp API</span>
+        <span class="tech-tag">Google Cloud</span>
+      </div>
+    </div>
+
+    <!-- Packages -->
+    <div class="p2-packages">
+      <div class="section-label">Paket Layanan</div>
+      <table class="pkg-table">
+        <thead>
+          <tr>
+            <th>Paket</th>
+            <th>Harga</th>
+            <th>Timeline</th>
+            <th>Cocok Untuk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pkg-name">Landing Page</td>
+            <td class="pkg-price">Rp 750rb</td>
+            <td class="pkg-detail">5–7 hari</td>
+            <td class="pkg-detail">UMKM, bisnis lokal, klinik</td>
+          </tr>
+          <tr class="pkg-highlight">
+            <td class="pkg-name">Paket Go Digital <span class="pkg-badge">Best Value</span></td>
+            <td class="pkg-price">Rp 2.5 Jt</td>
+            <td class="pkg-detail">7–14 hari</td>
+            <td class="pkg-detail">Bisnis yang ingin go digital lengkap</td>
+          </tr>
+          <tr>
+            <td class="pkg-name">Custom Web App</td>
+            <td class="pkg-price">Rp 3 Jt+</td>
+            <td class="pkg-detail">2–8 minggu</td>
+            <td class="pkg-detail">Perusahaan, instansi, startup</td>
+          </tr>
+          <tr>
+            <td class="pkg-name">Maintenance</td>
+            <td class="pkg-price">Rp 500rb/bln</td>
+            <td class="pkg-detail">Ongoing</td>
+            <td class="pkg-detail">Semua klien existing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="p2-contact">
+      <div>
+        <h3>Siap Go Digital?</h3>
+        <p>Konsultasi gratis. Ceritakan kebutuhan bisnis Anda,<br>estimasi dalam 24 jam.</p>
+        <div class="p2-contact-info">
+          <div class="p2-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            WhatsApp: 0857-7182-6637
+          </div>
+          <div class="p2-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            surupan.tech
+          </div>
+          <div class="p2-contact-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            halo@surupan.tech
+          </div>
+        </div>
+      </div>
+      <div class="p2-contact-right">
+        <div class="qr-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#0A2463" stroke-width="2.5">
+            <rect x="5" y="5" width="24" height="24" rx="2"/>
+            <rect x="10" y="10" width="14" height="14" rx="1" fill="#0A2463"/>
+            <rect x="71" y="5" width="24" height="24" rx="2"/>
+            <rect x="76" y="10" width="14" height="14" rx="1" fill="#0A2463"/>
+            <rect x="5" y="71" width="24" height="24" rx="2"/>
+            <rect x="10" y="76" width="14" height="14" rx="1" fill="#0A2463"/>
+            <rect x="38" y="8" width="5" height="5" fill="#0A2463"/><rect x="50" y="8" width="5" height="5" fill="#0A2463"/>
+            <rect x="38" y="20" width="5" height="5" fill="#0A2463"/>
+            <rect x="8" y="38" width="5" height="5" fill="#0A2463"/><rect x="20" y="38" width="5" height="5" fill="#0A2463"/>
+            <rect x="38" y="38" width="5" height="5" fill="#0A2463"/><rect x="50" y="38" width="5" height="5" fill="#0A2463"/>
+            <rect x="62" y="38" width="5" height="5" fill="#0A2463"/><rect x="78" y="38" width="5" height="5" fill="#0A2463"/>
+            <rect x="8" y="50" width="5" height="5" fill="#0A2463"/><rect x="38" y="50" width="5" height="5" fill="#0A2463"/>
+            <rect x="62" y="50" width="5" height="5" fill="#0A2463"/><rect x="80" y="50" width="5" height="5" fill="#0A2463"/>
+            <rect x="38" y="62" width="5" height="5" fill="#0A2463"/><rect x="50" y="62" width="5" height="5" fill="#0A2463"/>
+            <rect x="78" y="62" width="5" height="5" fill="#0A2463"/>
+            <rect x="38" y="78" width="5" height="5" fill="#0A2463"/><rect x="50" y="78" width="5" height="5" fill="#0A2463"/>
+            <rect x="62" y="78" width="5" height="5" fill="#0A2463"/><rect x="78" y="78" width="5" height="5" fill="#0A2463"/>
+            <rect x="38" y="88" width="5" height="5" fill="#0A2463"/><rect x="62" y="88" width="5" height="5" fill="#0A2463"/>
+            <rect x="80" y="88" width="5" height="5" fill="#0A2463"/>
+          </svg>
+        </div>
+        <div class="p2-contact-right-text">Scan untuk chat<br>WhatsApp langsung</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
