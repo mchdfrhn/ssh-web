@@ -269,15 +269,16 @@ function ProjectCard({
           {project.year}
         </span>
 
-        {/* View gallery overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-root)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--border-strong)] backdrop-blur-sm border border-[var(--border-strong)]">
-            <Monitor size={14} className="text-[var(--text-primary)]" />
-            <span className="text-[12px] font-medium text-[var(--text-primary)]">
-              Lihat Galeri
-            </span>
+        {project.gallery && project.gallery.length > 0 ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-root)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--border-strong)] backdrop-blur-sm border border-[var(--border-strong)]">
+              <Monitor size={14} className="text-[var(--text-primary)]" />
+              <span className="text-[12px] font-medium text-[var(--text-primary)]">
+                Lihat Galeri
+              </span>
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       {/* Content */}
