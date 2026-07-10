@@ -149,23 +149,33 @@ function ArticleModal({
   article: Article;
   onClose: () => void;
 }) {
+  // Lock body scroll when modal is open
+  if (typeof document !== "undefined") {
+    document.body.style.overflow = "hidden";
+  }
+
+  const handleClose = () => {
+    document.body.style.overflow = "";
+    onClose();
+  };
+
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex items-start justify-center bg-[var(--bg-root)]/95 backdrop-blur-xl overflow-y-auto"
+      className="fixed inset-0 z-[9999] flex items-start justify-center bg-[var(--bg-root)]/95 backdrop-blur-xl overflow-y-auto cursor-default"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { onComplete: () => { document.body.style.overflow = ""; } } }}
       transition={{ duration: 0.25 }}
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-[720px] mx-4 my-8 md:my-16"
+        className="relative w-full max-w-[720px] mx-4 my-8 md:my-16 cursor-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close */}
         <button
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute -top-2 right-0 w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
         >
           <X size={16} />
