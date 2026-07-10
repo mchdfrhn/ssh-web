@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import SSHLogo from "./SSHLogo";
@@ -21,6 +22,41 @@ const industryLinks = [
 ];
 
 const sections = ["services", "portfolio", "pricing", "blog", "contact"];
+
+/* Portal-based dropdown — escapes nav's backdrop-filter stacking context */
+function DropdownPortal({
+  buttonRef,
+  onMouseLeave,
+  children,
+}: {
+  buttonRef: React.RefObject<HTMLDivElement | null>;
+  onMouseLeave: () => void;
+  children: React.ReactNode;
+}) {
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setPos({ top: rect.bottom + 4, left: rect.left });
+    }
+  }, [buttonRef]);
+
+  return createPortal(
+    <motion.div
+      style={{ position: "fixed", top: pos.top, left: pos.left }}
+      className="w-52 rounded-xl bg-[var(--bg-root)]/90 backdrop-blur-xl border border-[var(--border-default)] shadow-xl shadow-[var(--border-subtle)] overflow-hidden z-[9999]"
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.15 }}
+      onMouseLeave={onMouseLeave}
+    >
+      {children}
+    </motion.div>,
+    document.body
+  );
+}
 
 const Navbar = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -187,14 +223,7 @@ const Navbar = () => {
 
               <AnimatePresence>
                 {dropdownOpen && (
-                  <motion.div
-                    className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-[var(--bg-root)]/90 backdrop-blur-xl border border-[var(--border-default)] shadow-xl shadow-[var(--border-subtle)] overflow-hidden z-[9999] [transform:translateZ(0)]"
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.15 }}
-                    onMouseLeave={() => setDropdownOpen(false)}
-                  >
+                  <DropdownPortal buttonRef={dropdownRef} onMouseLeave={() => setDropdownOpen(false)}>
                     {industryLinks.map((item) => (
                       <Link
                         key={item.to}
@@ -213,7 +242,7 @@ const Navbar = () => {
                     >
                       📦 Template Library
                     </Link>
-                  </motion.div>
+                  </DropdownPortal>
                 )}
               </AnimatePresence>
             </div>
