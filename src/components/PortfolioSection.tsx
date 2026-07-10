@@ -243,7 +243,7 @@ function ProjectCard({
   return (
     <motion.article
       onClick={handleClick}
-      className="group relative rounded-xl overflow-hidden glass-card cursor-pointer flex flex-col h-full"
+      className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer flex flex-col h-full"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
