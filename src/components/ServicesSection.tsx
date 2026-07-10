@@ -97,8 +97,10 @@ const ServicesSection = () => (
 
               <div className="relative z-10 p-6 md:p-7 flex-1 flex flex-col">
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-[var(--accent)]/[0.06] border border-[var(--accent)]/[0.10] flex items-center justify-center">
-                    <Icon size={18} className="text-[var(--accent-bright)]" />
+                  <div className="relative w-10 h-10 flex items-center justify-center">
+                    <div className="absolute w-8 h-8 rounded-full bg-[var(--accent)]/[0.10]" />
+                    <Icon size={18} className="relative z-10 text-[var(--accent-bright)]" />
+                    <div className="absolute top-0.5 right-1 w-1.5 h-1.5 rounded-full bg-[var(--accent-bright)]" />
                   </div>
                   {svc.popular && (
                     <span className="text-[10px] font-semibold text-[var(--accent-bright)] bg-[var(--accent)]/[0.10] px-2 py-0.5 rounded-md uppercase tracking-wider">
