@@ -166,7 +166,7 @@ function ArticleModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute -top-2 right-0 w-9 h-9 flex items-center justify-center rounded-lg bg-white/[0.06] border border-white/[0.08] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10] transition-all"
+          className="absolute -top-2 right-0 w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
         >
           <X size={16} />
         </button>
@@ -188,7 +188,7 @@ function ArticleModal({
         </div>
 
         {/* Content */}
-        <article className="prose prose-invert prose-sm max-w-none prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)] prose-a:text-[var(--accent-bright)] prose-hr:border-white/[0.06] prose-li:text-[var(--text-secondary)]">
+        <article className="prose prose-invert prose-sm max-w-none prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)] prose-a:text-[var(--accent-bright)] prose-hr:border-[var(--border-default)] prose-li:text-[var(--text-secondary)]">
           {article.content.split("\n").map((line, i) => {
             if (line.startsWith("## ")) {
               return (
@@ -205,7 +205,7 @@ function ArticleModal({
               );
             }
             if (line.startsWith("---")) {
-              return <hr key={i} className="my-8 border-white/[0.06]" />;
+              return <hr key={i} className="my-8 border-[var(--border-default)]" />;
             }
             if (line.startsWith("- ")) {
               return (
@@ -236,7 +236,7 @@ function ArticleModal({
         </article>
 
         {/* CTA */}
-        <div className="mt-10 p-6 rounded-xl bg-white/[0.02] border border-white/[0.06] text-center">
+        <div className="mt-10 p-6 rounded-xl glass-card text-center">
           <p className="text-[14px] text-[var(--text-secondary)] mb-4">
             Butuh bantuan untuk bisnis Anda?
           </p>
@@ -263,7 +263,7 @@ const BlogSection = () => {
   return (
     <>
       <section id="blog" className="relative py-24 md:py-32">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
         <div className="max-w-[1200px] mx-auto px-6">
           {/* Header */}
@@ -291,7 +291,7 @@ const BlogSection = () => {
             {articles.map((article, i) => (
               <motion.article
                 key={article.id}
-                className="group relative flex flex-col rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all cursor-pointer"
+                className="group relative flex flex-col rounded-xl glass-card transition-all cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}

@@ -81,7 +81,7 @@ const ServicesSection = () => (
           return (
             <motion.div
               key={i}
-              className={`glow-card group relative flex flex-col rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.10] transition-all ${svc.span}`}
+              className={`glow-card group relative flex flex-col rounded-xl glass-card transition-all ${svc.span}`}
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -116,7 +116,7 @@ const ServicesSection = () => (
                   {svc.features.map((f) => (
                     <span
                       key={f}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[var(--text-secondary)] bg-white/[0.03] border border-white/[0.04] rounded-md"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[var(--text-secondary)] bg-[var(--border-subtle)] border border-[var(--border-subtle)] rounded-md"
                     >
                       <Check size={10} className="text-[var(--accent-bright)]" />
                       {f}
@@ -124,7 +124,7 @@ const ServicesSection = () => (
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-white/[0.04]">
+                <div className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
                   <span className="text-[14px] font-semibold text-[var(--text-primary)]">{svc.price}</span>
                   <a
                     href="#contact"
@@ -152,7 +152,7 @@ const ServicesSection = () => (
           return (
             <div
               key={cap.label}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.02] border border-white/[0.04] text-[11px] font-medium text-[var(--text-ghost)] hover:text-[var(--text-muted)] hover:border-white/[0.08] transition-all cursor-default"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--border-subtle)] border border-[var(--border-subtle)] text-[11px] font-medium text-[var(--text-ghost)] hover:text-[var(--text-muted)] hover:border-[var(--border-default)] transition-all cursor-default"
             >
               <Icon size={12} className="text-[var(--text-ghost)]" />
               {cap.label}

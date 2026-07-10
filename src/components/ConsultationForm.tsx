@@ -59,17 +59,18 @@ const ConsultationForm = () => {
   };
 
   // ── Input base — dark glass style ──
-  const inputCls = "w-full h-10 px-3 bg-white/[0.03] border border-white/[0.06] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] placeholder:text-[var(--text-ghost)] rounded-lg text-[13px] outline-none transition-all";
+  const inputCls = "w-full h-11 px-3 bg-[var(--bg-root)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] placeholder:text-[var(--text-ghost)] rounded-lg text-[14px] outline-none transition-all shadow-inner shadow-[var(--border-subtle)]";
 
   // ── Select base — dark glass + custom chevron ──
-  const selectCls = "w-full h-10 pl-3 pr-9 bg-white/[0.03] border border-white/[0.06] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] rounded-lg text-[13px] outline-none transition-all appearance-none cursor-pointer";
+  const selectCls = "w-full h-11 pl-3 pr-9 bg-[var(--bg-root)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] rounded-lg text-[14px] outline-none transition-all appearance-none cursor-pointer shadow-inner shadow-[var(--border-subtle)]";
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
       {/* Ambient orb */}
-      <div className="floating-orb w-[400px] h-[400px] bg-[var(--accent)]/[0.04] bottom-0 right-0" aria-hidden="true" />
+      <motion.div
+        className="floating-orb w-[400px] h-[400px] bg-[var(--accent)]/[0.03] bottom-0 right-0" aria-hidden="true" />
 
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Header — LEFT aligned */}
@@ -125,9 +126,9 @@ const ConsultationForm = () => {
                     onChange={(e) => setForm({ ...form, businessType: e.target.value })}
                     className={selectCls}
                   >
-                    <option value="" disabled className="bg-[#0f1011] text-[var(--text-ghost)]">Pilih jenis bisnis</option>
+                    <option value="" disabled className="bg-[var(--bg-surface)] text-[var(--text-ghost)]">Pilih jenis bisnis</option>
                     {businessTypes.map((bt) => (
-                      <option key={bt} value={bt} className="bg-[#0f1011] text-[var(--text-primary)]">{bt}</option>
+                      <option key={bt} value={bt} className="bg-[var(--bg-surface)] text-[var(--text-primary)]">{bt}</option>
                     ))}
                   </select>
                   <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-ghost)] pointer-events-none" />
@@ -146,7 +147,7 @@ const ConsultationForm = () => {
                     className={`px-3 py-1.5 text-[12px] font-medium rounded-lg border transition-all ${
                       form.services.includes(svc)
                         ? "bg-[var(--accent)]/[0.12] border-[var(--accent)]/30 text-[var(--accent-bright)]"
-                        : "bg-white/[0.02] border-white/[0.06] text-[var(--text-muted)] hover:border-white/[0.10]"
+                        : "bg-[var(--border-subtle)] border-[var(--border-default)] text-[var(--text-muted)] hover:border-[var(--border-strong)]"
                     }`}
                   >
                     {svc}
@@ -166,7 +167,7 @@ const ConsultationForm = () => {
                     className={`px-3 py-1.5 text-[11px] font-medium rounded-lg border transition-all text-center ${
                       form.budget === b
                         ? "bg-[var(--accent)]/[0.12] border-[var(--accent)]/30 text-[var(--accent-bright)]"
-                        : "bg-white/[0.02] border-white/[0.06] text-[var(--text-muted)] hover:border-white/[0.10]"
+                        : "bg-[var(--border-subtle)] border-[var(--border-default)] text-[var(--text-muted)] hover:border-[var(--border-strong)]"
                     }`}
                   >
                     {b}
@@ -209,7 +210,7 @@ const ConsultationForm = () => {
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             <div className="sticky top-24 space-y-4">
-              <div className="rounded-xl bg-white/[0.02] border border-white/[0.06] p-5">
+              <div className="rounded-xl glass-card p-5">
                 <h3 className="text-[13px] font-semibold text-[var(--text-primary)] mb-4">Yang Anda Dapatkan</h3>
                 <ul className="space-y-3.5">
                   {benefits.map((b, i) => {
@@ -226,7 +227,7 @@ const ConsultationForm = () => {
                 </ul>
               </div>
 
-              <div className="rounded-xl bg-[var(--accent)]/[0.03] border border-[var(--accent)]/[0.08] p-5">
+              <div className="rounded-xl bg-[var(--accent)]/[0.05] border border-[var(--accent)]/[0.12] p-5">
                 <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed italic">
                   &ldquo;SSH membantu kami membangun sistem akademik yang
                   mengurangi beban admin hingga 60%. Prosesnya transparan dan
@@ -241,7 +242,7 @@ const ConsultationForm = () => {
                 href="https://wa.me/6285771826637"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all group"
+                className="flex items-center gap-3 p-4 rounded-xl glass-card transition-all group"
               >
                 <div className="w-10 h-10 rounded-lg bg-[var(--success)]/10 flex items-center justify-center">
                   <MessageSquare size={18} className="text-[var(--success)]" />

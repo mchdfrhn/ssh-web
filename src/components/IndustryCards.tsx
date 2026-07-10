@@ -139,6 +139,7 @@ const industries = [
     to: "/industri/fnb",
     accent: "text-orange-400",
     Mockup: FnBMockup,
+    thumbnail: "/templates/fnb-modern.webp",
   },
   {
     name: "Klinik & Kesehatan",
@@ -201,11 +202,15 @@ const IndustryCards = () => (
             >
               <Link
                 to={ind.to}
-                className="group block relative rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-all overflow-hidden"
+                className="group block relative rounded-xl glass-card transition-all overflow-hidden"
               >
                 {/* Website mockup thumbnail */}
                 <div className="relative h-36 overflow-hidden">
-                  <Mockup />
+                  {ind.thumbnail ? (
+                    <img src={ind.thumbnail} alt={ind.name} className="w-full h-full object-cover object-top" loading="lazy" />
+                  ) : (
+                    <Mockup />
+                  )}
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                 </div>

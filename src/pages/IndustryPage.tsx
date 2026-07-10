@@ -125,7 +125,7 @@ function IndustryHero({ config }: { config: IndustryConfig }) {
           </a>
           <a
             href="#solutions"
-            className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.12] text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-lg transition-all"
+            className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-[var(--bg-surface)] border border-[var(--border-default)] hover:bg-[var(--bg-surface)] hover:border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-lg transition-all"
           >
             Lihat Solusi
           </a>
@@ -159,7 +159,7 @@ function PainPoints({ points }: { points: string[] }) {
           {points.map((point, i) => (
             <motion.div
               key={i}
-              className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all"
+              className="flex items-start gap-4 p-4 rounded-xl glass-card transition-all"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
@@ -188,7 +188,7 @@ function Solutions({
 }) {
   return (
     <section id="solutions" className="relative py-20 md:py-24">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
@@ -212,7 +212,7 @@ function Solutions({
             return (
               <motion.div
                 key={i}
-                className="glow-card group relative flex flex-col rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.10] transition-all"
+                className="glow-card group relative flex flex-col rounded-xl glass-card transition-all"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
@@ -242,7 +242,7 @@ function Solutions({
                     {svc.features.map((f) => (
                       <span
                         key={f}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[var(--text-secondary)] bg-white/[0.03] border border-white/[0.04] rounded-md"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[var(--text-secondary)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-md"
                       >
                         <Check size={10} className="text-[var(--accent-bright)]" />
                         {f}
@@ -263,11 +263,11 @@ function Solutions({
 function CaseStudy({ caseStudy }: { caseStudy: IndustryConfig["caseStudy"] }) {
   return (
     <section className="relative py-20 md:py-24">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
-          className="relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/[0.06] p-8 md:p-12"
+          className="relative overflow-hidden rounded-2xl glass-card p-8 md:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -345,7 +345,7 @@ function Testimonial({
 function IndustryCTA({ config }: { config: IndustryConfig }) {
   return (
     <section className="relative py-20 md:py-24">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
       <div className="max-w-[720px] mx-auto px-6 text-center">
         <motion.div
@@ -376,7 +376,7 @@ function IndustryCTA({ config }: { config: IndustryConfig }) {
             </a>
             <Link
               to="/"
-              className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-white/[0.12] text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-lg transition-all"
+              className="inline-flex items-center gap-2.5 h-11 px-7 text-[13px] font-medium bg-[var(--bg-surface)] border border-[var(--border-default)] hover:bg-[var(--bg-surface)] hover:border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] rounded-lg transition-all"
             >
               Lihat Semua Layanan
             </Link>

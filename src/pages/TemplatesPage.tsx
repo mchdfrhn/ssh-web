@@ -333,7 +333,7 @@ const TemplatesPage = () => (
             {categories.map((cat) => (
               <span
                 key={cat}
-                className="px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.06] text-[11px] font-medium text-[var(--text-muted)] cursor-default"
+                className="px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-default)] text-[11px] font-medium text-[var(--text-muted)] cursor-default"
               >
                 {cat}
               </span>
@@ -349,7 +349,7 @@ const TemplatesPage = () => (
             {templates.map((tpl, i) => (
               <motion.div
                 key={tpl.id}
-                className="group relative flex flex-col rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all overflow-hidden"
+                className="group relative flex flex-col rounded-xl glass-card transition-all overflow-hidden"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
@@ -385,7 +385,7 @@ const TemplatesPage = () => (
                     {tpl.features.map((f) => (
                       <span
                         key={f}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium text-[var(--text-ghost)] bg-white/[0.03] border border-white/[0.04] rounded-md"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium text-[var(--text-ghost)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-md"
                       >
                         <Check size={8} className="text-[var(--accent-bright)]" />
                         {f}
@@ -393,7 +393,7 @@ const TemplatesPage = () => (
                     ))}
                   </div>
 
-                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-white/[0.04]">
+                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-[var(--border-subtle)]">
                     <div>
                       <span className="text-[14px] font-semibold text-[var(--text-primary)]">
                         {tpl.price}

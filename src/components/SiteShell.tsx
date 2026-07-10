@@ -51,7 +51,7 @@ function CustomCursor() {
     const onOut = () => {
       ring.style.width = "28px";
       ring.style.height = "28px";
-      ring.style.borderColor = "rgba(255,255,255,0.15)";
+      ring.style.borderColor = "var(--border-strong)";
       ring.style.opacity = "0.4";
     };
     let raf: number;
@@ -84,7 +84,7 @@ function CustomCursor() {
       />
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-[28px] h-[28px] rounded-full border border-white/[0.15] pointer-events-none z-[9998] will-change-transform transition-[width,height,border-color,opacity] duration-200"
+        className="fixed top-0 left-0 w-[28px] h-[28px] rounded-full border border-[var(--border-default)] pointer-events-none z-[9998] will-change-transform transition-[width,height,border-color,opacity] duration-200"
         style={{ opacity: 0.4 }}
       />
     </div>

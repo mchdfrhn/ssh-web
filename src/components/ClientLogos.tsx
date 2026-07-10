@@ -18,7 +18,7 @@ const clients = [
 ];
 
 const ClientLogos = () => (
-  <section className="relative py-10 border-y border-white/[0.04]">
+  <section className="relative py-10 border-y border-[var(--border-subtle)]">
     <div className="max-w-[1200px] mx-auto px-6">
       <motion.p
         className="text-center text-[11px] font-medium text-[var(--text-ghost)] uppercase tracking-[0.2em] mb-8"

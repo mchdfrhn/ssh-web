@@ -65,7 +65,7 @@ const projects = [
     type: "Premium Clinic & Beauty",
     image: "/portfolio/huora-beauty/cover.png",
     fallbackImage: "/portfolio/huora-beauty/cover.png",
-    desc: "Problem: Klinik kecantikan premium kesulitan menampilkan image 'luxury' di digital dan konversi booking via WhatsApp kurang mulus. Solusi: Premium landing page dengan desain elegan (dark mode only), animasi fluid, dan flow CTA WhatsApp terintegrasi langsung. Result: Meningkatkan brand perception dan mempermudah janji temu pasien premium.",
+    desc: "Landing page premium elegan (dark mode only) dengan animasi fluid dan konversi booking WhatsApp yang terintegrasi langsung untuk klien VIP.",
     metric: "Premium Brand Image",
     tech: ["Next.js", "Tailwind CSS", "Vercel"],
     year: "2026",

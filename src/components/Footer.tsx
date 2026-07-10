@@ -18,7 +18,7 @@ const links = {
 };
 
 const Footer = () => (
-  <footer className="relative border-t border-white/[0.06]">
+  <footer className="relative border-t border-[var(--border-default)]">
     <div className="max-w-[1200px] mx-auto px-6 py-16">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
         {/* Brand */}
@@ -101,7 +101,7 @@ const Footer = () => (
               href="https://www.linkedin.com/company/surupan-software-house"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"
+              className="w-8 h-8 rounded-md bg-[var(--border-subtle)] border border-[var(--border-default)] flex items-center justify-center hover:border-[var(--border-strong)] transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin size={14} className="text-[var(--text-muted)]" />
@@ -110,7 +110,7 @@ const Footer = () => (
               href="https://www.instagram.com/surupansh"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-md bg-white/[0.03] border border-white/[0.06] flex items-center justify-center hover:border-white/[0.10] transition-colors"
+              className="w-8 h-8 rounded-md bg-[var(--border-subtle)] border border-[var(--border-default)] flex items-center justify-center hover:border-[var(--border-strong)] transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={14} className="text-[var(--text-muted)]" />
@@ -120,7 +120,7 @@ const Footer = () => (
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="mt-12 pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-[12px] text-[var(--text-ghost)]">
           &copy; {new Date().getFullYear()} Surupan Software House. All rights reserved.
         </p>

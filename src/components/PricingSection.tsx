@@ -63,7 +63,7 @@ const cardVariants = {
 
 const PricingSection = () => (
   <section id="pricing" className="relative py-24 md:py-32">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
     <div className="max-w-[1100px] mx-auto px-6">
       {/* Header — centered */}
@@ -89,8 +89,8 @@ const PricingSection = () => (
             key={i}
             className={`relative flex flex-col rounded-xl overflow-hidden transition-all ${
               plan.popular
-                ? "gradient-border bg-white/[0.04] shadow-lg shadow-[var(--accent)]/[0.08]"
-                : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10]"
+                ? "gradient-border bg-[var(--border-default)] shadow-lg shadow-[var(--accent)]/[0.08]"
+                : "glass-card"
             }`}
             variants={cardVariants}
             initial="hidden"
@@ -139,7 +139,7 @@ const PricingSection = () => (
                 className={`inline-flex items-center justify-center gap-2 h-10 text-[13px] font-medium rounded-lg transition-all ${
                   plan.popular
                     ? "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-lg shadow-[var(--accent)]/20"
-                    : "bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.12] text-[var(--text-primary)]"
+                    : "bg-[var(--border-default)] border border-[var(--border-strong)] hover:bg-[var(--border-strong)] hover:border-[var(--border-strong)] text-[var(--text-primary)]"
                 }`}
               >
                 {plan.cta}

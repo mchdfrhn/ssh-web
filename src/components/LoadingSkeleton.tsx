@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 const ShimmerBar = ({ className }: { className?: string }) => (
   <div
-    className={`animate-shimmer rounded-md bg-white/[0.04] ${className ?? ""}`}
+    className={`animate-shimmer rounded-md bg-[var(--border-subtle)] ${className ?? ""}`}
     style={{
       backgroundImage: "linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent)",
       backgroundSize: "200% 100%",
@@ -45,7 +45,7 @@ const LoadingSkeleton = () => (
     {/* Stats skeleton */}
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20">
       {[...Array(4)].map((_, i) => (
-        <div key={i} className="p-4 rounded-xl border border-white/[0.04]">
+        <div key={i} className="p-4 rounded-xl border border-[var(--border-subtle)]">
           <ShimmerBar className="w-10 h-10 rounded-lg mb-3" />
           <ShimmerBar className="w-16 h-7 mb-2" />
           <ShimmerBar className="w-24 h-3" />
@@ -56,7 +56,7 @@ const LoadingSkeleton = () => (
     {/* Cards skeleton */}
     <div className="grid md:grid-cols-3 gap-4 mt-16">
       {[...Array(3)].map((_, i) => (
-        <div key={i} className="p-5 rounded-xl border border-white/[0.04]">
+        <div key={i} className="p-5 rounded-xl border border-[var(--border-subtle)]">
           <ShimmerBar className="w-12 h-12 rounded-xl mb-4" />
           <ShimmerBar className="w-32 h-5 mb-3" />
           <ShimmerBar className="w-full h-3 mb-2" />

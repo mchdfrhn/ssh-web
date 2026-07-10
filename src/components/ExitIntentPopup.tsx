@@ -87,12 +87,12 @@ const ExitIntentPopup = () => {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
-            <div className="relative rounded-2xl border border-white/[0.08] bg-[var(--bg-surface)] p-8 shadow-2xl shadow-black/50">
+            <div className="relative rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-surface)] p-8 shadow-2xl shadow-black/50">
               {/* Close button */}
               <button
                 type="button"
                 onClick={handleDismiss}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg bg-white/[0.04] border border-white/[0.06] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/[0.08] transition-all"
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg bg-[var(--border-subtle)] border border-[var(--border-default)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
                 aria-label="Close popup"
               >
                 <X size={14} />
@@ -122,7 +122,7 @@ const ExitIntentPopup = () => {
                   <button
                     type="button"
                     onClick={handleDismiss}
-                    className="flex-1 h-11 px-6 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.06] rounded-xl transition-all"
+                    className="flex-1 h-11 px-6 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)] bg-[var(--border-subtle)] border border-[var(--border-default)] hover:bg-[var(--border-default)] rounded-xl transition-all"
                   >
                     Nanti Saja
                   </button>

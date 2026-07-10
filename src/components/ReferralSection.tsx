@@ -3,11 +3,11 @@ import { Gift, Users, ArrowRight, Percent } from "lucide-react";
 
 const ReferralSection = () => (
   <section className="relative py-20 md:py-24">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
     <div className="max-w-[1200px] mx-auto px-6">
       <motion.div
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--accent)]/[0.08] via-white/[0.02] to-[var(--accent-bright)]/[0.05] border border-[var(--accent)]/[0.12] p-8 md:p-12"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[var(--accent)]/[0.08] via-[var(--border-subtle)] to-[var(--accent-bright)]/[0.05] border border-[var(--accent)]/[0.12] p-8 md:p-12"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -26,7 +26,7 @@ const ReferralSection = () => (
 
         <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
           {/* Left — Content */}
-          <div>
+          <div className="relative z-10">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-[var(--accent)]/[0.12] border border-[var(--accent)]/[0.20] flex items-center justify-center">
                 <Gift size={18} className="text-[var(--accent-bright)]" />
@@ -89,7 +89,7 @@ const ReferralSection = () => (
           <div className="flex justify-center">
             <div className="relative">
               {/* Card mockup */}
-              <div className="w-64 p-6 rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm">
+              <div className="w-64 p-6 rounded-xl bg-[var(--border-subtle)] border border-[var(--border-default)] backdrop-blur-md shadow-xl shadow-[var(--border-subtle)]">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-[var(--accent)]/[0.15] flex items-center justify-center text-[14px] font-bold text-[var(--accent-bright)]">
                     A
@@ -103,7 +103,7 @@ const ReferralSection = () => (
                     </p>
                   </div>
                 </div>
-                <div className="w-full h-px bg-white/[0.06] my-3" />
+                <div className="w-full h-px bg-[var(--border-default)] my-3" />
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-[var(--accent-bright)]/[0.15] flex items-center justify-center text-[14px] font-bold text-[var(--accent-bright)]">
                     B

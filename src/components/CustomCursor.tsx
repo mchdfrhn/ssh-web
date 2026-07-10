@@ -72,7 +72,7 @@ const CustomCursor = () => {
       />
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-[28px] h-[28px] rounded-full border border-white/[0.15] pointer-events-none z-[9998] will-change-transform transition-[width,height,border-color,opacity] duration-200"
+        className="fixed top-0 left-0 w-[28px] h-[28px] rounded-full border border-[var(--border-strong)] pointer-events-none z-[9998] will-change-transform transition-[width,height,border-color,opacity] duration-200"
         style={{ opacity: 0.4 }}
       />
     </div>

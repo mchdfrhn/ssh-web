@@ -38,7 +38,7 @@ const fadeUp = {
 };
 
 const ProcessSection = () => (
-  <section className="relative py-24 md:py-32 border-y border-white/[0.04]">
+  <section className="relative py-24 md:py-32 border-y border-[var(--border-subtle)]">
     <div className="max-w-[1200px] mx-auto px-6">
       {/* Header — centered */}
       <motion.div
@@ -72,13 +72,13 @@ const ProcessSection = () => (
             >
               {/* Connector line (desktop) */}
               {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-5 left-[calc(50%+32px)] right-[-4px] h-px bg-gradient-to-r from-white/[0.08] to-white/[0.02]" />
+                <div className="hidden md:block absolute top-5 left-[calc(50%+32px)] right-[-4px] h-px bg-gradient-to-r from-[var(--border-default)] to-[var(--border-subtle)]" />
               )}
 
               <div className="flex md:flex-col items-start md:items-center md:text-center gap-4 md:gap-0">
                 {/* Step number + icon */}
                 <div className="relative shrink-0">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center group-hover:border-[var(--accent)]/[0.20] group-hover:bg-[var(--accent)]/[0.06] transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--border-subtle)] border border-[var(--border-default)] flex items-center justify-center group-hover:border-[var(--accent)]/[0.20] group-hover:bg-[var(--accent)]/[0.06] transition-all">
                     <Icon size={18} className="text-[var(--text-muted)] group-hover:text-[var(--accent-bright)] transition-colors" />
                   </div>
                   <span className="absolute -top-2 -right-2 text-[9px] font-bold text-[var(--text-ghost)] bg-[var(--bg-root)] px-1">

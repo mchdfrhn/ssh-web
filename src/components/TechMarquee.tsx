@@ -31,7 +31,7 @@ const TechItem = ({ tech, isDup }: { tech: typeof techs[number]; isDup?: boolean
 );
 
 const TechMarquee = () => (
-  <section className="relative py-5 border-y border-white/[0.04] overflow-hidden">
+  <section className="relative py-5 border-y border-[var(--border-subtle)] overflow-hidden">
     <div className="marquee-track">
       {techs.map((tech) => (
         <TechItem key={tech.slug} tech={tech} />

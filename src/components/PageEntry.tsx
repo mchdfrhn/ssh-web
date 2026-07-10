@@ -37,7 +37,7 @@ const PageEntry = ({ children }: { children: React.ReactNode }) => {
                 />
               </div>
               {/* Loading bar */}
-              <div className="w-32 h-[2px] bg-white/[0.06] rounded-full overflow-hidden">
+              <div className="w-32 h-[2px] bg-[var(--border-default)] rounded-full overflow-hidden">
                 <motion.div
                   className="h-full bg-[var(--accent)] rounded-full"
                   initial={{ width: "0%" }}

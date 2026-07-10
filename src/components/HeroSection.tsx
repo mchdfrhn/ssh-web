@@ -22,13 +22,13 @@ const HeroSection = () => {
 
       {/* Floating decorative orbs */}
       <motion.div
-        className="floating-orb w-[400px] h-[400px] bg-[var(--accent)]/[0.07] top-[10%] left-[-5%]"
+        className="floating-orb w-[500px] h-[500px] bg-[var(--accent)]/[0.04] top-0 left-[-10%]"
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
       />
       <motion.div
-        className="floating-orb w-[300px] h-[300px] bg-purple-500/[0.05] bottom-[10%] right-[-3%]"
+        className="floating-orb w-[300px] h-[300px] bg-[var(--neon-violet)]/[0.03] bottom-[10%] right-[-3%]"
         animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
@@ -49,7 +49,7 @@ const HeroSection = () => {
       >
         {/* Overline badge */}
         <motion.div variants={fadeUp} className="mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.06] text-[12px] font-medium text-[var(--text-muted)] tracking-wide">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--border-subtle)] border border-[var(--border-default)] text-[12px] font-medium text-[var(--text-muted)] tracking-wide">
             <Sparkles size={13} className="text-[var(--accent-bright)]" />
             Dipercaya STTPU & Pusdatin Kementerian PUPR
           </span>
@@ -92,7 +92,7 @@ const HeroSection = () => {
           <a
             href="#portfolio"
             onClick={(e) => { e.preventDefault(); haptic("light"); scrollTo("#portfolio"); }}
-            className="inline-flex items-center gap-2 h-12 px-8 text-[14px] font-medium bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:border-white/[0.12] text-[var(--text-primary)] rounded-xl transition-all"
+            className="inline-flex items-center gap-2 h-12 px-8 text-[14px] font-medium bg-[var(--border-subtle)] border border-[var(--border-default)] hover:bg-[var(--border-default)] hover:border-[var(--border-strong)] text-[var(--text-primary)] rounded-xl transition-all"
           >
             Lihat Portofolio
           </a>
@@ -107,9 +107,9 @@ const HeroSection = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
             Response &lt; 2 jam
           </div>
-          <div className="w-px h-3 bg-white/[0.06]" />
+          <div className="w-px h-3 bg-[var(--border-default)]" />
           <div className="text-[12px] text-[var(--text-ghost)]">Free estimasi</div>
-          <div className="w-px h-3 bg-white/[0.06]" />
+          <div className="w-px h-3 bg-[var(--border-default)]" />
           <div className="text-[12px] text-[var(--text-ghost)]">Garansi 30 hari</div>
         </motion.div>
       </motion.div>

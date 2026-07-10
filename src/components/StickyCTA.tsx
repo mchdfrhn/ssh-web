@@ -45,7 +45,7 @@ const StickyCTA = () => {
           <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" />
 
           {/* Tooltip */}
-          <span className="absolute right-full mr-3 px-3 py-1.5 text-xs font-medium bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-lg border border-white/[0.06] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+          <span className="absolute right-full mr-3 px-3 py-1.5 text-xs font-medium bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-lg border border-[var(--border-default)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
             Chat Kami 💬
           </span>
         </motion.button>

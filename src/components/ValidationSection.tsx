@@ -58,7 +58,7 @@ const ValidationSection = () => (
           return (
             <motion.div
               key={i}
-              className="relative text-center p-6 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.08] transition-all group"
+              className="relative text-center p-6 rounded-xl glass-card transition-all group"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"

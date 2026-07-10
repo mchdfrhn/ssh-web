@@ -17,7 +17,7 @@ const BackToTop = () => {
         <motion.button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/[0.10] hover:border-white/[0.12] transition-all shadow-lg shadow-black/20"
+          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-xl bg-[var(--border-default)] border border-[var(--border-default)] backdrop-blur-sm flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] hover:border-[var(--border-strong)] transition-all shadow-lg shadow-black/5"
           initial={{ opacity: 0, y: 10, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.9 }}

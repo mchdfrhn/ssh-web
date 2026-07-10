@@ -42,7 +42,7 @@ const faqs = [
 ];
 
 const FAQItem = ({ q, a, isOpen, onClick }: { q: string; a: string; isOpen: boolean; onClick: () => void }) => (
-  <div className="border-b border-white/[0.04] last:border-0">
+  <div className="border-b border-[var(--border-subtle)] last:border-0">
     <button
       type="button"
       onClick={onClick}
@@ -80,7 +80,7 @@ const FAQSection = () => {
 
   return (
     <section className="relative py-24 md:py-32">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-px bg-gradient-to-r from-transparent via-[var(--border-default)] to-transparent" />
 
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
@@ -115,7 +115,7 @@ const FAQSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="rounded-xl bg-white/[0.02] border border-white/[0.06] p-6 md:p-8">
+            <div className="rounded-xl glass-card p-6 md:p-8">
               {faqs.map((faq, i) => (
                 <FAQItem
                   key={i}
