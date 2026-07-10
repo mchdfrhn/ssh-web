@@ -139,7 +139,6 @@ const industries = [
     to: "/industri/fnb",
     accent: "text-orange-400",
     Mockup: FnBMockup,
-    thumbnail: "/templates/fnb-modern.webp",
   },
   {
     name: "Klinik & Kesehatan",
