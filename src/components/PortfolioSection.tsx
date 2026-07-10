@@ -232,9 +232,17 @@ function ProjectCard({
   project: Project;
   onOpen: () => void;
 }) {
+  const handleClick = () => {
+    if (!project.gallery && project.link) {
+      window.open(project.link, "_blank", "noopener,noreferrer");
+    } else {
+      onOpen();
+    }
+  };
+
   return (
     <motion.article
-      onClick={onOpen}
+      onClick={handleClick}
       className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
@@ -304,17 +312,6 @@ function ProjectCard({
               </span>
             ))}
           </div>
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="shrink-0 text-[11px] font-medium text-[var(--text-primary)] hover:text-[var(--accent-bright)] transition-colors underline underline-offset-4 decoration-[var(--border-strong)] hover:decoration-[var(--accent-bright)]"
-            >
-              Lihat Live ↗
-            </a>
-          )}
         </div>
       </div>
     </motion.article>
