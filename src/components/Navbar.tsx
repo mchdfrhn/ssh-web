@@ -188,7 +188,7 @@ const Navbar = () => {
               <AnimatePresence>
                 {dropdownOpen && (
                   <motion.div
-                    className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-[var(--bg-root)]/95 backdrop-blur-xl border border-[var(--border-default)] shadow-xl shadow-[var(--border-subtle)] overflow-hidden z-[9999]"
+                    className="absolute top-full left-0 mt-1 w-52 rounded-xl bg-[var(--bg-root)]/90 backdrop-blur-xl border border-[var(--border-default)] shadow-xl shadow-[var(--border-subtle)] overflow-hidden z-[9999] [transform:translateZ(0)]"
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
