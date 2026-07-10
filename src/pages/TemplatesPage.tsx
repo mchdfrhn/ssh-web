@@ -155,7 +155,6 @@ const templates = [
     bg: "#1a1210",
     layout: "hero-grid" as const,
     accentColor: "text-orange-400",
-    thumbnail: "/templates/fnb-modern.webp",
   },
   {
     id: "fnb-elegant",
