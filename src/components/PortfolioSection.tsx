@@ -58,6 +58,19 @@ const projects = [
       { src: "/portfolio/sttpu-website/program-studi.jpeg", fallback: "/portfolio/sttpu-website/program-studi.jpeg", caption: "Program Studi Unggulan — Teknik Sipil, Lingkungan, Informatika" },
     ],
   },
+  {
+    id: "huora-beauty",
+    title: "Huora Beauty × Twenty Eight",
+    category: "Website",
+    type: "Premium Clinic & Beauty",
+    image: "/portfolio/huora-beauty/cover.png",
+    fallbackImage: "/portfolio/huora-beauty/cover.png",
+    desc: "Problem: Klinik kecantikan premium kesulitan menampilkan image 'luxury' di digital dan konversi booking via WhatsApp kurang mulus. Solusi: Premium landing page dengan desain elegan (dark mode only), animasi fluid, dan flow CTA WhatsApp terintegrasi langsung. Result: Meningkatkan brand perception dan mempermudah janji temu pasien premium.",
+    metric: "Premium Brand Image",
+    tech: ["Next.js", "Tailwind CSS", "Vercel"],
+    year: "2026",
+    link: "https://ssh-client-huora-beauty.vercel.app/",
+  },
 ];
 
 /* ── Gallery Modal ── */
@@ -115,7 +128,7 @@ function GalleryModal({
         <button
           type="button"
           onClick={onClose}
-          className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/[0.06] border border-white/[0.08] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10] transition-all"
+          className="w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
         >
           <X size={16} />
         </button>
@@ -156,7 +169,7 @@ function GalleryModal({
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-2 md:left-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.08] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10] transition-all"
+            className="absolute left-2 md:left-6 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--border-default)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
           >
             <ChevronLeft size={18} />
           </button>
@@ -165,7 +178,7 @@ function GalleryModal({
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-2 md:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.08] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/[0.10] transition-all"
+            className="absolute right-2 md:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--border-default)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
           >
             <ChevronRight size={18} />
           </button>
@@ -186,7 +199,7 @@ function GalleryModal({
               className={`w-16 h-10 rounded-md overflow-hidden border transition-all ${
                 i === idx
                   ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/30"
-                  : "border-white/[0.06] opacity-50 hover:opacity-80"
+                  : "border-[var(--border-default)] opacity-50 hover:opacity-80"
               }`}
             >
               <img
@@ -222,7 +235,7 @@ function ProjectCard({
   return (
     <motion.article
       onClick={onOpen}
-      className="group relative rounded-xl overflow-hidden bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-colors cursor-pointer"
+      className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
@@ -245,7 +258,7 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-root)] via-[var(--bg-root)]/20 to-transparent" />
 
         {/* Metric badge */}
-        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-root)]/70 backdrop-blur-sm border border-white/[0.06]">
+        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-root)]/70 backdrop-blur-sm border border-[var(--border-default)]">
           <TrendingUp size={11} className="text-[var(--success)]" />
           <span className="text-[10px] font-semibold text-[var(--success)]">
             {project.metric}
@@ -258,7 +271,7 @@ function ProjectCard({
 
         {/* View gallery overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-root)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.10] backdrop-blur-sm border border-white/[0.12]">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--border-strong)] backdrop-blur-sm border border-[var(--border-strong)]">
             <Monitor size={14} className="text-[var(--text-primary)]" />
             <span className="text-[12px] font-medium text-[var(--text-primary)]">
               Lihat Galeri
@@ -278,15 +291,29 @@ function ProjectCard({
         <p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-4">
           {project.desc}
         </p>
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="px-2 py-0.5 text-[10px] font-medium text-[var(--text-ghost)] bg-white/[0.03] border border-white/[0.04] rounded-md uppercase tracking-wider"
+        
+        <div className="flex items-center justify-between mt-auto">
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="px-2 py-0.5 text-[10px] font-medium text-[var(--text-ghost)] bg-[var(--border-subtle)] border border-[var(--border-subtle)] rounded-md uppercase tracking-wider"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="shrink-0 text-[11px] font-medium text-[var(--text-primary)] hover:text-[var(--accent-bright)] transition-colors underline underline-offset-4 decoration-[var(--border-strong)] hover:decoration-[var(--accent-bright)]"
             >
-              {t}
-            </span>
-          ))}
+              Lihat Live ↗
+            </a>
+          )}
         </div>
       </div>
     </motion.article>
@@ -332,8 +359,8 @@ const PortfolioSection = () => {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3.5 py-1.5 text-[12px] font-medium rounded-full transition-all duration-200 ${
                     activeCategory === cat
-                      ? "bg-white/[0.08] text-[var(--text-primary)] border border-white/[0.12]"
-                      : "bg-transparent text-[var(--text-muted)] border border-white/[0.04] hover:border-white/[0.08] hover:text-[var(--text-secondary)]"
+                      ? "bg-[var(--border-default)] text-[var(--text-primary)] border border-[var(--border-strong)]"
+                      : "bg-transparent text-[var(--text-muted)] border border-[var(--border-subtle)] hover:border-[var(--border-default)] hover:text-[var(--text-secondary)]"
                   }`}
                 >
                   {cat}
