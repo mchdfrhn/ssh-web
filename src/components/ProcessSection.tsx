@@ -81,7 +81,7 @@ const ProcessSection = () => (
                   <div className="w-10 h-10 rounded-xl bg-[var(--border-subtle)] border border-[var(--border-default)] flex items-center justify-center group-hover:border-[var(--accent)]/[0.20] group-hover:bg-[var(--accent)]/[0.06] transition-all">
                     <Icon size={18} className="text-[var(--text-muted)] group-hover:text-[var(--accent-bright)] transition-colors" />
                   </div>
-                  <span className="absolute -top-2 -right-2 text-[9px] font-bold text-[var(--text-ghost)] bg-[var(--bg-root)] px-1">
+                  <span className="absolute -top-2.5 -right-2.5 text-[9px] font-bold text-[var(--accent-bright)] bg-[var(--bg-root)] border border-[var(--border-default)] rounded-full w-5 h-5 flex items-center justify-center">
                     {step.num}
                   </span>
                 </div>
