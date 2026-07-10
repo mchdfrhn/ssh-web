@@ -41,7 +41,7 @@ const ClientLogos = () => (
             <img
               src={client.src}
               alt={client.alt}
-              className="h-full w-auto object-contain opacity-40 hover:opacity-70 transition-opacity duration-300"
+              className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
               loading="lazy"
               onError={(e) => {
                 const img = e.currentTarget;
