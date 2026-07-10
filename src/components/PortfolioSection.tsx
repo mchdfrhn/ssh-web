@@ -14,7 +14,7 @@ const projects = [
     type: "HR & Career Management",
     image: "/portfolio/dashboard-kepegawaian/cover.jpeg",
     fallbackImage: "/portfolio/dashboard-kepegawaian/cover.jpeg",
-    desc: "Problem: Data kepegawaian PUSDATIN tersebar di Excel & dokumen manual. Monitoring 140+ pegawai lambat dan rawan error. Solusi: Dashboard terpusat — statistik PNS/CPNS/PPPK/KI real-time, riwayat diklat EHRM, pelacakan masa kerja & grade tukin dalam satu layar. Result: Tim HR bisa generate laporan dalam 1 klik, bukan 2 hari.",
+    desc: "Dashboard terpusat yang menggantikan Excel manual — memantau 140+ pegawai real-time, riwayat diklat EHRM, masa kerja & grade tukin dalam satu layar. Laporan instan, bukan berhari-hari.",
     metric: "140+ pegawai terkelola",
     tech: ["React", "Laravel", "PostgreSQL"],
     year: "2025",
@@ -31,7 +31,7 @@ const projects = [
     type: "Academic Workflow System",
     image: "/portfolio/sipekad/cover.jpeg",
     fallbackImage: "/portfolio/sipekad/cover.jpeg",
-    desc: "Problem: Proses pengajuan surat di STTPU manual via kertas — mahasiswa antre, admin kewalahan, status tidak terlacak. Solusi: Sistem digital — 227 pengajuan terkelola, admin review & approve dalam satu dashboard, WhatsApp Bot kirim notifikasi otomatis ke mahasiswa. Result: Proses surat dari 3 hari → beberapa jam.",
+    desc: "Sistem pengajuan akademik digital yang memproses 227+ surat — dari antrean kertas jadi dashboard terpusat. Admin review sekali klik, status langsung terkirim via WhatsApp ke mahasiswa.",
     metric: "227 pengajuan diproses",
     tech: ["React", "Node.js", "WhatsApp API"],
     year: "2025",
@@ -48,7 +48,7 @@ const projects = [
     type: "Institutional Website",
     image: "/portfolio/sttpu-website/cover.jpeg",
     fallbackImage: "/portfolio/sttpu-website/cover.jpeg",
-    desc: "Problem: Website lama STTPU outdated, tidak mobile-friendly, calon mahasiswa sulit menemukan info. Solusi: Website modern dengan carousel berita, filter kategori, profil 3 program studi, dan portal akses terintegrasi. Result: Pengalaman browsing profesional yang mencerminkan kualitas kampus.",
+    desc: "Website institusi modern dengan carousel berita, filter kategori, dan profil 3 program studi — pengalaman browsing profesional yang mencerminkan kualitas kampus kepada calon mahasiswa.",
     metric: "3 program studi",
     tech: ["Next.js", "Tailwind CSS", "CMS"],
     year: "2026",
@@ -65,7 +65,7 @@ const projects = [
     type: "Premium Clinic & Beauty",
     image: "/portfolio/huora-beauty/cover.png",
     fallbackImage: "/portfolio/huora-beauty/cover.png",
-    desc: "Landing page premium elegan (dark mode only) dengan animasi fluid dan konversi booking WhatsApp yang terintegrasi langsung untuk klien VIP.",
+    desc: "Landing page klinik kecantikan premium dengan desain elegan, animasi fluid, dan alur booking WhatsApp yang mulus — mengubah pengunjung menjadi pelanggan setia.",
     metric: "Premium Brand Image",
     tech: ["Next.js", "Tailwind CSS", "Vercel"],
     year: "2026",
@@ -243,12 +243,12 @@ function ProjectCard({
   return (
     <motion.article
       onClick={handleClick}
-      className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer"
+      className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer flex flex-col h-full"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
       {/* Image */}
-      <div className="relative h-56 md:h-64 overflow-hidden">
+      <div className="relative h-56 md:h-64 overflow-hidden shrink-0">
         <img
           src={project.image}
           alt={project.title}
@@ -290,14 +290,16 @@ function ProjectCard({
       </div>
 
       {/* Content */}
-      <div className="p-5 md:p-6">
+      <div className="p-5 md:p-6 flex flex-col flex-1">
         <h3 className="text-[16px] font-semibold tracking-[-0.02em] text-[var(--text-primary)] mb-1.5">
           {project.title}
         </h3>
-        <span className="inline-block text-[10px] font-medium text-[var(--accent-bright)] bg-[var(--accent)]/[0.08] px-2 py-0.5 rounded-md mb-3 uppercase tracking-wider">
-          {project.type}
-        </span>
-        <p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-4">
+        <div>
+          <span className="inline-block text-[10px] font-medium text-[var(--accent-bright)] bg-[var(--accent)]/[0.08] px-2 py-0.5 rounded-md mb-3 uppercase tracking-wider">
+            {project.type}
+          </span>
+        </div>
+        <p className="text-[13px] text-[var(--text-muted)] leading-relaxed mb-6">
           {project.desc}
         </p>
         
@@ -367,7 +369,7 @@ const PortfolioSection = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4 items-stretch">
             <AnimatePresence mode="popLayout">
               {filtered.map((project) => (
                 <motion.div
