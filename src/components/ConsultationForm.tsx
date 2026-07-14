@@ -59,10 +59,10 @@ const ConsultationForm = () => {
   };
 
   // ── Input base — dark glass style ──
-  const inputCls = "w-full h-11 px-3 bg-[var(--bg-root)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] placeholder:text-[var(--text-ghost)] rounded-lg text-[14px] outline-none transition-all shadow-inner shadow-[var(--border-subtle)]";
+  const inputCls = "w-full h-11 px-3 bg-[var(--bg-surface)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] placeholder:text-[var(--text-ghost)] rounded-lg text-[14px] outline-none transition-all shadow-inner shadow-[var(--border-subtle)]";
 
   // ── Select base — dark glass + custom chevron ──
-  const selectCls = "w-full h-11 pl-3 pr-9 bg-[var(--bg-root)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] rounded-lg text-[14px] outline-none transition-all appearance-none cursor-pointer shadow-inner shadow-[var(--border-subtle)]";
+  const selectCls = "w-full h-11 pl-3 pr-9 bg-[var(--bg-surface)] border border-[var(--border-default)] focus:border-[var(--accent)]/40 focus:ring-1 focus:ring-[var(--accent)]/15 text-[var(--text-primary)] rounded-lg text-[14px] outline-none transition-all appearance-none cursor-pointer shadow-inner shadow-[var(--border-subtle)]";
 
   return (
     <section id="contact" className="relative py-24 md:py-32">

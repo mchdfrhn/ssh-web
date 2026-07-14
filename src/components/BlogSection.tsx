@@ -176,7 +176,7 @@ function ArticleModal({
         <button
           type="button"
           onClick={handleClose}
-          className="absolute -top-2 right-0 w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
+          className="absolute -top-2 right-0 w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
         >
           <X size={16} />
         </button>
@@ -198,7 +198,7 @@ function ArticleModal({
         </div>
 
         {/* Content */}
-        <article className="prose prose-invert prose-sm max-w-none prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)] prose-a:text-[var(--accent-bright)] prose-hr:border-[var(--border-default)] prose-li:text-[var(--text-secondary)]">
+        <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:text-[var(--text-primary)] prose-p:text-[var(--text-secondary)] prose-strong:text-[var(--text-primary)] prose-a:text-[var(--accent-bright)] prose-hr:border-[var(--border-default)] prose-li:text-[var(--text-secondary)]">
           {article.content.split("\n").map((line, i) => {
             if (line.startsWith("## ")) {
               return (

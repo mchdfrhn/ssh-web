@@ -90,7 +90,7 @@ const ProcessSection = () => (
                   <h3 className="text-[14px] font-semibold text-[var(--text-primary)] mb-1">
                     {step.title}
                   </h3>
-                  <p className="text-[12px] text-[var(--text-muted)] leading-relaxed max-w-[200px] md:mx-auto">
+                  <p className="text-[12px] text-[var(--text-muted)] leading-relaxed md:max-w-[200px] md:mx-auto">
                     {step.desc}
                   </p>
                 </div>

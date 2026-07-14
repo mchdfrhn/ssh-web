@@ -252,7 +252,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-subtle)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-default)] transition-all"
+              className="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--border-subtle)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-default)] transition-all"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -271,7 +271,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setOpen(!open)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-subtle)] border border-[var(--border-default)] text-[var(--text-secondary)]"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--border-subtle)] border border-[var(--border-default)] text-[var(--text-secondary)]"
               aria-label={open ? "Close menu" : "Open menu"}
             >
               {open ? <X size={16} /> : <Menu size={16} />}
