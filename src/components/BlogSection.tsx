@@ -310,7 +310,6 @@ const BlogSection = () => {
                   delay: i * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                whileHover={{ y: -4 }}
                 onClick={() => setSelectedArticle(article)}
               >
                 <div className="p-6 flex-1 flex flex-col">

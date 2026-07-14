@@ -89,7 +89,7 @@ const PricingSection = () => (
             key={i}
             className={`relative flex flex-col rounded-xl overflow-hidden transition-all ${
               plan.popular
-                ? "gradient-border bg-[var(--border-default)] shadow-lg shadow-[var(--accent)]/[0.08]"
+                ? "gradient-border glass-card shadow-lg shadow-[var(--accent)]/[0.08]"
                 : "glass-card"
             }`}
             variants={cardVariants}

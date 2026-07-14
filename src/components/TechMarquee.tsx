@@ -24,7 +24,7 @@ const TechItem = ({ tech, isDup }: { tech: typeof techs[number]; isDup?: boolean
       aria-hidden={isDup}
       width={40}
       height={40}
-      className="tech-icon w-8 h-8 md:w-10 md:h-10 grayscale opacity-30 hover:grayscale-0 hover:opacity-90 transition-all duration-300"
+      className="tech-icon w-8 h-8 md:w-10 md:h-10 opacity-40 dark:opacity-30 dark:grayscale hover:grayscale-0 hover:opacity-90 transition-all duration-300"
       loading="lazy"
     />
   </div>
