@@ -71,6 +71,19 @@ const projects = [
     year: "2026",
     link: "https://ssh-client-huora-beauty.vercel.app/",
   },
+  {
+    id: "metland-cikarang",
+    title: "Metland Cikarang — Rumah Impian",
+    category: "Website",
+    type: "Landing Page Properti",
+    image: "/portfolio/metland-cikarang/cover.png",
+    fallbackImage: "/portfolio/metland-cikarang/cover.png",
+    desc: "Landing page properti premium untuk Metland Cikarang — hunian berkualitas untuk keluarga muda. Desain modern dengan animasi smooth, statistik interaktif, dan alur WhatsApp yang seamless untuk developer langsung.",
+    metric: "Developer Resmi",
+    tech: ["Next.js", "Tailwind CSS", "GSAP", "Vercel"],
+    year: "2026",
+    link: "https://ssh-client-metland-cikarang.vercel.app/",
+  },
 ];
 
 /* ── Gallery Modal ── */
