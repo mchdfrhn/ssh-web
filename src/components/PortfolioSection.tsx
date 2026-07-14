@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, TrendingUp, Monitor } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, TrendingUp, Monitor, ArrowRight } from "lucide-react";
 
 /* ── Data ── */
 
@@ -335,12 +335,18 @@ function ProjectCard({
 
 const categories = ["All", "System", "Website"] as const;
 
+const INITIAL_VISIBLE = 3;
+
 const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const filtered =
     activeCategory === "All" ? projects : projects.filter((p) => p.category === activeCategory);
+
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL_VISIBLE);
+  const hasMore = filtered.length > INITIAL_VISIBLE;
 
   return (
     <>
@@ -367,7 +373,7 @@ const PortfolioSection = () => {
                 <button
                   key={cat}
                   type="button"
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => { setActiveCategory(cat); setShowAll(false); }}
                   className={`px-3.5 py-1.5 text-[12px] font-medium rounded-full transition-all duration-200 ${
                     activeCategory === cat
                       ? "bg-[var(--border-default)] text-[var(--text-primary)] border border-[var(--border-strong)]"
@@ -382,7 +388,7 @@ const PortfolioSection = () => {
 
           <div className="grid md:grid-cols-3 gap-4 items-stretch">
             <AnimatePresence mode="popLayout">
-              {filtered.map((project) => (
+              {visible.map((project) => (
                 <motion.div
                   key={project.id}
                   layout
@@ -399,6 +405,25 @@ const PortfolioSection = () => {
               ))}
             </AnimatePresence>
           </div>
+
+          {hasMore && !showAll && (
+            <motion.div
+              className="flex justify-center mt-10"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 text-[13px] font-medium rounded-full border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:bg-[var(--border-default)] transition-all duration-200"
+              >
+                Lihat Semua {filtered.length} Project
+                <ArrowRight size={14} />
+              </button>
+            </motion.div>
+          )}
         </div>
       </section>
 
