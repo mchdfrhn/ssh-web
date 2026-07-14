@@ -277,20 +277,20 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-root)] via-[var(--bg-root)]/20 to-transparent" />
 
         {/* Metric badge */}
-        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-root)]/70 backdrop-blur-sm border border-[var(--border-default)]">
+        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--bg-root)]/70 border border-[var(--border-default)]">
           <TrendingUp size={11} className="text-[var(--success)]" />
           <span className="text-[10px] font-semibold text-[var(--success)]">
             {project.metric}
           </span>
         </div>
 
-        <span className="absolute top-4 left-4 text-[10px] font-medium text-[var(--text-ghost)] bg-[var(--bg-root)]/50 backdrop-blur-sm px-2 py-0.5 rounded-md">
+        <span className="absolute top-4 left-4 text-[10px] font-medium text-[var(--text-ghost)] bg-[var(--bg-root)]/50 px-2 py-0.5 rounded-md">
           {project.year}
         </span>
 
         {project.gallery && project.gallery.length > 0 ? (
           <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-root)]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--border-strong)] backdrop-blur-sm border border-[var(--border-strong)]">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--border-strong)] border border-[var(--border-strong)]">
               <Monitor size={14} className="text-[var(--text-primary)]" />
               <span className="text-[12px] font-medium text-[var(--text-primary)]">
                 Lihat Galeri
