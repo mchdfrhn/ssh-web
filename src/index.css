@@ -313,15 +313,15 @@ body::before {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.88);
   box-shadow:
     0 2px 6px rgba(15, 23, 42, 0.07),
     0 12px 32px rgba(15, 23, 42, 0.06),
+    0 4px 12px rgba(15, 23, 42, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  transform: translateY(-4px) translateZ(0);
 }
 .dark .glass-card {
   background: rgba(255, 255, 255, 0.02);
