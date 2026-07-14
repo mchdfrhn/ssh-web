@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Clock, Calendar } from "lucide-react";
 import { getLenis } from "../utils/scroll-utils";
@@ -150,12 +150,20 @@ function ArticleModal({
   article: Article;
   onClose: () => void;
 }) {
-  // Stop Lenis so modal can scroll natively
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Stop Lenis + block wheel propagation so modal can scroll natively
   useEffect(() => {
     const lenis = getLenis();
     if (lenis) lenis.stop();
     document.body.style.overflow = "hidden";
+
+    const overlay = overlayRef.current;
+    const stopWheel = (e: WheelEvent) => e.stopPropagation();
+    if (overlay) overlay.addEventListener("wheel", stopWheel, { passive: true });
+
     return () => {
+      if (overlay) overlay.removeEventListener("wheel", stopWheel);
       if (lenis) lenis.start();
       document.body.style.overflow = "";
     };
@@ -165,7 +173,9 @@ function ArticleModal({
 
   return (
     <motion.div
+      ref={overlayRef as any}
       className="fixed inset-0 z-[9999] flex items-start justify-center bg-[var(--bg-root)]/95 backdrop-blur-xl overflow-y-auto cursor-default"
+      style={{ overscrollBehavior: "contain" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
