@@ -128,7 +128,7 @@ function GalleryModal({
         <button
           type="button"
           onClick={onClose}
-          className="w-9 h-9 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
+          className="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--border-default)] border border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border-strong)] transition-all"
         >
           <X size={16} />
         </button>
@@ -243,9 +243,7 @@ function ProjectCard({
   return (
     <motion.article
       onClick={handleClick}
-      className="group relative rounded-xl overflow-hidden glass-card transition-colors cursor-pointer flex flex-col h-full"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.3 }}
+      className="group relative rounded-xl overflow-hidden glass-card cursor-pointer flex flex-col h-full"
     >
       {/* Image */}
       <div className="relative h-56 md:h-64 overflow-hidden shrink-0">
