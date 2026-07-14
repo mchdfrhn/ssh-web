@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Clock, Calendar } from "lucide-react";
+import { getLenis } from "../utils/scroll-utils";
 
 /* ── Article Data ── */
 
@@ -149,22 +150,25 @@ function ArticleModal({
   article: Article;
   onClose: () => void;
 }) {
-  // Lock body scroll when modal is open
-  if (typeof document !== "undefined") {
+  // Stop Lenis so modal can scroll natively
+  useEffect(() => {
+    const lenis = getLenis();
+    if (lenis) lenis.stop();
     document.body.style.overflow = "hidden";
-  }
+    return () => {
+      if (lenis) lenis.start();
+      document.body.style.overflow = "";
+    };
+  }, []);
 
-  const handleClose = () => {
-    document.body.style.overflow = "";
-    onClose();
-  };
+  const handleClose = () => onClose();
 
   return (
     <motion.div
       className="fixed inset-0 z-[9999] flex items-start justify-center bg-[var(--bg-root)]/95 backdrop-blur-xl overflow-y-auto cursor-default"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { onComplete: () => { document.body.style.overflow = ""; } } }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
       onClick={handleClose}
     >

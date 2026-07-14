@@ -10,6 +10,10 @@ export function setLenis(lenis: any) {
   lenisInstance = lenis;
 }
 
+export function getLenis() {
+  return lenisInstance;
+}
+
 export function scrollTo(target: string | number, options?: { offset?: number; duration?: number; immediate?: boolean }) {
   if (lenisInstance) {
     lenisInstance.scrollTo(target, {
